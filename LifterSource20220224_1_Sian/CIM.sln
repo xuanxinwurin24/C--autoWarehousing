@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIM", "CIM\CIM.csproj", "{9E410591-9658-4AC9-95C8-264E0E77243A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Debug|x64.ActiveCfg = Debug|x64
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Debug|x64.Build.0 = Debug|x64
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Release|x64.ActiveCfg = Release|x64
+		{9E410591-9658-4AC9-95C8-264E0E77243A}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {938AEA33-C550-4892-81D7-09663554CC3E}
+	EndGlobalSection
+EndGlobal

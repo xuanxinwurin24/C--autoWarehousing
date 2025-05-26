@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+
+@{
+    ViewData["Title"] = "Carousel_Utility";
+    var data = ViewBag.Carousel_Utility;
+    var list = ViewBag.list;
+
+}
+
+<head>
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Carousel_Utility</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script>
+        function CheckBox_All() {
+            var cb_list = document.getElementsByName("Checkbox_List");
+            if (document.getElementById("list_all").checked) {
+                for (var i = 0; i < cb_list.length; i++) {
+                    cb_list[i].checked = true;
+                }
+            }
+            else {
+                for (var i = 0; i < cb_list.length; i++) {
+                    cb_list[i].checked = false;
+                }
+            }
+        }
+        function Modify() {
+            var M_List = document.getElementsByName("Modify_List");
+            var cb_list = document.getElementsByName("Checkbox_List");
+            for (var i = 0; i < M_List.length; i++) {
+                if (M_List[i].value != "") {
+                    for (var j = 0; j < cb_list.length; j++) {
+                        if (cb_list[j].checked == true) {
+                            switch (i) {
+                                case 0:
+                                    var CSID_List = document.getElementsByName("S_CSID_List");
+                                    CSID_List[j].value = M_List[i].value;
+                                    break;
+                                case 1:
+                                    var CEID_List = document.getElementsByName("S_CEID_List");
+                                    CEID_List[j].value = M_List[i].value;
+                                    break;
+                                case 2:
+                                    var TU_List = document.getElementsByName("TU_List");
+                                    TU_List[j].value = M_List[i].value;
+                                    break;
+                                case 3:
+                                    var TL_List = document.getElementsByName("TL_List");
+                                    TL_List[j].value = M_List[i].value;
+                                    break;
+                                case 4:
+                                    var HU_List = document.getElementsByName("HU_List");
+                                    HU_List[j].value = M_List[i].value;
+                                    break;
+                                case 5:
+                                    var HL_List = document.getElementsByName("HL_List");
+                                    HL_List[j].value = M_List[i].value;
+                                    break;
+                                case 6:
+                                    var TUON_List = document.getElementsByName("TUON_List");
+                                    TUON_List[j].value = M_List[i].value;
+                                    break;
+                                case 7:
+                                    var TUOFF_List = document.getElementsByName("TUOFF_List");
+                                    TUOFF_List[j].value = M_List[i].value;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function UploadChecked() {
+            var CSID_List = document.getElementsByName("S_CSID_List");
+            var TU_List = document.getElementsByName("TU_List");
+            var TL_List = document.getElementsByName("TL_List");
+            var HU_List = document.getElementsByName("HU_List");
+            var HL_List = document.getElementsByName("HL_List");
+            var TUON_List = document.getElementsByName("TUON_List");
+            var TUOFF_List = document.getElementsByName("TUOFF_List");
+            for (var i = 0; i < CSID_List.length; i++) {
+                if (CSID_List[i].value == "") {
+                    window.alert("Carousel ID不可為空");
+                    return;
+                }
+                else if (TU_List[i].value == "") {
+                    window.alert("溫度上限值不可為空");
+                    return;
+                }
+                else if (TL_List[i].value == "") {
+                    window.alert("溫度下限值不可為空");
+                    return;
+                }
+                else if (HU_List[i].value == "") {
+                    window.alert("濕度上限值不可為空");
+                    return;
+                }
+                else if (HL_List[i].value == "") {
+                    window.alert("濕度下限值不可為空");
+                    return;
+                }
+                else if (TUON_List[i].value == "") {
+                    window.alert("充填開始濕度不可為空");
+                    return;
+                }
+                else if (TUOFF_List[i].value == "") {
+                    window.alert("充填結束濕度不可為空");
+                    return;
+                }
+            }
+            document.getElementById("myform").submit();
+        }
+    </script>
+    <style type="text/css">
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+
+        thead, tbody, tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+
+        .content {
+            /* 省略... */
+            white-space: nowrap;
+        }
+
+        #DIV2 {
+            width: 1200px;
+            height: 800px;
+            line-height: 1px;
+            float: left;
+            position: absolute;
+            left: 0px;
+            top: 0%;
+        }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+
+    <form method="post" id="myform" action="/Frame/Carousel_Utility">
+        <div id="DIV2">
+            <input type="hidden" name="UserID" value="@TempData.Peek("User")" />
+            <table align="center" style="table-layout:fixed ;height: 300px;width: 1166px" cellpadding="0" border='1'>
+                <thead style="width:100%">
+                    <tr>
+                        <th height="25px" width="30px" align="center"><input type="checkbox" id="list_all" onclick="CheckBox_All()"/></th>
+                        <th height="25px" width="90px" align="center">Carousel ID</th>
+                        <th height="25px" width="90px" align="center">Cell ID前綴</th>
+                        <th height="25px" width="90px" align="center">監控溫度上限值</th>
+                        <th height="25px" width="90px" align="center">監控溫度下限值</th>
+                        <th height="25px" width="90px" align="center">監控濕度上限值</th>
+                        <th height="25px" width="90px" align="center">監控濕度下限值</th>
+                        <th height="25px" width="100px" align="center">N2充填開始濕度值</th>
+                        <th height="25px" width="100px" align="center">N2充填結束濕度值</th>
+
+                    </tr>
+                </thead>
+                <tbody style="background-color:white;width:100%" height="400px">
+
+                    @for (int i = 0; i < list.Count; i++)
+                        {
+                        <tr>
+                            <td width="44px" align="center"><input type="checkbox" name="Checkbox_List"></td>
+                            <td width="135px"><input type="hidden" value="@list[i].Carousel_ID" name="CSID_List" /><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="S_CSID_List" value="@list[i].Show_Carousel_ID"></td>
+                            <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; "name="S_CEID_List" value=""></td>
+                            <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="TU_List" value="@list[i].Temp_UPPER"></td>
+                            <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="TL_List"value="@list[i].Temp_LOWER"></td>
+                            <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="HU_List"value="@list[i].Hum_UPPER"></td>
+                            <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="HL_List"value="@list[i].Hum_LOWER"></td>
+                            <td width="150px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="TUON_List"value="@list[i].TURN_ON_N2"></td>
+                            <td width="150px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px; " name="TUOFF_List"value="@list[i].TURN_OFF_N2"></td>
+                        </tr>
+                        }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td width="44px"><input type="button" value="確認" onclick="Modify()" /></td>
+                        <td width="135px"><input type="text" disabled="disabled" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_CSID" value="" /></td>
+                        <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_CEID" value=""/></td>
+                        <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_TU" value=""/></td>
+                        <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_TL" value=""/></td>
+                        <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_HU" value=""/></td>
+                        <td width="135px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_HL" value=""/></td>
+                        <td width="150px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_TUON" value=""/></td>
+                        <td width="150px"><input type="text" style="width: 95%; text-align: center; margin: 0; font-size: 10px;" name="Modify_List" id="Modify_TUOFF" value=""/></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <center><input type="button" style="width:300px;height:100px" value="確認上傳" onclick="UploadChecked()" /></center>
+            
+        </div>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SysPara xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SoftVersion>SoftVersion</SoftVersion>
+  <ModelName>ModelName</ModelName>
+  <InLineID>InLineID</InLineID>
+  <EqID>21-K12_8F-ASRS-00_01</EqID>
+  <Client>true</Client>
+  <SqlDB_data_source>192.168.50.59,1433</SqlDB_data_source>
+  <SqlDB_catalog>ASE</SqlDB_catalog>
+  <SqlDB_uid>Strong</SqlDB_uid>
+  <SqlDB_password>5999011</SqlDB_password>
+  <SoftType>CPC</SoftType>
+  <StockInWaitTime>900000</StockInWaitTime>
+  <LogOutTime>600000</LogOutTime>
+  <UsageReportTime>1800000</UsageReportTime>
+  <bSimuPLC>true</bSimuPLC>
+  <bSimuPLC2>true</bSimuPLC2>
+  <Carousel_Utility_Monitoring_Period>2</Carousel_Utility_Monitoring_Period>
+</SysPara>

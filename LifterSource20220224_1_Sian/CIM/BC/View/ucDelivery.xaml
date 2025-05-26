@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="CIM.BC.View.ucDelivery"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:bcView="clr-namespace:CIM.BC.View"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        mc:Ignorable="d"
+        Height="Auto" Width="620" FontSize ="20">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Grid Margin="0,0,0,10" HorizontalAlignment="Center">
+            <Grid.Resources>
+                <Style x:Key ="ClickStyle" TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Style.Triggers>
+                        <Trigger Property="Tag" Value="1">
+                            <Setter Property = "Background" Value="#FF0BF70B"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnNormal" Content="一般" Grid.Column="0" Click="btnNormal_Click" Style="{StaticResource ClickStyle}"/>
+            <Button x:Name="btnIssue" Content="發料" Grid.Column="2" Click="btnIssue_Click" Style="{StaticResource ClickStyle}"/>
+            <Button x:Name="btnProb" Content="異常" Grid.Column="4" Click="btnProb_Click" Style="{StaticResource ClickStyle}"/>
+            <Button x:Name="btnConfidence" Content="機密" Grid.Column="6" Click="btnConfidence_Click" Style="{StaticResource ClickStyle}"/>
+        </Grid>
+        <Grid>
+            <bcView:uDeliNormal x:Name="ucNormal" Visibility="Visible"/>
+            <bcView:uDeliIssue x:Name="ucIssue" Visibility="Collapsed"/>
+            <bcView:uDeliConfidence x:Name="ucConf" Visibility="Collapsed"/>
+            <bcView:uDeliProb x:Name="ucProb" Visibility="Collapsed"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

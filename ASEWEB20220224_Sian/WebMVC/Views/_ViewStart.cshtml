@@ -1,0 +1,28 @@
+﻿@{
+    if (TempData.Peek("Language") != null)
+    {
+        string lan = TempData.Peek("Language").ToString();
+        switch (lan)
+        {
+
+            case "2":
+                Layout = "~/Views/Shared/_LayoutEN.cshtml";
+                break;
+            default:
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                break;
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    if (TempData.Peek("Authority") == null)
+    {
+        TempData["Authority"] = "0";
+        TempData["User"] = "Guest";
+        TempData["UserGroup"] = "Guest";
+    }
+
+
+}

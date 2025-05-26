@@ -1,0 +1,3 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+Action,60,B,4,0,DEC,F,0,ONOFF,F,,1:Send Compelte 2:Receive Complete
+BoxID,61,W,10,0,ASCII,F,0,ONOFF,F,,

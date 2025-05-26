@@ -1,0 +1,8 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+YY,210,B,8,8,BCD,F,0,ONOFF,F,,
+MM,210,B,8,0,BCD,F,0,ONOFF,F,,
+DD,211,B,8,8,BCD,F,0,ONOFF,F,,
+HH,211,B,8,0,BCD,F,0,ONOFF,F,,
+NN,212,B,8,8,BCD,F,0,ONOFF,F,,
+SS,212,B,8,0,BCD,F,0,ONOFF,F,,
+DateTime,210,W,3,0,BCD,F,0,ONOFF,F,,ssmmhhddMMyy

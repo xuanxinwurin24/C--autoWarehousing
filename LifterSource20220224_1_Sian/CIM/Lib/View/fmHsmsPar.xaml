@@ -1,0 +1,90 @@
+﻿<Window x:Class="CIM.Lib.View.fmHsmsPar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        mc:Ignorable="d"
+        Title="fmHamsPar" Height="416" Width="578" FontSize ="16" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+    <StackPanel x:Name="stackMain"  Margin="0,0,-1,-9">
+        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+            <GroupBox Header="Connect Mode">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <RadioButton  Content="Passive" Margin="0,0,3,0" IsChecked="true" VerticalContentAlignment="Center"></RadioButton>
+                    <RadioButton Name="rdActive" IsChecked="{Binding Path=Active}" Content="Active" VerticalContentAlignment="Center"></RadioButton>
+                </StackPanel>
+            </GroupBox>
+            <Button x:Name="btnDefault" Margin="60,0,0,0" Height="32" Width="120" Click="btnDefault_Click">Default</Button>
+            <Button x:Name="btnSave" Margin="20,0,0,0" Height="32" Width="120" Click="btnSave_Click">Save</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <GroupBox Header="Local" Margin="10">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="IP:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Port No:" Grid.Column="0" Grid.Row="1" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+                    <TextBox Name="edLocalIP" Text="{Binding LocalIP}" Grid.Column="1" Grid.Row="0" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100"/>
+                    <TextBox Name="edLocalPort" Text="{Binding LocalPort}" Grid.Column="1" Grid.Row="1" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Remote" Margin="80,10,10,10" HorizontalAlignment="Right">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="IP:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="Port No:" Grid.Column="0" Grid.Row="1" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+                    <TextBox Name="edRemoteIP" Text="{Binding RemoteIP}" Grid.Column="1" Grid.Row="0" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100"/>
+                    <TextBox Name="edRemotePort" Text="{Binding RemotePort}" Grid.Column="1" Grid.Row="1" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100"/>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+        <Grid Margin="70,10,62,10" HorizontalAlignment="Center" Width="440">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Link Test Time" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="HSMS T3" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="HSMS T5" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="HSMS T6" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+            <TextBox Name="edLinkTestTime" Text="{Binding LinkTime}"  Grid.Column="1" Grid.Row="0" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox Name="edT3" Text="{Binding HT3}" Grid.Column="1" Grid.Row="1" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox Name="edT5" Text="{Binding HT5}" Grid.Column="1" Grid.Row="2" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox Name="edT6" Text="{Binding HT6}" Grid.Column="1" Grid.Row="3" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+
+            <TextBlock Text="DeviceID" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="HSMS T7" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="HSMS T8" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="EDC Timer" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+            <TextBox Name="edDeviceID" Text="{Binding DeviceID}" Grid.Column="3" Grid.Row="0" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox Name="edT7" Text="{Binding HT7}" Grid.Column="3" Grid.Row="1" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox Name="edT8" Text="{Binding HT8}" Grid.Column="3" Grid.Row="2" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+            <TextBox x:Name="edEDCTimer" Text="{Binding EDCTime}" Grid.Column="3" Grid.Row="3" Margin="5,2,0,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="70"/>
+        </Grid>
+    </StackPanel>
+</Window>

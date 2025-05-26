@@ -1,0 +1,189 @@
+﻿<html>
+@{
+    ViewData["Title"] = "Alarm";
+    var data = ViewBag.data;
+    var data1 = ViewBag.data1;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Log紀錄</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0px;
+            height:100%;
+        }
+        table {
+            background-color: white;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+        #DIV1{
+            right:50px;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 800px;
+            max-height: 800px;
+            font-family: sans-serif;
+        }
+
+        .tabs__content {
+            order: 1;
+            width: 100%;
+            height: 100%;
+            border-bottom: 0px solid #dddddd;
+            line-height: 1.5;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .tabs__label {
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+
+        .tabs__radio {
+            display: none;
+        }
+
+
+            .tabs__radio:checked + .tabs__label {
+                font-weight: bold;
+                color: #009578;
+                border-bottom: 2px solid #009578;
+            }
+
+                .tabs__radio:checked + .tabs__label + .tabs__content {
+                    display: initial;
+                }
+    </style>
+    <script>
+        function One_trClick(z) {
+            var n = document.getElementsByName("list");
+            for (var i = 0; i < n.length; i++) {
+                if (i == z) {
+                    n[i].style = "background-color:red";
+                    document.getElementById("ResetOne_ID").value = document.getElementById(i).value;
+                }
+                else
+                    n[i].style = "";
+            }
+        }
+        function FormSubmit(t) {
+            document.getElementsByName("rRFtype")[0].value = t;
+            document.getElementById("Alarm_re").submit();
+        }
+    </script>
+</head>
+<body style="background-color: skyblue;">
+    <div class="tabs">
+        <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+        <label for="tab1" class="tabs__label">Alarm</label>
+        <div class="tabs__content">
+            <form id="Alarm_re" method="post" action="/Frame/Alarm">
+                <div id="DIV1">
+                    <input type="button" value="Reset All" onclick="FormSubmit('All')" />
+                    <input type="button" value="Reset One Alarm" onclick="FormSubmit('One')" />
+                    <input type="hidden" name="rRFtype" value="" />
+                    <input type="hidden" name="rID" id="ResetOne_ID" value="" />
+                </div>
+                <table style="table-layout:fixed ;height:400px;width:700px" cellpadding="0" border='1'>
+                    <thead>
+                    <th>ID</th>
+                    <th>Unit Name</th>
+                    <th>Time</th>
+                    <th>Message</th>
+                    </thead>
+                    <tbody>
+                        @if (data.Count != 0)
+                        {
+                            @for (int i = 0; i < data.Count; i++)
+                            {
+                                <tr name="list" onclick="One_trClick(@i)">
+                                    <td>@data[i].ID<input type="hidden" id="@i" value="@data[i].ID" /></td>
+                                    <td>@data[i].Unit_Name<input type="hidden" id="CB@i" value="" /></td>
+                                    <td>@data[i].Time</td>
+                                    <td>@data[i].Message</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+        <label for="tab2" class="tabs__label">Alarm History</label>
+        <div class="tabs__content">
+            <table style="table-layout:fixed ;height:400px;width:700px" cellpadding="0" border='1'>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Unit Name</th>
+                        <th>Occured Time</th>
+                        <th>Reset Time</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (data1.Count != 0)
+                    {
+                        @for (int i = 0; i < data1.Count; i = i + 5)
+                        {
+                            <tr>
+                                <td>@data1[i]</td>
+                                <td>@data1[i + 1]</td>
+                                <td>@data1[i + 2]</td>
+                                <td>@data1[i + 3]</td>
+                                <td>@data1[i + 4]</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

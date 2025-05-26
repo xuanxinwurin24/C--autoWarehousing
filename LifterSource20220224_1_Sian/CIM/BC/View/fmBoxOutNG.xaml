@@ -1,0 +1,18 @@
+﻿<Window x:Class="CIM.BC.View.fmBoxOutNG"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:bcView="clr-namespace:CIM.BC.View"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        xmlns:View ="clr-namespace:CIM.View"
+        mc:Ignorable="d"
+        FontFamily="Consolas" Height="743" Width="1390" FontSize ="20" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="LightGray">
+    <Grid Margin="0,0,0,0">
+        <Button x:Name="btnKeyIn" Content="KeyIn" HorizontalAlignment="Left" Margin="805,334,0,0" VerticalAlignment="Top" Width="143" Height="95" Click="btnKeyInClick"/>
+        <Button x:Name="btnRetry" Content="Retry" HorizontalAlignment="Left" Margin="431,334,0,0" VerticalAlignment="Top" Width="143" Height="95" Click="btnRetryClick"/>
+        <Grid x:Name="KeyInWindow" Visibility="Hidden" Margin="300,200" Background="Gray" Panel.ZIndex="2">
+            <TextBox x:Name="tbKeyIn" Margin="200,100" KeyDown="tbKeyIn_KeyDown"></TextBox>
+        </Grid>
+    </Grid>
+</Window>

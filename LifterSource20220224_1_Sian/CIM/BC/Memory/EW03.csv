@@ -1,0 +1,3 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+BoxID,20,W,10,0,ASCII,F,0,ONOFF,F,,
+FOSBBatchNo,161,W,50,0,ASCII,F,0,ONOFF,F,,

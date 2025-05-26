@@ -1,0 +1,122 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var data = ViewBag.data;
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" "></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script type="text/javascript">
+        function close_iframe() {
+            var UNGtemp = "";
+            var UNlist = document.getElementsByName("UserNameList");
+            var UGlist = document.getElementsByName("UserGroupName");
+            var trcheck = document.getElementsByName("trcheck");
+            var UN = document.getElementById("UN");
+            var x = 0;
+            for (var i = 0; i < UNlist.length; i++) {
+                if (trcheck[i].value != "N") {
+                    if(x>0)
+                        UNGtemp += ',';
+                    UNGtemp += UNlist[i].value;
+                    UNGtemp += ',';
+                    UNGtemp += UGlist[i].value;
+                    x++;
+                }
+            }
+            UN.value = UNGtemp;
+            parent.Delete_Close();
+            if(x!=0)
+                document.getElementById("form1").submit();
+        }
+        function cancel_iframe() {
+            var List = document.getElementsByName("List");
+            var UNlist = document.getElementsByName("UserNameList");
+            var trcheck = document.getElementsByName("trcheck");
+            for (var i = 0; i < UNlist.length; i++) {
+                trcheck[i].value = "N";
+                List[i].style = "background-color:white";
+            }
+            parent.Delete_Close();
+        }
+        function trclick(t) {
+            if (document.getElementsByName("trcheck")[t / 2].value == "N") {
+                document.getElementsByName("List")[t / 2].style = "background-color:red";
+                document.getElementsByName("trcheck")[t / 2].value = "Y";
+            }
+            else {
+                document.getElementsByName("List")[t / 2].style = "background-color:white";
+                document.getElementsByName("trcheck")[t / 2].value = "N";
+            }
+                
+        }
+    </script>
+    <style>
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            tbody td{
+                text-align:center;
+            }
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+        tfoot td{
+            text-align:center;
+        }
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+    </style>
+</head>
+<body style="background-color:white">
+    <form id="form1" method="post" action="/Frame/UserDelete">
+        <input type="hidden" id="UN" name="UN" value="" />
+    </form>
+    <table style="#00007f groove;height: 280px;width: 380px;overflow-y:auto;" cellpadding="0" border="1">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Group</th>
+            </tr>
+        </thead>
+        @if (data.Count > 0)
+        {
+            for (int i = 0; i < data.Count; i = i + 2)
+            {
+                <tr onclick="trclick(@i)" name="List">
+                    <td>
+                        <input type="hidden" value="@data[i]" name="UserNameList" />
+                        @data[i]
+                        <input type="hidden" value="N" name="trcheck" />
+                    </td>
+                    <td>
+                        <input type="hidden" value="@data[i+1]" name="UserGroupName" />
+                        (@data[i + 1])
+                    </td>
+                </tr>
+            }
+        }
+        <tfoot>
+            <tr>
+                <td><input type="button" style="width:100%" value="確認" onclick="close_iframe()" /></td>
+                <td><input type="button" style="width:100%" value="取消" onclick="cancel_iframe()" /></td>
+            </tr>
+        </tfoot>
+    </table>
+        
+    </body>
+</html>

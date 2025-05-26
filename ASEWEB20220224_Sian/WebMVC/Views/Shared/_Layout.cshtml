@@ -1,0 +1,273 @@
+﻿@{ 
+    string Auth = TempData.Peek("Authority").ToString().Trim();
+    string SystemSetting = TempData.Peek("UserSystemSetting").ToString().Trim();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASE</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style type="text/css">
+        header {
+            width: 10%;
+            height: 100%;
+            background-color: black;
+            position: absolute;
+            left: 0%;
+            top: 0%;
+            z-index: 2;
+        }
+        #head {
+            width: auto;
+            line-height:40px;
+            height:auto;
+            padding: 20px;
+            margin-right: 10px;
+            float: left;
+            top:10px;
+            position: absolute;
+        }
+        bodyframe {
+            width: 90%;
+            height: 95%;
+            position: absolute;
+            right: 0%;
+            top: 0%;
+            overflow: auto;
+        }
+     
+        body {
+            overflow-y: hidden;
+        }
+        #foot ul li {
+            display: inline-block;
+            height:30px;
+        }
+        .footer {
+            background-color: #333;
+            height: 60px;
+            position:absolute;
+            /*因為通常 footer 也跟 navbar 一樣會是固定的尺寸，所以這邊可以大膽的設定高度，為了區隔上方的內容，所以用了 margin-top .footer-text*/
+        }
+        .header_data {
+            background-color: #000000ee;
+            border: none;
+            color: white;
+            padding: 3%;
+            text-align: left;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            cursor: pointer;
+            width: 110%;
+            color: inherit;
+   
+        }
+       
+        .header_data:hover {
+            background-color: #6b6b6b;
+        }
+
+        .header_data:focus {
+            background-color: #d8dad8;
+        }
+        .buttom_border {
+            width: 100%;
+            height: 6%;
+            background-color: rgb(43, 43, 43);
+            position: absolute;
+            bottom: 0%;
+            left: 0%;
+            display: inline-flex;
+            z-index: 3;
+        }
+
+         .login_data{
+        color:white;
+        position: relative;
+        top:0px;
+        bottom:12px;
+        font-family:Microsoft JhengHei;
+        font-weight:bold;
+        font-size: 25px;
+        padding: 1%;
+        float: left;
+        line-height:90%;
+        box-sizing: content-box;  
+    }
+        #show_time{
+            color:white;
+            font-size:20px;
+        }
+        #User_Name {
+            left: 10%;
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+      
+        <div class="container" id="head" style="color:white">
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    @if (Auth == "Admin" || Auth.IndexOf("Mainwindow") != -1)
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Index">主畫面</a>
+                        </li>
+                    }
+
+                    @if (Auth == "Admin")
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+                color: inherit" ; asp-area="" asp-controller="Frame" asp-action="UserSetting">使用者設定</a>
+                        </li>
+                    }
+
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="ucSystemSetting">系統設定</a>
+                        </li>
+                    
+                    @if (Auth == "Admin" || Auth.IndexOf("Alarm") != -1)
+                    {
+
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Alarm">警報</a>
+                        </li>
+                    }
+                    @if (Auth == "Admin" || Auth.IndexOf("Log") != -1)
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Log_record">Log記錄</a>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Download_Log">Log匯出</a>
+                    </li>
+                    @if (Auth == "Admin" || Auth.IndexOf("Check") != -1)
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Check_inventory">盤點</a>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Task">任務列表</a>
+                    </li>
+                    @if (Auth == "Admin" || Auth.IndexOf("Storage") != -1)
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Storage">調儲</a>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Stock">備貨</a>
+                    </li>
+                    @if (Auth == "Admin")
+                    {
+                        <li class="nav-item">
+                            <a class="header_data" style="text-decoration: none;
+            color: inherit" ; asp-area="" asp-controller="Frame" asp-action="Upload_Account">上傳</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+       
+    </header>
+    <bodyframe>
+        @RenderBody()
+    </bodyframe>
+
+
+
+    <div class="buttom_border">
+        <div class="login_data"><label>User</label>&emsp;<label id="User_Name">@TempData.Peek("UserName").ToString().Trim()</label></div>
+        @*<div class="login_data">User Group</div>
+        <p>@TempData.Peek("UserGroup")</p>*@
+        <div>
+            @if (TempData.Peek("Authority").ToString() != "0")
+            {
+                <input type="button" value="登出" id="Login" style="width: 80%;height:40px;position: relative;left: 10%;bottom:5%;margin: 10px;" onclick="Login_Logout()">
+            }
+            else
+            {
+                <input type="button" value="登入" id="Login" style="width: 80%;height:40px;position: relative;left: 10%;bottom:5%;margin: 10px;" onclick="Login_Logout()">
+            }
+
+        </div>
+        <p class="login_data">語言</p>
+        <div>
+            <iframe scrolling="no" style="width:120px;height:50px" src="~/Login/LanguageForLayout"></iframe>
+        </div>
+        @if (@TempData["STK_Connect_Message"].ToString().Trim() != "OK")
+        {
+            <div>
+                <p class="login_data">資料庫連接失敗</p>
+            </div>
+        }
+
+
+        <div id="show_time" style="position:absolute;bottom:0;right:0%;height:40px">
+            <script>
+                setInterval("fun(show_time)", 1);
+                function fun(timeID) {
+                    var date = new Date();  //建立物件
+                    var y = date.getFullYear();     //獲取年份
+                    var m = date.getMonth() + 1;   //獲取月份  返回0-11
+                    var d = date.getDate(); // 獲取日
+                    var w = date.getDay();   //獲取星期幾  返回0-6   (0=星期天)
+                    var ww = ' 星期' + '日一二三四五六'.charAt(new Date().getDay());//星期幾
+                    var h = date.getHours();  //時
+                    var minute = date.getMinutes()  //分
+                    var s = date.getSeconds(); //秒
+                    var sss = date.getMilliseconds(); //毫秒
+                    if (m < 10) {
+                        m = "0" + m;
+                    }
+                    if (d < 10) {
+                        d = "0" + d;
+                    }
+                    if (h < 10) {
+                        h = "0" + h;
+                    }
+                    if (minute < 10) {
+                        minute = "0" + minute;
+                    }
+                    if (s < 10) {
+                        s = "0" + s;
+                    }
+                    document.getElementById(timeID.id).innerHTML = y + "/" + m + "/" + d + "   " + h + ":" + minute + ":" + s;
+                    //document.write(y+"-"+m+"-"+d+"   "+h+":"+minute+":"+s);
+                }
+                function Login_Logout() {
+                    window.location.href = "../../Login/Logout";
+                }
+            </script>
+        </div>
+
+
+    </div>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

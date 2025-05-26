@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="CIM.View.ucTask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CIM.View" xmlns:Lib="clr-namespace:CIM.Lib"
+             mc:Ignorable="d" Background="LightGray"
+             d:DesignHeight="450" d:DesignWidth="760">
+    <Canvas>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="顏色說明" Grid.Row="0" Grid.Column="0" FontSize="20" HorizontalContentAlignment="Center" Margin="3"/>
+            <Label Content="命令送出等待中" Grid.Row="0" Grid.Column="1" FontSize="20" Background="Aqua" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="任務執行中" Grid.Row="0" Grid.Column="2" FontSize="20" Background="Lime" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="BOX抵達Lifter" Grid.Row="0" Grid.Column="3" FontSize="20" Background="Gold" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="任務尚未執行" Grid.Row="0" Grid.Column="4" FontSize="20" Background="White" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <!--<StackPanel x:Name="cbList" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Margin="3">
+                <CheckBox x:Name="cbStTime" Content="StartTime" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbSrc" Content="Source" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbSrcCell" Content="Source Cell" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbTarget" Content="Target" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbTargetCell" Content="Target Cell" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbPriority" Content="Priority" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+                <CheckBox x:Name="cbCommandID" Content="Command ID" FontSize="14" VerticalContentAlignment="Center" Margin="1,0,1,0"/>
+            </StackPanel>-->
+            <Label Content="剩餘任務:" Grid.Row="2" Grid.Column="0" FontSize="20" HorizontalContentAlignment="Center" Margin="3"/>
+            <TextBlock x:Name="tbTaskCount" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Grid>
+
+        <DataGrid x:Name="DataGrid_TaskList" Grid.Row="1" FontSize="16" Canvas.Top="100"
+				  AutoGenerateColumns="False" HeadersVisibility="Column" RowDetailsVisibilityMode="Visible" SelectionMode="Single" 
+				  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+				  VirtualizingPanel.ScrollUnit="Pixel" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Width="760">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <!--<Setter Property="FontSize" Value="16" />-->
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="5 2" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="ContentControl">
+                    <EventSetter Event="MouseRightButtonUp" Handler="grid_TaskList_MouseRightButtonUp"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected" Value="True">
+                            <Setter Property="Background" Value="Yellow" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <!--<Setter Property="BorderThickness" Value="0" />-->
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightBlue" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <!--<Setter Property="BorderThickness" Value="0" />-->
+                        </Trigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="2">
+                            <Setter Property="Background" Value="Lime" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="3">
+                            <Setter Property="Background" Value="Aqua" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="4">
+                            <Setter Property="Background" Value="Lime" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="88">
+                            <Setter Property="Background" Value="Gold" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="99">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" Binding="{Binding STARTTIME}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="StartTime"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DIRECTION}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Task Type"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding BOXID}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Box ID" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding BATCH_NO}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Batch No." />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding SOTERIA}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Soteria" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding CUSTOMER_ID}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Customer ID" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding SRCPOS}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Source" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding SRCCELL}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Source Cell" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding TARPOS}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Target" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding TARCELL}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Target Cell" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding PRIORITY}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Priority" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="Auto" Binding="{Binding COMMANDID}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Command ID" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Canvas>
+</UserControl>

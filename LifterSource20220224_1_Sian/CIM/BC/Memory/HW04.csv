@@ -1,0 +1,8 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+BoxIDInReadNG,240,B,2,0,DEC,F,0,ONOFF,F,,
+BoxIDInReadNGIndex,241,W,1,0,HEX,F,0,ONOFF,F,,
+BoxIDOutReadNG,242,B,2,0,DEC,F,0,ONOFF,F,,
+BoxIDOutReadNGIndex,243,W,1,0,HEX,F,0,ONOFF,F,,
+BoxIDOutCompareNG,244,B,2,0,DEC,F,0,ONOFF,F,,
+BoxIDOutCompareNGIndex,245,W,1,0,HEX,F,0,ONOFF,F,,
+BoxIDOutKeyIn,250,W,10,0,ASCII,F,0,ONOFF,F,,

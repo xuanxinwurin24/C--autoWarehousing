@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Test";
+}
+<html>
+
+<head>
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>測試</title>
+
+        <style type="text/css">
+            #DIV1 {
+                width: 830px;
+                height: 200px;
+                line-height: 1px;
+                padding: 0px;
+                margin-right: 0px;
+                float: left;
+                position: absolute;
+                top: 50px;
+            }
+
+            #DIV2 {
+                width: 830px;
+                height: 300px;
+                line-height: 1px;
+                padding: 0px;
+                margin-top: 0px;
+                margin-right: 0px;
+                float: left;
+                position: absolute;
+                left: 10px;
+                top: 360px;
+            }
+        </style>
+</head>
+<body style="background-color: skyblue;">
+    <form style="height:768px">
+        <input type="button" style="height:30px" value=Test1>&ensp;&ensp;&ensp;
+        <input type="button" style="height:30px" value=Test2>&ensp;&ensp;&ensp;
+        <input type="button" style="height:30px" value=Test3>&ensp;&ensp;&ensp;
+        <div id="DIV1">
+            <fieldset style="width: 800px;height: 250px">
+                <legend>Stocker</legend>
+                <table style="width: 800px" align="left" frame="void" cellpadding="4" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td><label>HubURL:</label></td>
+                            <td colspan="5">
+                                <input style="width: 300px" type="text" id="stock_HubURL" value="">
+                            </td>
+                            <td><label>HubPWD:</label></td>
+                            <td><input style="width: 40px" type="text" id="stock_HubPWD" value=""></td>
+                            <td><input style="height:30px" type="button" value="online"></td>
+                            <td><input style="height:30px" type="button" value="offline"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6"><label>車子動作</label></td>
+                            <td colspan="2"><label>刪帳</label></td>
+                            <td colspan="2"><label>盤點</label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Action</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_Action"></td>
+                            <td><label>客戶碼</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_CMcode"></td>
+                            <td><label>Target</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_Target"></td>
+                            <td><label>CarouselID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_del_CarouselID"></td>
+                            <td><label>Cmd ID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_check_CmdID"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Car ID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_CarID"></td>
+                            <td><label>Position:M</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_PosM"></td>
+                            <td><label>T_CELL_ID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_TcellID"></td>
+                            <td><label>CellID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_del_CellID"></td>
+                            <td><label>CarouselID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_check_CarouselID"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Box ID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_BoxID"></td>
+                            <td><label>Source</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_Source"></td>
+                            <td><label>CmdID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_CmdID"></td>
+                            <td colspan="2" align="right"><input style="height:30px" type="button" value="C031"></td>
+                            <td><label>Action</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_check_Action"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Batch No</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_BatchNo"></td>
+                            <td><label>S_CELL_ID</label></td>
+                            <td><input style="width: 60px" type="text" id="stock_S_CELL_ID"></td>
+                            <td colspan="2" align="right"><input style="height:30px" type="button" value="Send"></td>
+                            <td colspan="2" align="right"><input style="height:30px" type="button" value="C050"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Soteria</label></td>
+                            <td colspan="5"><input style="width: 60px" type="text" id="stock_Soteria"></td>
+                            <td colspan="2" align="right"><input style="height:30px" type="button" value="C020"></td>
+                        </tr>
+                        <tr>
+                            <td><label>盤點</label></td>
+                            <td><label>CarouselID</label></td>
+                            <td colspan="2"><input style="width: 150px" type="text" id="stock_sum_check_CarouselID"></td>
+                            <td><label>Action</label></td>
+                            <td colspan="2"><input style="width: 150px" type="text" id="stock_sum_check_Action"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+        <div id="DIV2">
+            <fieldset style="width: 805px;height: 280px">
+                <legend>Shutter Car</legend>
+                <table style="width: 500px" align="left" frame="void" cellpadding="4" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td><label>Cmd ID</label></td>
+                            <td><input style="width: 60px" type="text" id="Shutter_CmdID"></td>
+                            <td></td>
+                            <td><input style="height:30px" type="button" value="Online"></td>
+                            <td><input style="height:30px" type="button" value="Offline"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Action</label></td>
+                            <td><input style="width: 60px" type="text" id="shutter_Action"></td>
+                            <td><label>Source</label></td>
+                            <td><input style="width: 60px" type="text" id=shutter_Source></td>
+                            <td><label>刪帳</label></td>
+                        </tr>
+                        <tr>
+                            <td><label>Car ID</label></td>
+                            <td><input style="width: 60px" type="text" id="shutter_CarID"></td>
+                            <td><label>Target</label></td>
+                            <td><input style="width: 60px" type="text" id=shutter_Target></td>
+                            <td><label>Car ID</label></td>
+                            <td><input style="width: 60px" type="text" id=shutter_del_Target></td>
+                        </tr>
+                        <tr>
+                            <td><label>Box ID</label></td>
+                            <td><input style="width: 60px" type="text" id="shutter_BoxID"></td>
+                            <td></td>
+                            <td><input style="height:30px" type="button" value="Send"></td>
+                            <td><label>Box ID</label></td>
+                            <td><input style="width: 60px" type="text" id="shutter_del_BoxID"</td>
+                        </tr>
+                        <tr>
+                            <td><label>Batch No</label></td>
+                            <td><input style="width: 60px" type="text" id="shutter_BatchNo"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Position:M</label></td>
+                            <td><input style="width: 60px" type="text" id=shutter_PosM></td>
+                        </tr>
+                        <tr>
+                            <td><label>Action</label></td>
+                            <td><input style="width: 200px" type="text" id=shutter_sum_Action></td>
+                        </tr>
+                        <tr>
+                            <td><label>Src/Tar</label></td>
+                            <td><input style="width: 250px" type="text" id=shutter_sum_SrcTar></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </form>
+
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+
+<html>
+@{
+    ViewData["Title"] = "Storage";
+    var data = ViewBag.Storage;
+    var list = ViewBag.list;
+    ViewBag.tCSID = "";
+    ViewBag.tCEID = "";
+    ViewBag.ParentViewBag = ViewBag;
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <title>調儲</title>
+    <script type="text/javascript">
+        function Select_CheckBox() {
+            for (var i = 1; i < 5; i++) {
+                var t = "Cbox" + i;
+                for (var j = 1; j < 3; j++) {
+                    var t_return = "Cbox" + i + j + "_text";
+                    var input_return = document.getElementById(t_return);
+                    if (document.getElementById(t).checked == true) {
+                        input_return.disabled = "";
+                    }
+                    else if (document.getElementById(t).checked == false) {
+                        input_return.disabled = "disabled";
+                    }
+                }
+
+            }
+        }
+        function list_allcheck() {
+            var arr = document.getElementsByName("list");
+            for (var i = 0; i < arr.length; i++) {
+                if (document.getElementById("check_all").checked) {
+                    arr[i].checked = true;
+                }
+                else {
+                    arr[i].checked = false;
+                }
+            }
+            CheckBox();
+        }
+        function CheckBox(i) {
+
+            var t = "T_" + i;
+            var c = "C_" + i;
+            var input_target = document.getElementById(t);
+            var input_cancel = document.getElementById(c);
+            if (document.getElementById("Cb_" + i).checked == true) {
+                input_target.disabled = ""; input_cancel.disabled = "";
+            }
+            else if (document.getElementById("Cb_"+i).checked == false) { input_target.disabled = "disabled"; input_cancel.disabled = "disabled"; }
+            
+        }
+        function clear_node(t) {
+            var TCs_ = document.getElementById("TCs_" + t);
+            var TCe_ = document.getElementById("TCe_" + t);
+            TCs_.value = "";
+            TCe_.value = "";
+        }
+        function clear_node_total() {
+            for (var i = 0; i <@(list.Count); i++) {
+                if (document.getElementById("Cb_" + i).checked == true) {
+                    document.getElementById("TCs_" + i).value ="";
+                    document.getElementById("TCe_" + i).value ="";
+                }
+            }
+        }
+        function set_node(t) {
+            document.getElementById("DIV3").style = "display:block";
+            var iframe = document.getElementById("Layout_Window");
+            iframe.src = "/Frame/StorageCarousel";
+            document.getElementById("tdIndex").value = t;
+        }
+        function set_node_total() {
+            var arr = document.getElementsByName("list");
+            var Index_list = "";
+            for (var i = 0; i < arr.length; i++) {
+                if (document.getElementById("Cb_" + i).checked == true) {
+                    if (Index_list != "")
+                        Index_list += ",";
+                    Index_list += document.getElementById(i).value;
+                    
+                }
+            }
+            document.getElementById("DIV3").style = "display:block";
+            var iframe = document.getElementById("Layout_Window");
+            iframe.src = "/Frame/StorageCarousel";
+            document.getElementById("tdIndex").value = Index_list;
+        }
+
+
+        function set_node_value() {
+            var ofrm1 = document.getElementById("Layout_Window");
+            var tCSID = ofrm1.contentWindow.document.getElementById("tCSID").value;
+            var tCEID = ofrm1.contentWindow.document.getElementById("tCEID").value;
+            var tdIndex = document.getElementById("tdIndex").value;
+            if (tdIndex.indexOf(',') != -1) {
+                var tdIndex_list = tdIndex.split(',');
+                for (var i = 0; i < tdIndex_list.length; i++) {
+                    document.getElementById("TCs_" + tdIndex_list[i]).value = tCSID;
+                    document.getElementById("TCe_" + tdIndex_list[i]).value = tCEID;
+                }
+            }
+            else {
+                document.getElementById("TCs_" + tdIndex).value = tCSID;
+                document.getElementById("TCe_" + tdIndex).value = tCEID;
+            }
+        }
+        function close_iframe_window() {
+            set_node_value();
+            document.getElementById("DIV3").style = "display:none";
+        }
+        window.onload = function () {
+            var link = "/Frame/StorageCarousel";
+            var iframe = document.createElement('iframe');
+            iframe.frameBorder = 0;
+            iframe.width = "1100px";
+            iframe.height = "500px";
+            iframe.id = "Layout_Window";
+            iframe.setAttribute("src", link);
+            document.getElementById("DIV3").appendChild(iframe);
+
+        }
+    </script>
+    <style type="text/css">
+        #DIV1 {
+            width: 440px;
+            height: 200px;
+            line-height: 10px;
+            padding: 0px;
+            margin-right: 0px;
+            float: left;
+            position: absolute;
+            top: 10px;
+        }
+
+        #DIV2 {
+            width: 1166px;
+            height: 360px;
+            line-height: 1px;
+            padding: 1px;
+            margin-top: 0px;
+            margin-right: 0px;
+            float: left;
+            position: absolute;
+            left: 10px;
+            top: 200px;
+        }
+        #DIV3 {
+            width: 900px;
+            height: 500px;
+            line-height: 1px;
+            padding: 1px;
+            margin-top: 0px;
+            max-width:1166px;
+            margin-right: 0px;
+            float: left;
+            position: absolute;
+            left: 300px;
+            top: 50px;
+        }
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        table tbody {
+            display: block;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+            table tbody::-webkit-scrollbar {
+                display: none;
+            }
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+        .content {
+            /* 省略... */
+            white-space: nowrap;
+        }
+    </style>
+
+</head>
+<body style="background-color: skyblue;">
+    <input type="hidden" value="" id="tdIndex"/>
+    <div id="DIV1">
+        <form method="post" action="/Frame/Storage">
+            <fieldset style="width: 600px;position: relative;left: 5%;">
+                <legend>Search FOSB</legend>
+                <table frame="void" width="600px" height="180px">
+                    <tbody>
+                        <tr>
+                            <td width="80px">
+                                <input type="checkbox" id="Cbox1" value="checkbox1" onclick="Select_CheckBox()">
+                                <label for="Cbox1">Batch No.</label>
+                            </td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox11_text" name="rBN1" value="@data.Batch_No1">
+                            </td>
+                            <td width="20px">－</td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox12_text" name="rBN2" value="@data.Batch_No2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="80px">
+                                <input type="checkbox" id="Cbox2" value="checkbox2" onclick="Select_CheckBox()">
+                                <label for="Cbox2">Carosel ID</label>
+                            </td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox21_text" name="rCSID1" value="@data.Carousel_ID1">
+                            </td>
+                            <td width="20px">－</td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox22_text" name="rCSID2" value="@data.Carousel_ID2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="80px">
+                                <input type="checkbox" id="Cbox3" value="checkbox3" onclick="Select_CheckBox()">
+                                <label for="Cbox3">Soteria</label>
+                            </td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox31_text" name="rSTR" value="@data.Soteria1">
+                            </td>
+                            <td width="20px">－</td>
+                            <td width="80px">
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox32_text" name="rSTR" value="@data.Soteria2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="Cbox4" value="checkbox4" onclick="Select_CheckBox()">
+                                <label for="Cbox4">Customer ID</label>
+                            </td>
+                            <td>
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox41_text" name="rCMID" value="@data.Customer_ID1">
+                            </td>
+                            <td width="20px">－</td>
+                            <td>
+                                <input style="width:150px" disabled="disabled" type="text" id="Cbox42_text" name="rCMID" value="@data.Customer_ID2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input style="height:30px" type="submit" id="check_inventory" value="搜尋">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+
+    </div>
+    <br>
+    <form method="post" action="/Frame/Update_Storage">
+        <div id="DIV2">
+            <table id="tab" align="center" style="table-layout:fixed ;height: 300px;width: 1166px" cellpadding="0" border='1'>
+                <thead style="width:100%">
+                <th height="25px" width="30px" align="center"><input type="checkbox" id="check_all" onclick="list_allcheck()"/></th>
+                <th height="25px" width="110px" align="center">靜電箱ID</th>
+                <th height="25px" width="90px" align="center">Batch No.</th>
+                <th height="25px" width="90px" align="center">Group No.</th>
+                <th height="25px" width="70px" align="center">Soteria</th>
+                <th height="25px" width="70px" align="center">客戶碼</th>
+                <th height="25px" width="90px" align="center">Carosel ID</th>
+                <th height="25px" width="70px" align="center">儲格 ID</th>
+                <th height="25px" width="150px" align="center">目的地Carosel ID</th>
+                <th height="25px" width="130px" align="center">目的地儲格 ID</th>
+                <th height="25px" width="100px" align="center"></th>
+                <th height="25px" width="60px" align="center"></th>
+                </thead>
+                <tbody style="background-color:white;" height="300px" width="1166px" >
+                    @if (list.Count != 0)
+                    {
+                        @for (int i = 0; i < list.Count; i = i + 1)
+                        {
+                            <tr>
+                                <td height="25px" width="30px"  align="center"><input type="checkbox" name="list" id="Cb_@i" onclick="CheckBox(@i)" /><input type="hidden" value="@i" id="@i" /></td>
+                                <td height="25px" width="110px" align="center"><input type="hidden" name="Box_ID" value="@list[i].BOX_ID"/>@list[i].BOX_ID</td>
+                                <td height="25px" width="90px" align="center">@list[i].Batch_No</td>
+                                <td height="25px" width="90px" align="center">@list[i].Group_No</td>
+                                <td height="25px" width="70px" align="center">@list[i].Soteria</td>
+                                <td height="25px" width="70px" align="center">@list[i].Customer_ID</td>
+                                <td height="25px" name="rCSID" width="90px" align="center">@list[i].Carousel_ID</td>
+                                <td height="25px" name="rCEID" width="70px" align="center">@list[i].Cell_ID</td>
+                                <td height="25px" width="150px" align="center"><input type="text" style="border: 0px;height: 25px; width: 130px; text-align: center;" name="T_Carousel_ID" id="TCs_@i" readonly="readonly" value="" /></td>
+                                <td height="25px" width="130px" align="center"><input type="text" style="border: 0px;height: 25px; width: 130px; text-align: center;" name="T_Cell_ID" id="TCe_@i" readonly="readonly" value=""/></td>
+                                <td height="25px" width="100px" align="center"><input type="button" style="height:25px;width:95px" id="T_@i" disabled="disabled" value="選擇目的地" onclick="set_node(@i)" /></td>
+                                <td height="25px" width="60px" align="center"><input type="button" style="height:25px;width:55px" id="C_@i" disabled="disabled" value="取消" onclick="clear_node(@i)"/></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label>調儲目的地</label></td>
+                        <td><input type="button" style="height:25px;width:130px" value="複數選擇目的地" onclick="set_node_total()" /></td>
+                        <td><input type="submit" style="height: 25px; width: 90px" value="確認"/></td>
+                        <td><input type="button" style="height:25px;width:90px" value="複數取消" onclick="clear_node_total()" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <div id="DIV3" style="display:none">
+        
+    </div>
+    
+</body>
+</html>

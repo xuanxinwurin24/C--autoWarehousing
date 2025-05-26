@@ -1,0 +1,9 @@
+20220218-13:48:28:018  ---Exception---
+	Message:通訊埠 'COM1' 不存在。
+	Source:System
+	StackTrace:   於 System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   於 System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   於 System.IO.Ports.SerialPort.Open()
+   於 Strong.Rs232.Start()
+	TargetSite:Void WinIOError(Int32, System.String)
+20220218-13:48:28:183  MX Open Error:-268435454

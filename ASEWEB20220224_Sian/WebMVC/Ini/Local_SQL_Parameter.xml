@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SQL_Parameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DataSource>192.168.50.59,1433</DataSource>
+  <InitialCatalog>WaferBank_DB</InitialCatalog>
+  <UserID>Strong</UserID>
+  <Password>5999011</Password>
+</SQL_Parameter>

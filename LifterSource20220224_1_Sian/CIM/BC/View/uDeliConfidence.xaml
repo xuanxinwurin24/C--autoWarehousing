@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="CIM.BC.View.uDeliConfidence"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        mc:Ignorable="d"
+        Height="auto" Width="580" FontSize ="20" Background="LightGray">
+    <StackPanel Orientation="Vertical">
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <RadioButton x:Name="rdBatchNo" Content="一般：Batch No" FontWeight="Bold" IsChecked="true" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="rdBatchNo_Click"/>
+            <TextBox x:Name="txBatchNo" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="35" InputMethod.IsInputMethodEnabled="False" TextChanged="txBatchNo_TextChanged"/>
+            <RadioButton x:Name="rdOrderNo" Content="發料：領料單號" FontWeight="Bold" Grid.Column="0" Grid.Row="2" Margin="0,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="rdOrderNo_Click"/>
+            <TextBox x:Name="txOrderNo" Text ="" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="35" IsReadOnly="True" InputMethod.IsInputMethodEnabled="False"/>
+            <Button x:Name="btnPickUp" Content="搜尋" Grid.Row="0"  Grid.Column="5" Height="30" Click="btnPickUp_Click"/>
+            <Button x:Name="btnFind" Content="詢問" Grid.Row="2"  Grid.Column="5" Height="30" Click="btnFind_Click"/>
+        </Grid>
+        <Grid Margin="0,10,0,0" x:Name="ITreply">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="IT 回覆" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="txITReply" Grid.Column="2" Width="40" Height="35" Text="{Binding OKorNG}" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="White" TextAlignment="Center" IsReadOnly="True"/>
+            <TextBox x:Name="txITMsg" Grid.Column ="4" Text="{Binding Msg}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="True"/>
+        </Grid>
+        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding DeliList_Conf}" MaxHeight="220" AutoGenerateColumns="False" ColumnWidth="Auto"  Margin="0,10,0,0" FontSize="14" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" HeadersVisibility="Column" CanUserAddRows="False">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding bCompareOderNos}" Value="False">
+                            <Setter Property="Background" Value="Gray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Checked="DataGridChecked" Unchecked="DataGridUnchecked" Margin="2" IsEnabled="{Binding bCheckBoxWork, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}"></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding bIsChecked, UpdateSourceTrigger = PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CheckBox_Click" IsEnabled="{Binding bCheckBoxWork, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Batch No" Binding="{Binding sBatchNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="靜電箱 ID" Binding="{Binding sESB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="領料單號" Binding="{Binding sOrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="客戶碼" Binding="{Binding sCUSTOMERNO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Soteria" Binding="{Binding sSOTERIA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="0,5,10,0" Orientation="Horizontal" HorizontalAlignment="Right" Height="35">
+            <Button x:Name="btnRefresh" Content="列表更新" Width="90" Height="30" Click="btnRefresh_Click" Margin="0,3,0,3" IsEnabled="{Binding bRefresh_Click}"/>
+            <Button x:Name="btnConfirm" Content="確認" Width="60" Height="30" Click="btnConfirm_Click" Margin="2,3,2,3"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

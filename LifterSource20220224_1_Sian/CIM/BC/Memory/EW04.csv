@@ -1,0 +1,2 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+BoxID,40,W,10,0,ASCII,F,0,ONOFF,F,,

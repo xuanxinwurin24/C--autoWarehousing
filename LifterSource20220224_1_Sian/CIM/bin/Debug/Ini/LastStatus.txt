@@ -1,0 +1,2 @@
+RealEqCtrlMode=0
+BeEqCtrlMode=0

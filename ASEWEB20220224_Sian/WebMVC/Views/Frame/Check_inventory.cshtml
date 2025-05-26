@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+
+@{
+
+    ViewData["Title"] = "Check";
+    var data = ViewBag.Check_Inventory;
+    var list = ViewBag.list;
+}
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>盤點</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #DIV1 {
+            width: 450px;
+            line-height: 30px;
+            padding: 20px;
+            margin-right: 10px;
+            float: left;
+            position: absolute;
+        }
+
+        #DIV2 {
+            width: 350px;
+            line-height: 30px;
+            padding: 10px;
+            margin-top: -0px;
+            margin-right: 10px;
+            float: left;
+            position: absolute;
+            left: 500px;
+            top: 50px;
+        }
+        #DIV4 {
+            width: 750px;
+            height:400px;
+            line-height: 30px;
+            padding: 10px;
+            margin-top: 0px;
+            margin-left: 0px;
+            float: left;
+            position: absolute;
+            top: 280px;
+            left: 0px;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 800px;
+            max-height: 800px;
+            font-family: sans-serif;
+        }
+
+        .tabs__label {
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+
+        .tabs__radio {
+            display: none;
+        }
+
+        .tabs__content {
+            order: 1;
+            width: 100%;
+            height: 100%;
+            border-bottom: 0px solid #dddddd;
+            line-height: 1.5;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .tabs__radio:checked + .tabs__label {
+            font-weight: bold;
+            color: #009578;
+            border-bottom: 2px solid #009578;
+        }
+
+            .tabs__radio:checked + .tabs__label + .tabs__content {
+                display: initial;
+            }
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        table tbody {
+            display: block;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+            table tbody::-webkit-scrollbar {
+                display: none;
+            }
+            thead, tbody tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed; /* even columns width , fix width of table too*/
+            }
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        var DS = document.getElementsByName("rDS");
+        var WS = document.getElementsByName("rWS");
+        var T = document.getElementsByName("rT");
+        function Setting_Disable(x) {
+            for (var i = 0; i < x.length; i++) {
+                x[i].disabled = "disabled";
+                x[i].value = "";
+            }
+        }
+        function Setting_Enable(x) {
+            for (var i = 0; i < x.length; i++) {
+                x[i].disabled = "";
+            }
+            document.getElementById("Now").value ="";
+        }
+        function radio_check() {
+            if (document.getElementById("now_set").checked) {
+                Setting_Disable(DS);
+                Setting_Disable(WS);
+                Setting_Disable(T);
+                var t = new Date();
+                var mon = "";
+                var dt = "";
+                var h = "";
+                var min = "";
+                if (t.getMonth() + 1 < 10) {
+                    mon = "0" + t.getMonth() + 1;
+                }
+                else { mon = t.getMonth() + 1; }
+                if (t.getDate() < 10) { dt = "0" + t.getDate(); }
+                else { dt = t.getDate(); }
+                if (t.getHours() < 10) { h = "0" + t.getHours(); }
+                else { h = t.getHours(); }
+                if (t.getMinutes() < 10) { min = "0" + t.getMinutes(); }
+                else { min = t.getMinutes(); }
+                var nowtime = t.getFullYear().toString() + mon + dt + h + min;
+                document.getElementById("Now").value = nowtime;
+            }
+            else if (document.getElementById("manu_set").checked) {
+                Setting_Disable(DS);
+                Setting_Disable(WS);
+                Setting_Enable(T);
+
+            }
+            else if (document.getElementById("week_set").checked) {
+                Setting_Disable(DS);
+                Setting_Enable(WS);
+                Setting_Disable(T);
+            }
+            else if (document.getElementById("day_set").checked) {
+                Setting_Enable(DS);
+                Setting_Disable(WS);
+                Setting_Disable(T);
+            }
+        }
+        function setTime(t,belong) {
+            if (t == 24) {
+                var select = document.getElementById(belong+"timeH_setting");
+                select.length = 1;
+                select.options[0].selected = true;
+                for (var x = 1; x <= t; x++) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", x);
+                    option.appendChild(document.createTextNode(x));
+                    select.appendChild(option);
+                }
+            }
+            if (t == 60) {
+                var select = document.getElementById(belong+"timeM_setting");
+                select.length = 1;
+                select.options[0].selected = true;
+                for (var x = 1; x <= t; x++) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", x);
+                    option.appendChild(document.createTextNode(x));
+                    select.appendChild(option);
+                }
+            }
+        }
+        function setWeek() {
+            var value = new Array("星期日", "星期一","星期二", "星期三", "星期四", "星期五", "星期六");
+            var select = document.getElementById("week_setting");
+            select.length = 1;
+            select.options[0].selected = true;
+            for (var x = 0; x < 7; x++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", x);
+                option.appendChild(document.createTextNode(value[x]));
+                select.appendChild(option);
+            }
+        }
+        function setDay(belong) {
+            var select = document.getElementById(belong+"day_setting");
+            select.length = 1;
+            select.options[0].selected = true;
+            for (var x = 1; x <= 31; x++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", x);
+                option.appendChild(document.createTextNode(x));
+                select.appendChild(option);
+            }
+        }
+        function setYear() {
+            var select = document.getElementById("manu_timeY_setting");
+            select.length = 1;
+            select.options[0].selected = true;
+            for (var x = 2000; x <= 2050; x++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", x);
+                option.appendChild(document.createTextNode(x));
+                select.appendChild(option);
+            }
+        }
+        function setMonth() {
+            var select = document.getElementById("manu_timeMon_setting");
+            select.length = 1;
+            select.options[0].selected = true;
+            for (var x = 1; x <13; x++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", x);
+                option.appendChild(document.createTextNode(x));
+                select.appendChild(option);
+            }
+        }
+        function checkbox_valuecheck(i) {
+                var t = "Cbox" + i;
+                for (var j = 1; j < 3; j++) {
+                    var t_return = "Cbox" + i+j + "_text";
+                    var input_return = document.getElementById(t_return);
+                    if (document.getElementById(t).checked == true) {
+                        input_return.disabled = "";
+                    }
+                    else if (document.getElementById(t).checked == false) {
+                        input_return.disabled = "disabled";
+                    }
+                }
+            
+        }
+        function list_allcheck() {
+            var arr = document.getElementsByName("list");
+            for (var i = 0; i < arr.length; i++) {
+                if (document.getElementById("check_all").checked) 
+                    arr[i].checked = true;
+                else
+                    arr[i].checked = false;
+            }
+            list_check();
+        }
+        function list_check() {
+            var arr = document.getElementsByName("list");
+            for (var i = 0; i < arr.length; i++) {
+                var CSID = "CSID_" + i;
+                var CSID_temp = "CSID_temp_" + i;
+                var CEID = "CEID_" + i;
+                var CEID_temp = "CEID_temp_" + i;
+                var BOXID = "BOXID_" + i;
+                var BOXID_temp = "BOXID_temp_" + i;
+                var Batch_No = "Batch_No_" + i;
+                var Batch_No_temp = "Batch_No_temp_" + i;
+                var table = document.getElementById("CI_Table");
+                if (arr[i].checked) {
+                    document.getElementById(CSID).value = document.getElementById(CSID_temp).value;
+                    document.getElementById(CEID).value = document.getElementById(CEID_temp).value;
+                    document.getElementById(BOXID).value = document.getElementById(BOXID_temp).value;
+                    document.getElementById(Batch_No).value = document.getElementById(Batch_No_temp).value;
+                }
+                else {
+                    document.getElementById(CSID).removeAttribute("value");
+                    document.getElementById(CEID).removeAttribute("value");
+                    document.getElementById(BOXID).removeAttribute("value");
+                    document.getElementById(Batch_No).removeAttribute("value");
+                }
+            }
+        }
+        window.onload = function () {
+            setTime(24, "manu_");
+            setTime(60, "manu_");
+            setTime(24, "day_");
+            setTime(60, "day_");
+            setTime(24, "week_");
+            setTime(60, "week_");
+            setWeek();
+            setDay("");
+            setMonth();
+            setYear();
+            setDay("manu_time");
+        }
+
+    </script>
+
+</head>
+<body style="background-color: skyblue;">
+    <div class="tabs">
+        <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+        <label for="tab1" class="tabs__label">盤點設定</label>
+        <div class="tabs__content">
+            <form method="post" action="/Frame/Check_inventory" role="form">
+                <div id="DIV1">
+                    <fieldset style="height: 180px;width: 450px;">
+                        <legend>Check Cycle Setting</legend>
+                        <table frame="void" style="height:140px" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="CC_setting" id="now_set" onclick="radio_check()">Now
+                                        <input type="hidden" name="rNow" id="Now" value=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="CC_setting" id="manu_set" onclick="radio_check()">Manual
+                                    </td>
+                                    <td>
+                                        <select style="width:55px;" disabled="disabled" name="rT" id="manu_timeY_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        年
+                                    </td>
+                                    <td>
+                                        <select style="width:55px;" disabled="disabled" name="rT" id="manu_timeMon_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        月
+                                    </td>
+                                    <td>
+                                        <select style="width:55px;" disabled="disabled" name="rT" id="manu_timeday_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        日
+                                    </td>
+                                    <td>
+                                        <select style="width:55px;" disabled="disabled" name="rT" id="manu_timeH_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        時
+                                    </td>
+                                    <td>
+                                        <select style="width:55px;" disabled="disabled" name="rT" id="manu_timeM_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        分
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="CC_setting" id="week_set" onclick="radio_check()">By Week
+                                    </td>
+                                    <td align="center">
+                                        <select style="width:75px;" disabled="disabled" name="rWS" id="week_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>日</label>
+                                    <td align="center">
+                                        <select style="width:55px;" disabled="disabled" name="rWS" id="week_timeH_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>時</label>
+                                    </td>
+                                    <td align="center">
+                                        <select style="width:55px;" disabled="disabled" name="rWS" id="week_timeM_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>分</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="CC_setting" id="day_set" onclick="radio_check()">By Day
+                                    </td>
+                                    <td align="center">
+                                        <select style="width:55px;" disabled="disabled" name="rDS" id="day_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>日</label>
+                                    </td>
+                                    <td align="center">
+                                        <select style="width:55px;" disabled="disabled" name="rDS" id="day_timeH_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>時</label>
+                                    </td>
+                                    <td align="center">
+                                        <select style="width:55px;" disabled="disabled" name="rDS" id="day_timeM_setting">
+                                            <option value=""> </option>
+                                        </select>
+                                        <label>分</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+                <div id="DIV4">
+                    <table id="CI_Table" style="border:1px #00007f groove;height: 330px;width: 900px;overflow-y:auto;" cellpadding="0" border='1'>
+                        <thead style="width:100%">
+                            <tr>
+                                <th width="28.5px"><input type="checkbox" id="check_all" onclick="list_allcheck()" /></th>
+                                <th height="25px" width="85px">Carosel ID</th>
+                                <th height="25px" width="66.5px">儲格ID</th>
+                                <th height="25px" width="113px">靜電箱ID</th>
+                                <th height="25px" width="85.5px">Batch No.</th>
+                                <th height="25px" width="85.5px">Soteria</th>
+                                <th height="25px" width="85.5px">Customer</th>
+                                <th height="25px" width="94px">LastCheckDays</th>
+                                <th height="25px" width="94px">Check result</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:white;" height="330px" width="900px">
+                            @if (list.Count != 0)
+                            {
+                                @for (int i = 0; i < list.Count; i++)
+                                {
+                            <tr>
+                                <td width="34px" align="center"><input type="checkbox" name="list" id="@list[i].id" onclick="list_check()" /></td>
+                                <td width="104px" align="center"><input type="hidden" id="CSID_temp_@list[i].id" value="@list[i].Carousel_ID" /><input type="hidden" name="rInsert" id="CSID_@list[i].id" />@list[i].Carousel_ID</td>
+                                <td width="81px" align="center"><input type="hidden" id="CEID_temp_@list[i].id" value="@list[i].Cell_ID" /><input type="hidden" name="rInsert" id="CEID_@list[i].id" />@list[i].Cell_ID</td>
+                                <td width="137px" align="center"><input type="hidden" id="BOXID_temp_@list[i].id" value="@list[i].BOX_ID" /><input type="hidden" name="rInsert" id="BOXID_@list[i].id" />@list[i].BOX_ID</td>
+                                <td width="104px" align="center"><input type="hidden" id="Batch_No_temp_@list[i].id" value="@list[i].Batch_No" /><input type="hidden" name="rInsert" id="Batch_No_@list[i].id" />@list[i].Batch_No</td>
+                                <td width="104px" align="center"><input type="hidden" id="Soteria_temp_@list[i].id" value="@list[i].Soteria" /><input type="hidden" name="rInsert" id="Soteria_@list[i].id" />@list[i].Soteria</td>
+                                <td width="104px" align="center"><input type="hidden" id="Customer_temp_@list[i].id" value="@list[i].Customer" /><input type="hidden" name="rInsert" id="Customer_@list[i].id" />@list[i].Customer</td>
+                                <td width="114px" align="center"><input type="hidden" id="DaysApart_temp_@list[i].id" value="@list[i].DaysApart" /><input type="hidden" name="rInsert" id="DaysApart_@list[i].id" />@list[i].DaysApart</td>
+                                <td width="114px" align="center">@list[i].Check_Result</td>
+                            </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <table style="width: 700px;overflow-y:auto;" cellpadding="0" border='0'>
+                        <tbody width="700px">
+                            <tr>
+                                <td colspan="6" align="right">
+                                    <input  type="submit" value="加入" />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </form>
+            <form method="get" action="/Frame/Check_inventory">
+                <div id="DIV2">
+                    <table frame="void" style="width:350px;height:220px">
+                        <tbody>
+                            <tr>
+                                <td width="80px">
+                                    <input type="checkbox" id="Cbox1" value="checkbox1" onclick="checkbox_valuecheck(1)">
+                                    <label for="Cbox1">Batch No.</label>
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox11_text" name="rBN1" value="@data.Batch_No1">
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox12_text" name="rBN2" value="@data.Batch_No2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="80px">
+                                    <input type="checkbox" id="Cbox2" value="checkbox2" onclick="checkbox_valuecheck(2)">
+                                    <label for="Cbox2">Carosel ID</label>
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox21_text" name="rCSID1" value="@data.Carousel_ID1">
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox22_text" name="rCSID2" value="@data.Carousel_ID2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="80px">
+                                    <input type="checkbox" id="Cbox3" value="checkbox3" onclick="checkbox_valuecheck(3)">
+                                    <label for="Cbox3">Soteria</label>
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox31_text" name="rSTR" value="@data.Soteria1">
+                                </td>
+                                <td width="80px">
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox32_text" name="rSTR" value="@data.Soteria2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="Cbox4" value="checkbox4" onclick="checkbox_valuecheck(4)">
+                                    <label for="Cbox4">Customer ID</label>
+                                </td>
+                                <td>
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox41_text" name="rCMID" value="@data.Customer_ID1">
+                                </td>
+                                <td>
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox42_text" name="rCMID" value="@data.Customer_ID2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="Cbox5" value="checkbox5" onclick="checkbox_valuecheck(5)" />
+                                    <label for="Cbox5">Check Days</label>
+                                </td>
+                                <td>
+                                    <input style="width:80px" disabled="disabled" type="text" id="Cbox51_text" name="rDaysApart1" value="">
+                                </td>
+                                <td>
+                                    <select style="width:50px" id="Cbox52_text" name="rDaysApart2" disabled="disabled">
+                                        <option value="M">大於</option>
+                                        <option value="L">小於</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input style="height:30px" type="submit" id="check_inventory" value="搜尋">
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div style="clear:both;"></div>
+            <div style="clear:both;"></div>
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+        <label for="tab2" class="tabs__label">盤點歷史</label>
+        <div class="tabs__content">
+            <table style="height:500px;width:1000px">
+                <tbody>
+                    <tr>
+                        <td width="480px">
+                            <iframe scrolling="no" frameBorder="0" style="height: 450px; width: 470px" src="/Frame/Check_inventory_History">
+                            </iframe>
+                        </td>
+                        <td width="700px">
+                            <iframe scrolling="no" frameBorder="0" style="height: 450px; width: 700px" src="/Frame/Check_inventory_Task">
+                            </iframe>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

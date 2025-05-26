@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+
+@{
+    ViewData["Title"] = "WebService_Setting";
+    var CPC_Status = ViewBag.CPC_Status;
+    string bg = "lime";
+    string SystemSetting = TempData.Peek("UserSystemSetting").ToString().Trim();
+}
+
+<head>
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Carousel_Utility</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script>
+        function OnOff_Click() {
+            var btn = document.getElementById("OnOffSetting_Button");
+            var val = document.getElementById("OnOffSetting_Value");
+            if (val.value == "ONLINE") {
+                btn.style = "background-color:lime";
+                btn.value = "OFFLINE";
+                val.value = "OFFLINE";
+            }
+            else {
+                btn.style = "background-color:red";
+                btn.value = "ONLINE";
+                val.value = "ONLINE";
+            }
+            document.getElementById("myform").submit();
+        }
+    </script>
+    <style type="text/css">
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+
+        thead, tbody, tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+
+        .content {
+            /* 省略... */
+            white-space: nowrap;
+        }
+
+        #DIV2 {
+            width: 1200px;
+            height: 800px;
+            line-height: 1px;
+            float: left;
+            position: absolute;
+            left: 50px;
+            top: 5%;
+        }
+        #OnOffSetting_Button {
+            height: 40px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+
+    <form method="post" id="myform" action="/Frame/WebService_Setting">
+        <input type="hidden" name="CPC_Status" id="OnOffSetting_Value" value="@CPC_Status" />
+        <div id="DIV2">
+            @*<fieldset style="width: 600px;position: relative;left: 2%;">
+                <legend>WebService連線設定</legend>*@
+                <table>
+                    <tbody>
+                        <tr>
+                            @if (CPC_Status == "OFFLINE")
+                            bg = "lime";
+                            @if (CPC_Status == "ONLINE")
+                            bg = "red";
+                            <td style="background-color:gray"><input type="button" style="background-color:@bg;color:black" id="OnOffSetting_Button" value="@CPC_Status" onclick="OnOff_Click()" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            @*</fieldset>*@
+            
+
+        </div>
+
+    </form>
+
+</body>
+</html>

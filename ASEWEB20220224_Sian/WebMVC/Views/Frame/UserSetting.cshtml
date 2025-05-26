@@ -1,0 +1,313 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "UserSetting";
+    var UserData = ViewBag.UserData;
+    var bg = "lime";
+    string UserAuth = TempData.Peek("Authority").ToString().Trim();
+    string Group = UserData.UserGroup;
+    string Auth = UserData.UserAuthority;
+    string SystemSetting = UserData.UserSystemSetting;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/js/jquery-3.6.0.js"></script>
+    <style>
+        table td{
+            border:10px solid skyblue;
+        }
+        #DIV1 {
+            width: 600px;
+            height: 200px;
+            margin: 0 auto;
+            text-align: center;
+            top: 400px;
+            position: absolute;
+        }
+        #DIV2{
+            width:200px;
+            height:300px;
+            top:300px;
+            left:600px;
+            position:absolute;
+        }
+        #DIV3 {
+            width: 400px;
+            height: 300px;
+            margin: 0 auto;
+            text-align: center;
+            top: 300px;
+            left: 200px;
+            position: absolute;
+            border: 1px solid black;
+            background-color:skyblue;
+        }
+        #UserControl{
+            width:400px;
+            height:300px;
+        }
+
+    </style>
+    <script>
+        function LastCheck() {
+            var UAlist = document.getElementsByName("UAlist");
+            var UAarr = document.getElementsByName("UAarr");
+            var UA = "";
+            var x = 0;
+            for (var i = 0; i < UAlist.length; i++) {
+                if (UAlist[i].checked) {
+                    if (x > 0)
+                        UA += ',';
+                    UA += UAarr[i].value;
+                    x++;
+                }
+            }
+            document.getElementById("UA").value = UA;
+            var USSlist = document.getElementsByName("USSlist");
+            var USSarr = document.getElementsByName("USSarr");
+            var USS = "";
+            x=0
+            for (var i = 0; i < USSlist.length; i++) {
+                if (USSlist[i].checked) {
+                    if (x > 0)
+                        USS += ',';
+                    USS += USSarr[i].value;
+                    x++;
+                }
+            }
+            document.getElementById("USS").value = USS;
+            document.getElementById("form1").submit();
+        }
+        function Modify(t) {
+            if (t == 0) {
+                document.getElementById("Modify_type").value = "Insert";
+                var text1="將於"+document.getElementById("UG").value + "中新增使用者";
+                var DIV3 = document.getElementById("DIV3");
+                var link = "/Frame/UserInsert?rGroup=" + document.getElementById("UG").value;
+                var iframe = document.getElementById("UserControl");
+                iframe.src = link;
+                DIV3.style = "display:block";
+            }
+            else {
+                document.getElementById("Modify_type").value = "Delete";
+                var DIV3 = document.getElementById("DIV3");
+                var link = "/Frame/UserDelete";
+                var iframe = document.getElementById("UserControl");
+                iframe.src = link;
+                DIV3.style = "display:block";
+            }
+        }
+        function Set_UN() {
+            var ofrm1 = document.getElementById("UserControl");
+            var UN1 = ofrm1.contentWindow.document.getElementById("UN1").value;
+            var UP1 = ofrm1.contentWindow.document.getElementById("UP1").value;
+            document.getElementById("UN").value = UN1;
+            document.getElementById("UP").value = UP1;
+        }
+        function Insert_Close() {
+            Set_UN();
+            var div = document.getElementById("DIV3");
+            div.style = "display:none";
+        }
+        function Insert_Cancel() {
+            var div = document.getElementById("DIV3");
+            div.style = "display:none";
+        }
+        function Delete_Close() {
+            var div = document.getElementById("DIV3");
+            div.style = "display:none";
+        }
+        function UG_Onchange() {
+            var UG = document.getElementById("UG");
+            UG.value = document.getElementById("UGselect").value;
+            var form2 = document.getElementById("form2");
+            form2.submit();
+        }
+    </script>
+</head>
+<body style="background-color: skyblue;">
+    <form method="post" action="/Frame/UserSetting" id="form1">
+        <input type="hidden" name="UG" id="UG" value="@Group" />
+        <input type="hidden" name="UA" id="UA" value="" />
+        <input type="hidden" name="USS" id="USS" value="" />
+        <input type="hidden" name="UN" id="UN" value="" />
+        <input type="hidden" name="UP" id="UP" value="" />
+        <input type="hidden" name="Modify_type" id="Modify_type" value="" />
+    </form>
+    <form method="get" action="/Frame/UserSetting" id="form2">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>UserGroup</label>
+                    </td>
+                    <td>
+                        <select id="UGselect" name="UG_Select" onchange="UG_Onchange()">
+                            @if (Group == "Administrator")
+                            {
+                                <option value="Administrator" selected="selected">Administrator</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Operator">Operator</option>
+                                <option value="Soteria">Soteria</option>
+                            }
+                            @if (Group == "Engineer")
+                            {
+                                <option value="Administrator">Administrator</option>
+                                <option selected="selected" value="Engineer">Engineer</option>
+                                <option value="Operator">Operator</option>
+                                <option value="Soteria">Soteria</option>
+                            }
+                            @if (Group == "Operator")
+                            {
+                                <option value="Administrator">Administrator</option>
+                                <option value="Engineer">Engineer</option>
+                                <option selected="selected" value="Operator">Operator</option>
+                                <option value="Soteria">Soteria</option>
+                            }
+                            @if (Group == "Soteria")
+                            {
+                                <option value="Administrator">Administrator</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Operator">Operator</option>
+                                <option selected="selected" value="Soteria">Soteria</option>
+                            }
+
+
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <fieldset style="width: 600px;position: relative;left: 2%;">
+        <legend>Main權限管理</legend>
+        <table>
+            <tbody>
+                <tr>
+                    @if (Auth == "Admin")
+                    {
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Mainwindow"  />主畫面權限</td>
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Alarm" />Alarm</td>
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Log" />Log</td>
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Check" />盤點</td>
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Storage" />調儲</td>
+                        <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Soteria" />機密出庫</td>
+                    }
+                    else
+                    {
+                        @if (Auth.IndexOf("Mainwindow")>-1)
+                        {
+
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Mainwindow"/>主畫面權限</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox"/><input type="hidden" name="UAarr" value="Main" />主畫面權限</td>
+                        }
+                        @if (Auth.IndexOf("Alarm") != -1)
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Alarm" />Alarm</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" /><input type="hidden" name="UAarr" value="Alarm" />Alarm</td>
+                        }
+                        @if (Auth.IndexOf("Log") != -1)
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked" /><input type="hidden" name="UAarr" value="Log"/>Log</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" /><input type="hidden" name="UAarr" value="Log" />Log</td>
+                        }
+                        @if (Auth.IndexOf("Check") != -1)
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked"/><input type="hidden" name="UAarr" value="Check"/>盤點</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" /><input type="hidden" name="UAarr" value="Check" />盤點</td>
+                        }
+                        @if (Auth.IndexOf("Storage") != -1)
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked"/><input type="hidden" name="UAarr" value="Storage"/>調儲</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" /><input type="hidden" name="UAarr" value="Storage" />調儲</td>
+                        }
+                        @if (Auth.IndexOf("Soteria") != -1)
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" checked="checked"/><input type="hidden" name="UAarr" value="Soteria"/>機密出庫</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="UAlist" type="checkbox" /><input type="hidden" name="UAarr" value="Soteria" />機密出庫</td>
+                        }
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <fieldset style="width: 600px;position: relative;left: 2%;">
+        <legend>系統設定</legend>
+        <table>
+            <tbody>
+                <tr>
+                    @if (SystemSetting == "Admin")
+                    {
+                        <td style="background-color:gray"><input name="USSlist" type="checkbox" checked="checked" /><input type="hidden" name="USSarr" value="WebService"  />WebService</td>
+                        <td style="background-color:gray"><input name="USSlist" type="checkbox" checked="checked" /><input type="hidden" name="USSarr" value="Carousel_Utility"  />Carousel Utility</td>
+                    }
+                    else
+                    {
+
+
+                        @if (SystemSetting.IndexOf("WebService") != -1)
+                        {
+                            <td style="background-color:gray"><input name="USSlist" type="checkbox"  checked="checked" /><input type="hidden" name="USSarr" value="WebService" />WebService Setting</td>
+                        }
+                        else
+                        {
+                            <td style="background-color:gray"><input name="USSlist" type="checkbox" /><input type="hidden" name="USSarr" value="WebService" />WebService Setting</td>
+                        }
+                        @if (SystemSetting.IndexOf("Carousel_Utility") != -1)
+                        {
+                            <td style="background-color:gray"><input name="USSlist" type="checkbox" checked="checked" /><input type="hidden" name="USSarr" value="Carousel_Utility"  />Carousel Utility</td>
+                        }
+				        else
+				        {
+                            <td style="background-color:gray"><input name="USSlist" type="checkbox" /><input type="hidden" name="USSarr" value="Carousel_Utility" checked="" />Carousel Utility</td>
+				        }
+                            }
+
+
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+
+<div id="DIV1">
+    @*@if (Auth == "Admin")
+    {
+        <input type="button"  value="Save" onclick="LastCheck()" />
+    }*@
+    <input type="button"  value="Save" onclick="LastCheck()" />
+</div>
+    <div id="DIV2">
+        <input type="button"  value="新增使用者" onclick="Modify(0)" />
+        <input type="button"  value="刪除使用者" onclick="Modify(1)" />
+    </div>
+    <div id="DIV3" style="display:none">
+        <iframe id="UserControl" src=""></iframe>
+    </div>
+</body>
+</html>

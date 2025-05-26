@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html>
+@{
+    ViewData["Title"] = "SystemSetting";
+    string UserSetting = TempData.Peek("UserSystemSetting").ToString().Trim();
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ucSystemSetting</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+
+
+    <style>
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            max-height: 800px;
+            font-family: sans-serif;
+        }
+
+        .tabs__label {
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+
+        .tabs__radio {
+            display: none;
+        }
+
+        .tabs__content {
+            order: 1;
+            width: 100%;
+            height: 100%;
+            border-bottom: 0px solid #dddddd;
+            line-height: 1.5;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .tabs__radio:checked + .tabs__label {
+            font-weight: bold;
+            color: #009578;
+            border-bottom: 2px solid #009578;
+        }
+
+            .tabs__radio:checked + .tabs__label + .tabs__content {
+                display: initial;
+            }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+    <div class="tabs">
+        @if (UserSetting.IndexOf("Carousel_Utility") != -1 || UserSetting == "Admin")
+        {
+            <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+            <label for="tab1" class="tabs__label">Carousel Utility</label>
+            <div class="tabs__content">
+                <iframe scrolling="no" frameBorder="0" style="height: 800px; width: 1300px" src="/Frame/Carousel_Utility">
+                </iframe>
+            </div>
+        }
+        @if (UserSetting.IndexOf("WebService") != -1 || UserSetting == "Admin")
+        {
+            <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+            <label for="tab2" class="tabs__label">WebServiceSetting</label>
+            <div class="tabs__content">
+                <iframe scrolling="no" frameBorder="0" style="height: 800px; width: 1300px" src="/Frame/WebService_Setting">
+                </iframe>
+            </div>
+        }
+
+        @*<input type="radio" class="tabs__radio" name="tabs-example" id="tab2" checked>
+        <label for="tab2" class="tabs__label">Cell State</label>
+        <div class="tabs__content">
+            <iframe scrolling="no" frameBorder="0" style="height: 800px; width: 800px" src="/Frame/Cell_Utility">
+            </iframe>
+        </div>*@
+    </div>
+        <div>
+
+        </div>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+
+        <script src="" async defer></script>
+</body>
+</html>

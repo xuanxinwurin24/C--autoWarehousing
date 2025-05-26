@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>備貨</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+<style>
+    body {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    input [type=radio] {
+        font-size: 20px;
+    }
+
+
+    .Batch {
+        width: 35%;
+        height: 40%;
+        border: 1px solid black;
+        position: absolute;
+        left: 10%;
+        background-color: white;
+    }
+
+    .list {
+        width: 45%;
+        height: 20%;
+        border: 1px solid black;
+        position: absolute;
+        left: 50%;
+        background-color: white;
+    }
+
+    table {
+        border: 1px solid #000;
+        font-family: 微軟正黑體;
+        font-size: 16px;
+        width: 100%;
+        border: 1px solid #000;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: aliceblue;
+        padding: 10px;
+        border: 1px solid #000;
+        color: black;
+        font-size: 20px;
+    }
+
+    td {
+        border: 1px solid #000;
+        padding: 5px;
+    }
+</style>
+<body style="background-color: aliceblue;">
+    <a>Batch No</a>
+    <input type="text" style="padding: 5px;position: relative; bottom:5px;">
+    <input type="button" style="font-size: 20px;" value="選取">
+
+    <div class="Batch">
+
+        <table>
+            <tr>
+                <th><input type="checkbox" value=""></th>
+                <th>大領料單號</th>
+                <th>Batch No.</th>
+                <th>Scteria</th>
+                <th>工號</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" value=""></td>
+                <td>EB00000020</td>
+                <td>Batch00001</td>
+                <td>N</td>
+                <td>Operator01</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <input type="button" style="font-size: 20px;position: absolute;left: 41%;top:46%;" value="確認">
+
+    <div class="list">
+        <table>
+            <tr>
+                <th>任務編號</th>
+                <th>大領料單號</th>
+                <th>Batch No</th>
+                <th>Soteria</th>
+                <th>工號</th>
+                <th>狀態</th>
+            </tr>
+            <tr>
+                <td>Job00000</td>
+                <td>EB00000020</td>
+                <td>Batch00001</td>
+                <td>N</td>
+                <td>Oper</td>
+                <td>Check Out</td>
+            </tr>
+        </table>
+    </div>
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <script src="" async defer></script>
+</body>
+</html>

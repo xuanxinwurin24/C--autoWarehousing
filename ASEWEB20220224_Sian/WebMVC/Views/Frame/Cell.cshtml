@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+@{
+    ViewData["Title"] = "Cell";
+    var data = ViewBag.data;
+    var dash = "-";
+}
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Cell</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .block1 {
+            width: 100%;
+            position: absolute;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top {
+            position: relative;
+            font-size: 25px;
+            padding: 5px;
+            float: left;
+            margin: 5px;
+            display: flex;
+        }
+
+        body {
+            background-color: skyblue;
+        }
+
+        .border_line {
+            width: 100%;
+            height: 20px;
+            border: 1px solid gray;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 16px;
+        }
+
+        .block2 {
+            width: 1500px;
+            height: 1000px;
+            position: absolute;
+            top: 100px;
+            left: 0%;
+        }
+
+        #block3 {
+            width: 700px;
+            height: 500px;
+            position: absolute;
+            top: 100px;
+            left: 40%;
+            display: none;
+            z-index:2;
+        }
+
+        .border {
+            width: 180px;
+            height: 70px;
+            position: relative;
+            display: inline-block;
+            z-index: 2;
+        }
+
+        .num {
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .button {
+            width: 80%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 20px;
+            z-index: 2;
+        }
+    </style>
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+</head>
+    <body>
+    
+    <div class="block1">
+        <div style="float: left;line-height:50px;">空儲格</div>
+        <div class="top"style="background-color:white">&emsp;&emsp;&emsp;</div>
+
+        <div style="float: left;line-height:50px;">有帳有料</div>
+        <div class="top"style="background-color:rgb(51, 255, 0)">&emsp;&emsp;&emsp;</div>
+       
+        <div style="float: left;line-height:50px;">儲格Locked</div>
+        <div class="top"style="background-color:red">&emsp;&emsp;&emsp;</div>
+       
+
+        <div style="float: left;line-height:50px;">無帳有料</div>
+        <div class="top"style="background-color:yellow">&emsp;&emsp;&emsp;</div>
+       
+        <div style="float: left;line-height:50px;">NG有料</div>
+        <div class="top"style="background-color:purple">&emsp;&emsp;&emsp;</div>
+       
+        <div style="float: left;line-height:50px;">等待有料</div>
+        <div class="top"style="background-color:gray">&emsp;&emsp;&emsp;</div>
+    </div>
+    <div class="block2">
+        @if (data.Count != 0)
+        {
+            @for (int i = 0; i < data.Count; i++)
+            {
+        <div class="border">
+            <div class="num"><input type="hidden" name="CELL_ID" value="@data[i].Cell_ID" />@data[i].Cell_Show_ID</div>
+            @if (data[i].BOX_ID.Trim() != "")
+            {
+                switch (data[i].Status)
+                {
+                    case "0":
+                        <input type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    case "1":
+                        <input style="background-color: rgb(51, 255, 0)" type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    case "2":
+                        <input style="background-color: red" type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    case "3":
+                        <input style="background-color: yellow" type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    case "4":
+                        <input style="background-color: purple" type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    case "5":
+                        <input style="background-color: gray" type="button" class="button"  value="@data[i].BOX_ID" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            else
+            {
+                    <input type="button" class="button"  value="@dash" onclick="show('@data[i].Carousel_ID','@data[i].Cell_ID')" />
+                }
+        </div>
+            }
+        }
+
+
+    </div>
+    <div id="block3">
+        <iframe id="Cell_Detail" src="" style="width:100%;height:100%"></iframe>
+    </div>
+
+        <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+        <script src="" async defer></script>
+        <script type="text/javascript">
+            function show(t1, t2) {
+                document.getElementById("Cell_Detail").src = "/Frame/Cell_Detail?rCSID="+ t1 + "&rCEID=" + t2;
+                    document.getElementById("block3").style = "width:700px;height:500px;position:absolute;top:100px;left:40%;display:block;";
+            }
+            function closeIFrame() {
+                        document.getElementById("block3").style = "width:700px;height:500px;position:absolute;top:100px;left:40%;display:none;";
+                    }
+        </script>
+</body>
+</html>

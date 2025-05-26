@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "TableResult_Storage";
+    Layout = null;
+    var data = ViewBag.Storage;
+    var list = ViewBag.list;
+}
+@model ASEWEB.Models.StorageModel
+<html>
+<head>
+    <style type="text/css">
+        table body {
+            height: 350px;
+            width: 500px;
+        }
+
+        table {
+            border-collapse: collapse
+        }
+    </style>
+    <script>
+        function CheckBox() {
+            for (var i = 0; i < @(list.Count); i=i+9) {
+                var t = "T_" + i;
+                var c = "C_" + i;
+                var input_target = document.getElementById(t);
+                var input_cancel = document.getElementById(c);
+                if (document.getElementById(i).checked == true) { input_target.disabled = ""; input_cancel.disabled = ""; }
+                else if (document.getElementById(i).checked == false) { input_target.disabled = "disabled"; input_cancel.disabled = "disabled"; }
+            }
+        }
+    </script>
+</head>
+
+<body style="background-color: white;">
+    <form method="get">
+        <table border="1">
+            <tbody>
+                @if (list.Count != 0)
+                {
+                    @for (int i = 0; i < list.Count; i = i + 9)
+                    {
+
+                        <tr>
+                            <td width="30px"><input type="checkbox" id="@i" onclick="CheckBox()"/></td>
+                            <td width="110px" align="right">@list[i]</td>
+                            <td width="100px" align="right">@list[i + 1]</td>
+                            <td width="100px" align="right">@list[i + 2]</td>
+                            <td width="80px" align="right">@list[i + 3]</td>
+                            <td width="80px" align="right">@list[i + 4]</td>
+                            <td width="90px" align="right">@list[i + 5]</td>
+                            <td width="80px" align="right">@list[i + 6]</td>
+                            <td width="160px" align="right">@list[i + 7]</td>
+                            <td width="120px" align="right">@list[i + 8]</td>
+                            <td width="80px" align="right"><input type="button" id="T_@i"disabled = "disabled" value="選擇目的地" /></td>
+                            <td width="50px" align="right"><input type="button" id="C_@i"disabled = "disabled" value="取消" /></td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
+
+
+

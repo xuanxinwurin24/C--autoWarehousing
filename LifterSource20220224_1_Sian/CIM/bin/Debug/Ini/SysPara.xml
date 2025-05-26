@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SysPara xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SoftVersion>SoftVersion</SoftVersion>
+  <ModelName>LIFTER</ModelName>
+  <EqID>LIFTER_B</EqID>
+  <InLineID>InLineID</InLineID>
+  <SqlDB_data_source>172.22.244.41,1433</SqlDB_data_source>
+  <SqlDB_catalog>WaferBank_DB</SqlDB_catalog>
+  <SqlDB_uid>strong</SqlDB_uid>
+  <SqlDB_password>5999011</SqlDB_password>
+  <SqlDB_LifterUnit>B</SqlDB_LifterUnit>
+  <Simulation>true</Simulation>
+  <CleanITReplyTime>3</CleanITReplyTime>
+  <RFIDTimerSec>1</RFIDTimerSec>
+  <TEST>false</TEST>
+</SysPara>

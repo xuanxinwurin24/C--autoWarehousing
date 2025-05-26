@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+@{
+
+    ViewData["Title"] = "Check_Task";
+    var data = ViewBag.Check_Inventory;
+    var Task = ViewBag.Task;
+}
+@model ASEWEB.Models.Check_inventoryModel
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>盤點任務</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <script>
+        function trclick(a) {
+            var comid = document.getElementById(a);
+            var iframe = document.getElementById("if1");
+            iframe.src = "/Frame/Check_inventory_Task_List?commandid=" + comid.value;
+            document.getElementById("DIV_List").style = "display:block";
+        }
+        function DIV_Close() {
+            document.getElementById("DIV_List").style = "display:none";
+        }
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        #DIV_Task{
+            z-index:1;
+            position:absolute;
+        }
+        #DIV_List{
+            top:20px;
+            left:0px;
+            width:50%;
+            height:50%;
+            z-index:2;
+            position:absolute;
+        }
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        table tbody {
+            display: block;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+            table tbody::-webkit-scrollbar {
+                display: none;
+            }
+            thead, tbody tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed; /* even columns width , fix width of table too*/
+            }
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+    </style>
+
+</head>
+<body style="background-color: skyblue;">
+    <div id="DIV_List" style="display:none">
+        <iframe id="if1" scrolling="no" frameBorder="0" style="height: 400px; width: 420px" src=""></iframe>
+    </div>
+    <div id="DIV_Task">
+        <form method="get" action="/Frame/Check_Inventory_Task">
+            <h3 style="height:10px;width:200px">Check Task List <input type="submit" value="更新" /></h3>
+            <table style="border:1px #00007f groove;height: 400px;width: 600px;overflow-x:auto;overflow-y:auto;" cellpadding="0" border='1'>
+                <thead style="width:100%">
+                    <tr>
+                        <th height="25px" width="85px">Check Command ID</th>
+                        <th height="25px" width="85.5pxpx">Check result</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:white; width:100%" height="400px">
+                    @if (Task.Count != 0)
+                    {
+                        @for (int i = 0; i < Task.Count; i = i + 3)
+                        {
+                            <tr onclick="trclick(@i)">
+                                <td width="80px" align="center"><input type="hidden" id="@i" name="comID" value="@Task[i]" />@Task[i]</td>
+                                <td width="80px" align="center">@Task[i + 1]</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</body>
+</html>

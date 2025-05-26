@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "TableResult_Check";
+    Layout = null;
+    var data = ViewBag.Check_Inventory;
+    var list = ViewBag.list;
+}
+@model ASEWEB.Models.Check_inventoryModel
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        table body {
+            height: 350px;
+            width: 540px;
+        }
+
+        table {
+            border-collapse: collapse
+        }
+    </style>
+
+</head>
+<body style="background-color: white;">
+    <table border="1" >
+        <tbody>
+            @if (list.Count != 0)
+            {
+                @for (int i = 0; i < list.Count; i = i + 5)
+                {
+                    <tr>
+                        <td width="90px"align="right">@list[i]</td>
+                        <td width="70px"align="right">@list[i + 1]</td>
+                        <td width="120px"align="right">@list[i + 2]</td>
+                        <td width="90px"align="right">@list[i + 3]</td>
+                        <td width="100px"align="right">@list[i + 4]</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+

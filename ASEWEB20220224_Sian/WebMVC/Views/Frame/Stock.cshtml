@@ -1,0 +1,316 @@
+﻿
+@{
+    ViewData["Title"] = "Stock";
+    var Stock = ViewBag.Stock;
+    var Stock_List = ViewBag.Stock_list;
+    var list = ViewBag.List;
+    var bg = "white";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stock</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="~/js/jquery-3.6.0.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script type="text/javascript">
+        //var timer = null;
+        //function displayClock(num) {//num是传入的startClock中的动态值
+        //    if (num < 10) {
+        //        return "0" + num;
+        //    }
+        //    else {
+        //        return num;
+        //    }
+        //}
+        ////停止计时
+        //function stopClock() {
+        //    clearTimeout(timer);
+        //}
+        ////开始计时
+        //function startClock() {
+        //    var time = new Date();
+        //    var hours = displayClock(time.getHours()) + ":";
+        //    var minutes = displayClock(time.getMinutes()) + ":";
+        //    var seconds = displayClock(time.getSeconds());
+        //    var day = displayClock(time.getDate()) + "-";
+        //    var month = displayClock(time.getMonth()) + "/";
+        //    var year = displayClock(time.getFullYear()) + "/";
+        //    //显示时间
+        //    show.innerHTML =year+month+day+ hours + minutes + seconds;//在id为show的块区域显示
+        //    timer = setTimeout("startClock()", 1000);//延时器
+        //}
+        function Take_CommandID() {
+
+        }
+        function Stock_Message() {
+            var x = document.getElementById("Stock_Message").value;
+            if (x != "")
+                window.alert(x);
+        }
+        function Stock_Type_Check(t) {
+            for (var i = 1; i < 5; i++) {
+                document.getElementById("Stock_Type" + i).style = "width:100%;background-color:white";
+                if (i == t) {
+                    document.getElementById("Stock_Type" + i).style = "width:100%;background-color:green";
+                    document.getElementById("Stock_Type").value = document.getElementById("Type" + i).value;
+                }
+                    
+            }
+        }
+        function RD_Check(t) {
+            for (var j = 1; j < 3; j++) {
+                if (document.getElementById("RD" + t).checked) {
+                    document.getElementById("RD" + t + j + "_Text").disabled = "";
+                    document.getElementById("RD" + (3 - t)).checked = false;
+                    document.getElementById("RD" + (3 - t) + j + "_Text").disabled = "disabled";
+                    document.getElementById("RD" + (3 - t) + j + "_Text").value = "";
+                    document.getElementById("Stock_Type").value = document.getElementById("Type" + t).value;
+                }
+            }
+        }
+        function check_all() {
+            var cb_list = document.getElementsByName("CB");
+            var cb_all = document.getElementById("list_allcheck");
+            if (cb_all.checked) {
+                for (var i = 0; i < cb_list.length; i++) {
+                    cb_list[i].checked = true;
+                }
+            }
+            else {
+                for (var i = 0; i < cb_list.length; i++) {
+                    cb_list[i].checked = false;
+                }
+            }
+        }
+        function set_value() {
+            var CB_List = document.getElementsByName("CB");
+            var myform = document.getElementById("myform");
+            for (var i = 0; i < CB_List.length; i++) {
+                if (CB_List[i].checked == true) {
+                    var input_box = document.createElement("input");
+                    input_box.type = "hidden";
+                    input_box.value = document.getElementsByName("Insert_Temp_BOX")[i].value;
+                    input_box.name = "Insert_BOX";
+                    var input_batch = document.createElement("input");
+                    input_batch.type = "hidden";
+                    input_batch.value = document.getElementsByName("Insert_Temp_Batch")[i].value;
+                    input_batch.name = "Insert_Batch";
+                    var input_no = document.createElement("input");
+                    input_no.type = "hidden";
+                    input_no.value = document.getElementsByName("Insert_Temp_NO")[i].value;
+                    input_no.name = "Insert_NO";
+                    var input_customer = document.createElement("input");
+                    input_customer.type = "hidden";
+                    input_customer.value = document.getElementsByName("Insert_Temp_Customer")[i].value;
+                    input_customer.name = "Insert_Customer";
+                    var input_soteria = document.createElement("input");
+                    input_soteria.type = "hidden";
+                    input_soteria.value = document.getElementsByName("Insert_Temp_Soteria")[i].value;
+                    input_soteria.name = "Insert_Soteria";
+                    myform.appendChild(input_box);
+                    myform.appendChild(input_batch);
+                    myform.appendChild(input_no);
+                    myform.appendChild(input_customer);
+                    myform.appendChild(input_soteria);
+                }
+            }
+            myform.submit();
+        }
+        window.onload = function () {
+            Stock_Message();
+        }
+    </script>
+    <style>
+        #show {
+            font-size: 24px;
+            color: black;
+            text-align: center;
+            background-color:white;
+        }
+        .DIV_Text{
+            font-size:24px;
+            text-align:center;
+        }
+        #Area1{
+            top:10px;
+            left:0px;
+            float:left;
+            position:absolute;
+            width:400px;
+        }
+        #Area2 {
+            top: 200px;
+            left: 0px;
+            float: left;
+            position: absolute;
+            width:500px;
+        }
+        #Area3{
+            float:left;
+            left:0px;
+            max-width:1000px;
+            position:absolute;
+            overflow-y:auto;
+            overflow-x:auto;
+        }
+        #Area{
+            width:100%;
+            height:100%;
+        }
+        table{
+            width:100%;
+        }
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+        tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
+</head>
+
+<body style="background-color: skyblue;" >
+    <div id="Area">
+        @*<div id="Area1">
+            <table style=" border: 8px #ffffff solid;" cellpadding="5" border='0'>
+                <tbody>
+                    <tr>
+                        <td><div class="DIV_Text">Date Time</div></td>
+                        <td><div id="show"></div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="DIV_Text">PLC Connection</div></td>
+                        <td><div class="DIV_Text" style="background-color:green">Connection</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="DIV_Text">Control Mode</div></td>
+                        <td><div class="DIV_Text" style="background-color:yellowgreen">Online</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>*@
+        <div id="Area2">
+            <div class="DIV_Text">出庫</div>
+            <input type="hidden" value="" id="Stock_Type" />
+            @*<table>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" style="width:100%" id="Stock_Type1" value="一般" onclick="Stock_Type_Check(1)"/>
+                            <input type="hidden" id="Type1" value="normal" />
+                        </td>
+                        <td colspan="2">
+                            <input type="button" style="width:100%" id="Stock_Type2" value="發料" onclick="Stock_Type_Check(2)"/>
+                            <input type="hidden" id="Type2" value="pop" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>*@
+            <form method="get" action="/Frame/Stock">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width:20px"><input type="radio" id="RD1" onclick="RD_Check(1)" /><input type="hidden" id="Type1" value="normal" /></td>
+                            <td><label for="RD1">一般：Batch No.</label></td>
+                            <td><input type="text" style="width:100%" name="rBN1" id="RD11_Text" disabled="disabled" value="@Stock.Batch_No1" /></td>
+                            <td><input type="text" style="width:100%" name="rBN2" id="RD12_Text" disabled="disabled" value="@Stock.Batch_No2" /></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20px"><input type="radio" id="RD2" onclick="RD_Check(2)" /><input type="hidden" id="Type2" value="pop" /></td>
+                            <td><label for="RD2">發料：領料單號</label></td>
+                            <td><input type="text" style="width:100%" name="rN1" id="RD21_Text" disabled="disabled" value="@Stock.NO1" /></td>
+                            <td><input type="text" style="width:100%" name="rN2" id="RD22_Text" disabled="disabled" value="@Stock.NO2" /></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" align="right"><input type="submit" value="選取" /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+            <form method="post" action="/Frame/Stock" id="myform">
+
+            </form>
+            <table style="background-color: white; border: 1px #00007f;" border="1">
+                <thead>
+                <th><input type="checkbox" id="list_allcheck" onclick="check_all()" /></th>
+                <th>Batch No.</th>
+                <th>BOX ID</th>
+                <th>領料單號</th>
+                <th>Customer ID</th>
+                <th>Soteria</th>
+                </thead>
+                <tbody style="height:150px">
+                    @if (Stock_List.Count != 0)
+                    {
+                        for (int i = 0; i < Stock_List.Count; i++)
+                        {
+                        <tr>
+                            <td style="text-align:center"><input type="checkbox" name="CB" /></td>
+                            <td style="text-align:center">@Stock_List[i].BOX_ID<input type="hidden" name="Insert_Temp_BOX" value="@Stock_List[i].BOX_ID" /></td>
+                            <td style="text-align:center">@Stock_List[i].Batch_No<input type="hidden" name="Insert_Temp_Batch" value="@Stock_List[i].Batch_No" /></td>
+                            <td style="text-align:center">@Stock_List[i].NO<input type="hidden" name="Insert_Temp_NO" value="@Stock_List[i].NO" /></td>
+                            <td style="text-align:center">@Stock_List[i].Customer_ID<input type="hidden" name="Insert_Temp_Customer" value="@Stock_List[i].Customer_ID" /></td>
+                            <td style="text-align:center">@Stock_List[i].Soteria<input type="hidden" name="Insert_Temp_Soteria" value="@Stock_List[i].Soteria" /></td>
+                        </tr>
+                        }
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" align="right"><input type="button" value="確認" onclick="set_value()" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+
+        </div>
+        <div id="Area3">
+            <iframe scrolling="no" frameBorder="0" style="height: 150px; width: 1100px" src="/Frame/Task_List">
+            </iframe>
+        </div>
+        <input type="hidden" value="@TempData.Peek("Stock_Message").ToString().Trim()" id="Stock_Message" />
+    </div>
+
+</body>
+</html >

@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Upload Account";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Upload Account</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+
+    <script>
+        function STK_Message() {
+            var x = document.getElementById("Message").value;
+            if (x != "")
+                window.alert(x);
+        }
+        window.onload = function () {
+            STK_Message();
+        }
+    </script>
+    <style>
+        #Upload_DIV {
+            width: 600px;
+            height: 400px;
+            border-radius: 10px;
+            border: 1px solid #888;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:gray;
+            top:100px;
+            left:25%;
+            position:absolute;
+        }
+        #Download_DIV {
+            width: 600px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 300px;
+            position: absolute;
+        }
+/*        input[type="file"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }*/
+        input[type="submit"] {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: antiquewhite;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color:antiquewhite;
+        }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+    <div id="Upload_DIV">
+        <form method="post" enctype="multipart/form-data" asp-controller="Frame" asp-action="Upload_Account">
+            <table>
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            @*<label for="AccountUpload" class="custom-file-upload">
+                                上傳檔案
+                            </label>*@
+                            <input id="AccountUpload" type="file" name="postedFiles" accept=".csv" />
+                        </td>
+                        <td align="center"><input type="submit" value="確認上傳" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <input type="hidden" id="Message" value="@ViewBag.test.ToString().Trim()" />
+        <div id="Download_DIV">
+            <form asp-controller="Frame" asp-action="Download_Account"><input style="height: 50px; width: 200px" type="submit" value="下載" /></form>
+        </div>
+    </div>
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+
+
+    <script src="" async defer></script>
+</body>
+</html>

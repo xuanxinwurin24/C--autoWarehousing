@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+@{
+
+    ViewData["Title"] = "Check_Task";
+    var data = ViewBag.Check_Inventory;
+    var Task = ViewBag.TaskList;
+}
+@model ASEWEB.Models.Check_inventoryModel
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>盤點任務</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <script>
+        function DIV_Close() {
+            parent.DIV_Close();
+        }
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        table tbody {
+            display: block;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+            table tbody::-webkit-scrollbar {
+                display: none;
+            }
+            thead, tbody tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed; /* even columns width , fix width of table too*/
+            }
+        table th {
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+        }
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+        }
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+
+        tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
+
+</head>
+<body>
+    <form method="get" action="/Frame/Check_inventory_Task_List">
+        <table style="border:1px #00007f groove;height: 330px;width: 400px;overflow-x:auto;overflow-y:auto;" cellpadding="0" border='1'>
+            <thead style="width:100%">
+                <tr>
+                    @*
+        <th width="28.5px"><input type="checkbox" id="check_all" onclick="list_allcheck()" /></th>*@
+                    <th height="25px" width="80px">Carousel ID</th>
+                    <th height="25px" width="40px">Cell ID</th>
+                    <th height="25px" width="100px">BOX ID</th>
+                </tr>
+            </thead>
+            <tbody style="background-color:white; width:100%" height="330px">
+                @if (Task.Count != 0)
+                {
+                @for (int i = 0; i < Task.Count; i = i + 3)
+                {
+                <tr>
+                    @*
+                    <td width="30px" align="center"><input type="checkbox" name="Task" id="i" /></td>*@
+                    <td width="80px" align="center">@Task[i]</td>
+                    <td width="40px" align="center">@Task[i + 1]</td>
+                    <td width="100px" align="center">@Task[i + 2]</td>
+                </tr>
+                }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><input style="width:100%" type="button" value="關閉" onclick="DIV_Close()" /></td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var List = ViewBag.List;
+    var Message = ViewBag.Message;
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" "></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script type="text/javascript">
+        function trselect(t) {
+            var tr = document.getElementsByName("ListTr");
+            var tr_CB = document.getElementsByName("CB");
+            if (tr_CB[t].value == "") {
+                tr[t].style = "background-color:red";
+                tr_CB[t].value = "Checked";
+            }
+            else {
+                tr[t].style = "background-color:white";
+                tr_CB[t].value = "";
+            }
+        }
+        function Select_Checked() {
+            var tr = document.getElementsByName("ListTr");
+            var tr_CB = document.getElementsByName("CB");
+            for (var t = 0; t < tr_CB.length; t++) {
+                if (tr_CB[t].value == "Checked") {
+                    
+                }
+            }
+        }
+        function Select_Cancel() {
+        }
+    </script>
+    <style>
+        tbody,tfoot td{
+            text-align:center;
+        }
+            thead, tbody tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed; /* even columns width , fix width of table too*/
+            }
+        table tbody {
+            display: block;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+            table tbody::-webkit-scrollbar {
+                display: none;
+            }
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+        tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
+</head>
+<body style="background-color:white;height:400px;width:400px">
+    <table>
+        <tbody>
+            @if (List.Count != 0)
+            {
+                for (int i = 0; i < List.Count; i++)
+                {
+                    <tr  name="ListTr" onclick="trselect(@i)">
+                        <td><input type="hidden" name="User_List" value="@List[i].User" />@List[i].User</td>
+                        <td><input type="hidden" name="Command_List" value="@List[i].Command_ID" />@List[i].Command_ID</td>
+                        <td><input type="hidden" name="CB" value="" />@List[i].Start_Time</td>
+                        <td>@List[i].End_Time</td>
+                        <td>@List[i].Check_Result</td>
+                        <td>@List[i].NG_Reason</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <input type="button" value="確認" onclick="Select_Checked()" />
+                </td>
+                <td>
+                    <input type="button" value="取消" onclick="Select_Cancel()" />
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <input type="hidden" id="User_Select_List" value="" />
+    <input type="hidden" id="Command_Select_List" value="" />
+</body>
+</html>

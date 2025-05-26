@@ -1,0 +1,83 @@
+﻿<Window x:Class="CIM.Lib.View.fmRecipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        mc:Ignorable="d"
+        Title="Recipe" Width="1450" Height="850" FontSize ="16" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <local:como x:Key="comoData"/>
+        <local:CvGroup x:Key="cvGroup"/>
+        <DataTemplate x:Key="lvTemp">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{ Binding ID,StringFormat={}{0:D2}}"  TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,2,0"/>
+                <ListView Name="lvPort0"  ItemsSource ="{Binding Steps}" Height="Auto"
+                            ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Center">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,0" Width="85">
+                                <ComboBox ItemsSource="{Binding Source = {StaticResource comoData},Path=Groups,Mode=TwoWay}" SelectedIndex ="{Binding Group ,Converter={StaticResource cvGroup}}"/>
+                                <TextBox Text="{Binding StayOverTime}" TextAlignment="Center" BorderThickness="0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <CheckBox IsChecked="{Binding PsetupEnable,Mode=TwoWay}" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                <StackPanel Margin="0,0,0,0" Width="60">
+                    <CheckBox IsChecked="{Binding PsetEnable[0],Mode=TwoWay}" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    <TextBox Width="60" Text="{Binding PsetupTime[0]}" TextAlignment="Center" VerticalContentAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,0" Width="60">
+                    <CheckBox IsChecked="{Binding PsetEnable[1],Mode=TwoWay}" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    <TextBox Width="60" Text="{Binding PsetupTime[1]}" TextAlignment="Center" VerticalContentAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,0" Width="60">
+                    <CheckBox IsChecked="{Binding PsetEnable[2],Mode=TwoWay}" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    <TextBox Width="60" Text="{Binding PsetupTime[2]}" TextAlignment="Center" VerticalContentAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,0" Width="60">
+                    <CheckBox IsChecked="{Binding PsetEnable[3],Mode=TwoWay}" Width="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="15,0,0,0"/>
+                    <TextBox Width="60" Text="{Binding PsetupTime[3]}" TextAlignment="Center" VerticalContentAlignment="Bottom"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <StackPanel>
+        <DataGrid x:Name="dataGrid" Grid.ColumnSpan="1"   BorderThickness="2" BorderBrush="Aqua" AutoGenerateColumns="False" MinWidth="30" MinHeight="30" ScrollViewer.CanContentScroll="False" CanUserAddRows="True" SelectedCellsChanged="dataGrid_SelectedCellsChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" MinWidth="28"/>
+                <DataGridTextColumn Header="Step01" MinWidth="87"/>
+                <DataGridTextColumn Header="Step02" MinWidth="87"/>
+                <DataGridTextColumn Header="Step03" MinWidth="87"/>
+                <DataGridTextColumn Header="Step04" MinWidth="87"/>
+                <DataGridTextColumn Header="Step05" MinWidth="87"/>
+                <DataGridTextColumn Header="Step06" MinWidth="87"/>
+                <DataGridTextColumn Header="Step07" MinWidth="87"/>
+                <DataGridTextColumn Header="Step08" MinWidth="87"/>
+                <DataGridTextColumn Header="Step09" MinWidth="87"/>
+                <DataGridTextColumn Header="Step10" MinWidth="87"/>
+                <DataGridTextColumn Header="Step11" MinWidth="87"/>
+                <DataGridTextColumn Header="Enable" MinWidth="35"/>
+                <DataGridTextColumn Header="PStep" MinWidth="60"/>
+                <DataGridTextColumn Header="PStep" MinWidth="60"/>
+                <DataGridTextColumn Header="PStep" MinWidth="60"/>
+                <DataGridTextColumn Header="PStep" MinWidth="60"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListView Name="lv" ItemTemplate="{StaticResource lvTemp}" Height="726" ScrollViewer.CanContentScroll="True"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" SelectionChanged="Lv_SelectionChanged" Margin="0,0,0.2,0">
+        </ListView>
+        <Button Click="Save_Click" Width="200" HorizontalAlignment="Left" Margin="50,0,0,0">Save</Button>
+        <Button Click="Abort_Click" Width="200" HorizontalAlignment="Left" Margin="50,2,0,0">Abort</Button>
+    </StackPanel>
+</Window>

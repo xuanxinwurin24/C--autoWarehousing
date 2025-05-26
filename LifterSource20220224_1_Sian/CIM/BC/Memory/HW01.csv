@@ -1,0 +1,4 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+Alive,200,W,1,0,HEX,F,0,ONOFF,F,,1~FFFF 4sec+1
+LiftMode,201,B,2,0,DEC,F,0,ONOFF,F,,1:In 2:Out
+StockInMode,202,B,2,0,DEC,F,0,ONOFF,F,,1:Manual 2:Auto

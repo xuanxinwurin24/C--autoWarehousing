@@ -1,0 +1,143 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var data = ViewBag.data;
+    var list = ViewBag.list;
+    var auth = TempData.Peek("Authority").ToString() ;
+}
+<html>
+<head>
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <style>
+        .Cell_DetailData_id {
+            color: black;
+            font-family: Microsoft JhengHei;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 1.5%;
+            float: left;
+        }
+
+        .Cell_DetailData {
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            /*padding-top: 60px;*/
+        }
+
+        .Cell_DetailData-content {
+            background-color: #fefefe;
+            /*margin: 5% auto 15% auto;*/ /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 700px; /* Could be more or less, depending on screen size */
+            height: 500px;
+            position: absolute;
+        }
+
+        .Cell_DetailData_border {
+            width: 680px;
+            height: 70px;
+            border: 1px solid black;
+            position: absolute;
+            background-color: red;
+            left: 0%;
+            z-index: 3;
+        }
+
+        .Cell_DetailData_id{
+            height: 35px;
+            float: left;
+            font-size: 20px;
+            /*background-color: white;*/
+            /*padding: 10px;*/
+            line-height: 100%;
+            /*position: relative;*/
+        }
+        .Cell_ID_value{
+            text-align:center;
+            height:100%;
+            font-size:20px;
+            width:35%;
+        }
+        #DIV4 {
+            width: 700px;
+            height: 400px;
+            line-height: 30px;
+            padding: 10px;
+            margin-top: 0px;
+            margin-left: 0px;
+            float: left;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+    <script>
+        function close_iframe() {
+            parent.closeIFrame();
+        }
+    </script>
+</head>
+<body>
+    <div class="Cell_DetailData">
+        <form class="Cell_DetailData-content animate" method="post">
+            <div class="Cell_DetailData_border">
+                <div class="Cell_DetailData_id" style="width:35%">Carousel ID:<input class="Cell_ID_value" type="text" value="@data.Carousel_ID" readonly="readonly" /> </div>
+                <div class="Cell_DetailData_id" style="width:25%">儲格 ID:<input class="Cell_ID_value" type="text" value="@data.Cell_ID" readonly="readonly" /></div>
+                <div class="Cell_DetailData_id" style="width:30%">
+                    @if (Array.IndexOf(auth.Split(','), "Main")!=-1 || auth=="Admin")
+                    {
+                        <input type="button" value="刪帳" style="height:100%;font-size: 100%;float:right;">
+                    }
+                    else if(Array.IndexOf(auth.Split(','), "Main") == -1 && auth!="Admin")
+                    {
+                        <input type="button" value="刪帳"  disabled="disabled" style="height:100%;font-size: 100%;float:right;">
+                    }
+                </div>
+                <div id="DIV4">
+                    <table style="border:1px black ;height: 200px;width: 100%;overflow-y:auto;position:absolute;top:100%;left:0%;" cellpadding="0" border='1'>
+                        <thead style="width:100%">
+                            <tr>
+                                <th height="25px" width="85px">Box ID</th>
+                                <th height="25px" width="80px">Batch No.</th>
+                                <th height="25px" width="90px">Group No.</th>
+                                <th height="25px" width="50px">Soteria</th>
+                                <th height="25px" width="100px">Customer ID</th>
+                                <th height="25px" width="94px">NG Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:white;" height="330px" width="700px">
+                            @if (list.Count != 0)
+                            {
+                                @for (int i = 0; i < list.Count; i += 4)
+                                {
+                                    <tr>
+                                        <td width="25px" height="25px" align="center">@list[i]</td>
+                                        <td width="25px" height="25px" align="center">@list[i+1]</td>
+                                        <td width="25px" height="25px" align="center"></td>
+                                        <td width="25px" height="25px" align="center">@list[i+2]</td>
+                                        <td width="25px" height="25px" align="center">@list[i+3]</td>
+                                        <td width="25px" height="25px" align="center"></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><input type="button" value="Close" style="width: 100%;height: 50px;font-size: 30px;" onclick="close_iframe()"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>

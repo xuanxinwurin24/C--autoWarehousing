@@ -1,0 +1,62 @@
+﻿<Window x:Class="CIM.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:local="clr-namespace:CIM"
+		xmlns:led="clr-namespace:CIM.Lib"
+		mc:Ignorable="d"
+		Title="MainWindow" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" FontFamily="Consolas" FontSize="20" Foreground="Black" Background="LightGray" Icon="Strong.ico" Height="362" Width="450">
+    <StackPanel Margin="0" Orientation="Vertical">
+        <Grid HorizontalAlignment="Right" Margin="0,0,0,0">
+            <Grid.Resources>
+                <Style x:Key ="ConnectStyle" TargetType="{x:Type Label}">
+                    <Setter Property = "Background" Value="White"/>
+                    <Setter Property = "Content" Value="NOT CONNECTED"/>
+                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                    <Style.Triggers>
+                        <Trigger Property="Tag" Value="1">
+                            <!--<Setter Property="Foreground" Value="White" />-->
+                            <Setter Property = "Background" Value="Green"/>
+                            <Setter Property = "Content" Value="CONNECTED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key ="OnlineStyle" TargetType="{x:Type Label}">
+                    <Setter Property = "Background" Value="LightGray"/>
+                    <Setter Property = "Content" Value="OFF-LINE"/>
+                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                    <Setter Property = "Margin" Value="0"/>
+                    <Style.Triggers>
+                        <Trigger Property="Tag" Value="1">
+                            <Setter Property = "Background" Value="GreenYellow"/>
+                            <Setter Property = "Content" Value="ONLINE"/>
+                        </Trigger>
+
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Label x:Name ="lbASEConnected" Style="{StaticResource OnlineStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="100"/>
+        </Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="10,30,10,0" Height="Auto">
+            <TextBlock Text="User Name" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+            <TextBox x:Name="edLogin_UserName" HorizontalAlignment="Center" MinWidth="150" Height="30" VerticalContentAlignment="Center" InputMethod.IsInputMethodEnabled="False"/>
+            <TextBlock x:Name="tbLogin_Password" Text="Password" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+            <PasswordBox x:Name="edLogin_Password" HorizontalAlignment="Left" VerticalContentAlignment="Center" MinWidth="150" Height="30" InputMethod.IsInputMethodEnabled="False"/>
+            <Button x:Name="btnLogin" Content="LogIn" HorizontalAlignment="Center" Margin="0,30,0,0" Click="btnLogin_Click" Height="32" Width="120"/>
+        </StackPanel>
+        <Border BorderBrush="Gray" Background="LightGray" BorderThickness="2"  Margin="-1,36,-1,0" Height="40" Width="Auto">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="440">
+                <TextBlock Text="User ID: " Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lbUserName" Text="{Binding UserName}" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="Level: " Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="lbLevel" Text="{Binding Level}" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="btnLogout" Content="LogOut" Width="75" Margin="18,-2,0,0" Height="40" Click="btnLogout_Click" BorderBrush="Gray" BorderThickness="2"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>

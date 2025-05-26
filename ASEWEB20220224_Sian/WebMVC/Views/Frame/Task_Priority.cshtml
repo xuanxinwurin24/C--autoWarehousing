@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+
+<html>
+@{
+    ViewData["Title"] = "Task";
+    var list = ViewBag.List;
+    var Update_Message = ViewBag.Update_Message;
+}
+@model ASEWEB.Models.TaskModel
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <title>任務列表</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" "></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script type="text/javascript">
+    </script>
+    <script>
+        function Show_Message() {
+            var m = document.getElementById("Update_Message").value;
+            if (m != "")
+                window.alert(m);
+        }
+        window.onload = function () {
+            Show_Message();
+        }
+    </script>
+    <style type="text/css">
+        #DIV1 {
+            width: 400px;
+            height: 400px;
+            line-height: 10px;
+            padding: 0px;
+            margin-right: 0px;
+            float: left;
+            position: absolute;
+            top: 0px;
+        }
+        table {
+            border-collapse: collapse
+        }
+            table tbody {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+                table tbody::-webkit-scrollbar {
+                    display: none;
+                }
+            table th {
+                table-layout: fixed;
+                word-break: break-all;
+                height: 30px;
+                padding: 0px;
+                text-align: center;
+                font-size: 14px;
+            }
+        thead, tbody, tfoot tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* even columns width , fix width of table too*/
+        }
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+
+        tfoot tr td {
+            position: sticky;
+            bottom: 0;
+        }
+        table thead {
+            background-color: #f4f5f7;
+            color: #000000;
+            table-layout: fixed;
+        }
+        table td {
+            height: 30px;
+            text-align: center;
+            table-layout: fixed;
+            word-break: break-all;
+            height: 30px;
+            padding: 0px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .content {
+            /* 省略... */
+            white-space: nowrap;
+        }
+    </style>
+
+</head>
+<body style="background-color: skyblue;">
+    <input type="hidden" id="Update_Message" value="@Update_Message" />
+    <form id="Update_Task_Priority" method="post" action="/Frame/Update_Task_Priority">
+        <div id="DIV1">
+            <table frame="void" width="390px" height="300px" border="1" style="background-color:white">
+                <thead>
+                <th>Command ID</th>
+                <th>Old Priority</th>
+                <th>New Priority</th>
+                </thead>
+                <tbody>
+                    @if (list.Count != 0)
+                    {
+                        @for (int i = 0; i < list.Count; i = i + 2)
+                        {
+                            <tr>
+                                <td align="center" width="130px"><input type="hidden" name="CMD_ID" value="@list[i]" />@list[i]</td>
+                                <td align="center" width="130px">@list[i + 1]</td>
+                                <td align="center" width="130px"><input type="text" style="width:100%;height:100%;text-align:center;background-color:aqua" name="PRIORITY" autocomplete="off" /></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input type="submit" value="確認" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </form>
+
+</body>
+</html>

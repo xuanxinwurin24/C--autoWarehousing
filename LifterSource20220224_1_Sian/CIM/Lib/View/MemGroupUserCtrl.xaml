@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="CIM.Lib.View.MemGroupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CIM.Lib.View"
+             xmlns:strong="clr-namespace:Strong;assembly=StrongBase"
+             mc:Ignorable="d" Margin="10,10,10,10" PreviewMouseLeftButtonDown="UserControl_PreviewMouseLeftButtonDown">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+     
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <local:EnumToRadioConverter x:Key="enumToRadioConverter"/>
+        <local:RowDetailsVisibleConverter x:Key="rowDetailsVisibleConverter"/>
+        <local:ColumnVisibleConverter x:Key="columnVisibleConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel Margin="0,10,0,0">
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <RadioButton Content="DEC"  IsChecked="{Binding Path=StrShowType, Converter={StaticResource enumToRadioConverter}, ConverterParameter={x:Static strong:TagItemStrType.DEC}}" Margin="5,0" />
+            <RadioButton Content="HEX"  IsChecked="{Binding Path=StrShowType, Converter={StaticResource enumToRadioConverter}, ConverterParameter={x:Static strong:TagItemStrType.HEX}}" Margin="5,0" />
+            <!--<RadioButton Content="BIN"  IsChecked="{Binding Path=StrShowType, Converter={StaticResource enumToRadioConverter}, ConverterParameter={x:Static strong:TagItemStrType.BIN}}" Margin="5,0" />
+            <RadioButton Content="ASC"  IsChecked="{Binding Path=StrShowType, Converter={StaticResource enumToRadioConverter}, ConverterParameter={x:Static strong:TagItemStrType.ASC}}" Margin="5,0" />-->
+            <RadioButton Content="Default" IsChecked="{Binding Path=StrShowType, Converter={StaticResource enumToRadioConverter}, ConverterParameter={x:Static strong:TagItemStrType.Default}}" Margin="5,0" />
+            <CheckBox x:Name="cbSubVal" Content="MemoryDetail"  IsChecked="{Binding Path=RowDetailVisible}" Margin="5,0" Foreground="White"/>
+            <CheckBox x:Name="cbAllCol" Content="AllColumn" Margin="5,0"/>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" Margin ="0,20" MinHeight="100" MaxHeight="450"  RowDetailsVisibilityMode="{Binding ElementName=cbSubVal , Path= IsChecked, Converter={StaticResource rowDetailsVisibleConverter}}" BorderThickness="2" BorderBrush="Aqua" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="clName"  Binding="{Binding Item.Name, Mode=OneTime}"  Header="Name" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="clAddr"  Binding="{Binding Addr, Mode=OneTime}"  Header="Addr" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="clValue"  Binding="{Binding StringValue,Delay=500}" Width="150" Header="Value"  CanUserSort="False" />
+                <DataGridCheckBoxColumn x:Name="clBitUse"  Binding="{Binding Item.BitUse, Mode=OneTime}"  Header="BitUse" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clStBit"  Binding="{Binding Item.StBit, Mode=OneTime}"  Header="StBit" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clLength"  Binding="{Binding Item.Length, Mode=OneTime}"  Header="Length" CanUserSort="False" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="clStrType"  Binding="{Binding Item.StrType, Mode=OneTime}"  Header="StrType" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridCheckBoxColumn x:Name="clEventLog"  Binding="{Binding Item.EventLog, Mode=OneTime}"  Header="EventLog" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clBitOnTime"  Binding="{Binding Item.BitOnTime, Mode=OneTime}"  Header="BitOnTime" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clBitTrigerEdge"  Binding="{Binding Item.BitTrigerEdge, Mode=OneTime}"  Header="BitTrigerEdge" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridCheckBoxColumn x:Name="clFirstEventByPass"  Binding="{Binding Item.FirstEventByPass, Mode=OneTime}"  Header="FirstEventByPass" CanUserSort="False" IsReadOnly="True" Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clHint"  Binding="{Binding Item.Hint, Mode=OneTime}"  Header="Hint" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+                <DataGridTextColumn x:Name="clDescription"  Binding="{Binding Item.Description, Mode=OneTime}"  Header="Description" CanUserSort="False" IsReadOnly="True"  Visibility="{Binding Source ={x:Reference cbAllCol}, Path= IsChecked, Converter={StaticResource columnVisibleConverter}}"/>
+            </DataGrid.Columns>
+            <!--<DataGrid.RowDetailsTemplate>
+                <DataTemplate x:Name="dt">
+                    <ListView x:Name="lvUsers" ItemsSource="{Binding SubItems}"  MinHeight="50" Visibility="{Binding HasSubValues}" HorizontalAlignment="Left" BorderThickness="0" Foreground="Black" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Margin="-2,0,0,0">
+                        <ListView.View >
+                            <GridView >
+                                <GridViewColumn Header="Name" Width="{Binding ActualWidth, ElementName=clName}">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            --><!--<TextBlock Text="{Binding Name , Mode=OneTime}" TextAlignment="Right"/>--><!--
+                                            <TextBlock Text=""/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Addr" Width="{Binding ActualWidth, ElementName=clAddr}"  DisplayMemberBinding="{Binding Addr, Mode=OneTime}"  />
+                                <GridViewColumn Header="Value">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="subVal" Text="{Binding StringValue ,Delay=500}" Width="{Binding ActualWidth, ElementName=clValue}"   BorderThickness="0" Loaded="subVal_Loaded" HorizontalContentAlignment="Center" Margin="0,0,10,0"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>-->
+        </DataGrid>
+    </StackPanel>
+</UserControl>

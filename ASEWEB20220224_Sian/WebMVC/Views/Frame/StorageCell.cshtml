@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+
+<html>
+@{
+    ViewData["Title"] = "Storage";
+    var data = ViewBag.data;
+    var dash = "-";
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+    <title>調儲</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" "></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script type="text/javascript">
+        function check(tCEID_Index) {
+            document.getElementById("tCEID").value = document.getElementsByName("CELL_ID")[tCEID_Index].value;
+            parent.close_iframe_window();
+        }
+    </script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+
+        .block1 {
+            width: 100%;
+            position: absolute;
+            display: inline-block;
+            z-index: -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top {
+            position: relative;
+            font-size: 25px;
+            padding: 5px;
+            float: left;
+            margin: 5px;
+            display: flex;
+        }
+
+        body {
+            background-color: skyblue;
+        }
+
+        .border_line {
+            width: 100%;
+            height: 20px;
+            border: 1px solid gray;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 16px;
+        }
+
+        .block2 {
+            width: 1000px;
+            height: 1000px;
+            position: absolute;
+            top: 100px;
+            left: 10%;
+            z-index: 2;
+        }
+
+        .border {
+            width: 180px;
+            height: 70px;
+            position: relative;
+            display: inline-block;
+            z-index: 2;
+        }
+
+        .num {
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .button {
+            width: 80%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 20px;
+            z-index: 2;
+        }
+
+        .CarouselData_id {
+            color: black;
+            font-family: Microsoft JhengHei;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 1.5%;
+            float: left;
+        }
+
+        .CarouselData {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+            z-index: 3;
+        }
+
+        .CarouselData-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 500px; /* Could be more or less, depending on screen size */
+            height: 400px;
+            position: absolute;
+            left: 35%;
+        }
+
+        .CarouselData_border {
+            width: 500px;
+            height: 40px;
+            border: 1px solid black;
+            position: absolute;
+            background-color: red;
+            left: 0%;
+            z-index: 3;
+        }
+
+        .CarouselData_id + p {
+            height: 35px;
+            float: left;
+            font-size: 20px;
+            background-color: white;
+            padding: 10px;
+            line-height: 100%;
+            position: relative;
+        }
+
+        #DIV4 {
+            width: 500px;
+            height: 400px;
+            line-height: 30px;
+            padding: 10px;
+            margin-top: 0px;
+            margin-left: 0px;
+            float: left;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+
+</head>
+<body style="background-color: royalblue;max-width:61%;max-height:100%">
+    <input type="hidden" id="tCSID" value="@data[0].Carousel_ID" />
+    <input type="hidden" id="tCEID" value="" />
+    <div class="block1">
+        <div style="float: left;line-height:50px;">空儲格</div>
+        <div class="top" style="background-color:white">&emsp;&emsp;</div>
+
+        <div style="float: left;line-height:50px;">有帳有料</div>
+        <div class="top" style="background-color:rgb(51, 255, 0)">&emsp;&emsp;</div>
+
+        <div style="float: left;line-height:50px;">儲格Locked</div>
+        <div class="top" style="background-color:red">&emsp;&emsp;</div>
+
+
+        <div style="float: left;line-height:50px;">無帳有料</div>
+        <div class="top" style="background-color:yellow">&emsp;&emsp;</div>
+
+        <div style="float: left;line-height:50px;">NG有料</div>
+        <div class="top" style="background-color:purple">&emsp;&emsp;</div>
+
+        <div style="float: left;line-height:50px;">等待有料</div>
+        <div class="top" style="background-color:gray">&emsp;&emsp;</div>
+    </div>
+    <div class="block2">
+        @if (data.Count != 0)
+        {
+            @for (int i = 0; i < data.Count; i++)
+            {
+                <div class="border">
+                    <div class="num"><input type="hidden" name="CELL_ID" value="@data[i].Cell_ID" />@data[i].Cell_Show_ID</div>
+                    @if (data[i].BOX_ID.Trim() != "")
+                    {
+                        <input type="button" class="button"  value="@data[i].BOX_ID" onclick="check(@i)" />
+                    }
+                    else
+                    {
+                        <input type="button" class="button"  value="@dash" onclick="check(@i)" />
+                    }
+                </div>
+            }
+        }
+
+    </div>
+
+</body>
+</html>

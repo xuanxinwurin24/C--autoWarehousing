@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CIM.BC.View.ucStore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:bcView="clr-namespace:CIM.BC.View"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        mc:Ignorable="d"
+        Height="Auto" Width="620" FontSize ="20">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Grid Margin="0,0,0,10" HorizontalAlignment="Center">
+            <Grid.Resources>
+                <Style x:Key ="ClickStyle" TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Style.Triggers>
+                        <Trigger Property="Tag" Value="1">
+                            <Setter Property = "Background" Value="#FF0BF70B"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnManual" Content="手動(子儲)" Grid.Column="0" Click="btnManual_Click" Style="{StaticResource ClickStyle}" IsEnabled="{Binding bStoreAutoBtn}"/>
+            <Button x:Name="btnAuto" Content="自動(跨儲)" Grid.Column="2" Click="btnAuto_Click" Style="{StaticResource ClickStyle}" IsEnabled="{Binding bStoreManualBtn}"/>
+        </Grid>
+        <Grid Margin="5,0,5,0">
+            <bcView:uStoreManual x:Name="ucManual" Visibility="Visible"/>
+            <bcView:uStoreAuto x:Name="ucAuto" Visibility="Collapsed"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

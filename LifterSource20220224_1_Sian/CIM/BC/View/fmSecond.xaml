@@ -1,0 +1,149 @@
+﻿<Window x:Class="CIM.BC.View.fmSecond"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:bcView="clr-namespace:CIM.BC.View"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.Lib.View"
+        xmlns:View ="clr-namespace:CIM.View"
+        mc:Ignorable="d"
+        Title="fmSecond" Closing="Window_Closing" FontFamily="Consolas" Height="743" Width="1390" FontSize ="20" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="LightGray">
+    <Canvas Width="1390" HorizontalAlignment="Left" Margin="0">
+        <Canvas Canvas.Left="0" Canvas.Top="0">
+            <Menu x:Name="MainMenu" VerticalAlignment="Top" Height="20" Width="1390" DockPanel.Dock="Top" Margin="0,0,0,0">
+                <MenuItem x:Name="mnSysPar" Header="System" Click="mnSysPar_Click" Height="20"/>
+                <MenuItem Header="Log" Click="mnLog_Click" Height="20"/>
+                <MenuItem x:Name="mnOffline" Header="Offline Setting" Click="mnOffline_Click" Height="20"/>
+            </Menu>
+        </Canvas>
+        <Canvas Canvas.Left="0" Canvas.Top="20" Width="1000">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="650">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="610">
+                    <GroupBox Margin="80,0,100,0" Height="Auto" BorderBrush="White" BorderThickness="1" >
+                        <Grid HorizontalAlignment="Center" Margin="0,0,0,0">
+                            <Grid.Resources>
+                                <Style x:Key ="ConnectStyle" TargetType="{x:Type Label}">
+                                    <Setter Property = "Background" Value="White"/>
+                                    <Setter Property = "Content" Value="NOT CONNECTED"/>
+                                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property = "Margin" Value="6,2,0,2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Tag" Value="1">
+                                            <Setter Property = "Background" Value="Green"/>
+                                            <Setter Property = "Content" Value="CONNECTED"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style x:Key ="OnlineStyle" TargetType="{x:Type Label}">
+                                    <Setter Property = "Background" Value="White"/>
+                                    <Setter Property = "Content" Value="OFF-LINE"/>
+                                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property = "Margin" Value="6,2,0,2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Tag" Value="1">
+                                            <Setter Property = "Background" Value="GreenYellow"/>
+                                            <Setter Property = "Content" Value="ONLINE"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style x:Key ="PLCStatusStyle" TargetType="{x:Type Label}">
+                                    <Setter Property = "Background" Value="White"/>
+                                    <Setter Property = "Content" Value="Manual"/>
+                                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property = "Margin" Value="6,2,0,2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Tag" Value="1">
+                                            <Setter Property = "Background" Value="GreenYellow"/>
+                                            <Setter Property = "Content" Value="Auto"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style x:Key ="PLCModeStyle" TargetType="{x:Type Label}">
+                                    <Setter Property = "Background" Value="White"/>
+                                    <Setter Property = "Content" Value="Local"/>
+                                    <Setter Property = "HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property = "VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property = "Margin" Value="6,2,0,2"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="Tag" Value="1">
+                                            <Setter Property = "Background" Value="GreenYellow"/>
+                                            <Setter Property = "Content" Value="Remote"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Resources>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="135.6"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Date Time" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,6,0.2,6"/>
+                            <TextBlock Text="PLC Connection" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,6,0.2,6"/>
+                            <TextBlock Text="PLC Status" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,6,0.2,6"/>
+                            <TextBlock Text="ASE Server" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,6,0.2,6"/>
+                            <TextBlock Text="PLC Mode" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,6,0.2,6"/>
+                            <Label x:Name ="lbDateTime" Grid.Column="2" Grid.Row="0" Content="{Binding DateTimeValue}" Style="{StaticResource OnlineStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="210" Height="36" Margin="6,2,0,2"/>
+                            <Label x:Name ="lbConnected" Grid.Column="2" Grid.Row="1" Style="{StaticResource ConnectStyle}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="210" Margin="6,2,0,2"/>
+                            <Label x:Name ="lbPLCStatus" Grid.Column="2" Grid.Row="2" Style="{StaticResource PLCStatusStyle}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="210" Margin="6,2,0,2"/>
+                            <Label x:Name ="lbASEConnected" Grid.Column="2" Grid.Row="4" Style="{StaticResource OnlineStyle}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="210" Margin="6,2,0,2"/>
+                            <Label x:Name="lbPLCMode" Grid.Column="2" Grid.Row="3" Style="{StaticResource PLCModeStyle}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="210" Margin="6,2,0,2"/>
+                            <TextBlock x:Name="lbScanTime"  Grid.Column="3" Grid.Row="3" Text="12" VerticalAlignment="Center" Margin="4.8,6,0.4,6" HorizontalAlignment="Right" FontSize="14"/>
+                        </Grid>
+                    </GroupBox>
+                    <Grid Margin="-20,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <RadioButton x:Name="rbtnStore" Content="入庫" Grid.Column="0" FontSize="26" Click="rbtnStore_Click" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="3" IsChecked="True" IsEnabled="{Binding bCanStore}"/>
+                        <RadioButton x:Name="rbtnDelivery" Content="出庫" Grid.Column="2" FontSize="26" Click="rbtnDelivery_Click" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="3" IsEnabled="{Binding bCanDeli}"/>
+                        <RadioButton x:Name="rbtnSimu" Content="測試" Grid.Column="5" FontSize="26" Click="rbtnSimu_Click" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="3" Visibility="Hidden"/>
+                    </Grid>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Grid Margin="-20,0,0,-30">
+                            <bcView:ucStore x:Name="uStore" Visibility="Visible"/>
+                            <bcView:ucDelivery x:Name="uDelivery" Visibility="Collapsed"/>
+                            <bcView:ucSimu x:Name="uSimu" Visibility="Collapsed"/>
+                        </Grid>
+                        <Grid>
+                            <bcView:uStoreManual x:Name="ucManual" Visibility="Collapsed"/>
+                            <bcView:uStoreAuto x:Name="ucAuto" Visibility="Collapsed"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <Border Margin="-10,0,0,0" Width="760">
+                    <View:ucTask x:Name="uTask" Visibility="Visible"/>
+                </Border>
+            </StackPanel>
+        </Canvas>
+        <Canvas Canvas.Left="0" Canvas.Bottom="40" Width="1390">
+            <Border BorderBrush="Gray" Background="LightGray" BorderThickness="2" Height="40" Width="1386" HorizontalAlignment="Center" Canvas.Left="-2">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,6,39,6" Width="495">
+                    <TextBlock Text="User Name: " Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="lbUserName" Text="{Binding UserName}" Width="130" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="User ID: " Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="lbLevel" Margin="0,0,10,0" Text="{Binding UserID}" Width="124" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Canvas>
+    </Canvas>
+</Window>

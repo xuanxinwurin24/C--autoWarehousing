@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E410591-9658-4AC9-95C8-264E0E77243A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CIM</RootNamespace>
+    <AssemblyName>CIM</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Strong.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonDriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\CommonDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ActUtlTypeLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>DLL\Interop.ActUtlTypeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MxCompDriver">
+      <HintPath>DLL\MxCompDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="SecsDriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\SecsDriver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="StrongBase">
+      <HintPath>DLL\StrongBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="StrongDriver">
+      <HintPath>DLL\StrongDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BC\EQ.cs" />
+    <Compile Include="BC\DeliStore.cs" />
+    <Compile Include="BC\RFIDReader.cs" />
+    <Compile Include="BC\View\fmBoxOutCompareNG.xaml.cs">
+      <DependentUpon>fmBoxOutCompareNG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmBoxOutNG.xaml.cs">
+      <DependentUpon>fmBoxOutNG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmBoxInNG.xaml.cs">
+      <DependentUpon>fmBoxInNG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmCimMessageBox.xaml.cs">
+      <DependentUpon>fmCimMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmPlcStore.xaml.cs">
+      <DependentUpon>fmPlcStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\ucSimu.xaml.cs">
+      <DependentUpon>ucSimu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmSecond.xaml.cs">
+      <DependentUpon>fmSecond.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\ucStore.xaml.cs">
+      <DependentUpon>ucStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uDeliConfidence.xaml.cs">
+      <DependentUpon>uDeliConfidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uDeliIssue.xaml.cs">
+      <DependentUpon>uDeliIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uDeliNormal.xaml.cs">
+      <DependentUpon>uDeliNormal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uStoreAuto.xaml.cs">
+      <DependentUpon>uStoreAuto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uStoreManual.xaml.cs">
+      <DependentUpon>uStoreManual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\uDeliProb.xaml.cs">
+      <DependentUpon>uDeliProb.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\ucDelivery.xaml.cs">
+      <DependentUpon>ucDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonMethods.cs" />
+    <Compile Include="Lib\View\fmCimMessage.xaml.cs">
+      <DependentUpon>fmCimMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmSysPar.xaml.cs">
+      <DependentUpon>fmSysPar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BC\View\fmOfflineSeting.xaml.cs">
+      <DependentUpon>fmOfflineSeting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SQL_DB.cs" />
+    <Compile Include="UILog\fmUILog.xaml.cs" />
+    <Compile Include="UILog\frmAlarmHistoryLog.xaml.cs" />
+    <Compile Include="UILog\frmAlarmLog.xaml.cs" />
+    <Compile Include="UILog\frmEqLog.xaml.cs" />
+    <Compile Include="UILog\frmTaskLog.xaml.cs">
+      <DependentUpon>frmTaskLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TaskViewItem.cs" />
+    <Compile Include="View\ucTask.xaml.cs" />
+    <Page Include="BC\View\fmBoxOutCompareNG.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmBoxOutNG.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmBoxInNG.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmCimMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmPlcStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BC\View\ucSimu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmSecond.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\ucStore.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uDeliConfidence.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uDeliIssue.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uDeliNormal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uStoreAuto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uStoreManual.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\uDeliProb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\ucDelivery.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\Led.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\DeviceMemoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\fmCimMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lib\View\fmHsmsPar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\fmPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\fmSysPar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BC\View\fmOfflineSeting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\MemGroupUserCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BC\BC.cs" />
+    <Compile Include="Lib\Led.xaml.cs">
+      <DependentUpon>Led.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\Model\Alarm.cs" />
+    <Compile Include="Lib\Model\HSMSpar.cs" />
+    <Compile Include="Lib\Model\MemGroupModel.cs" />
+    <Compile Include="Lib\Model\Password.cs" />
+    <Compile Include="Lib\Model\SysPara.cs" />
+    <Compile Include="Lib\View\DeviceMemoryView.xaml.cs">
+      <DependentUpon>DeviceMemoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmHsmsPar.xaml.cs">
+      <DependentUpon>fmHsmsPar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmPassword.xaml.cs">
+      <DependentUpon>fmPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\MemGroupUserCtrl.xaml.cs">
+      <DependentUpon>MemGroupUserCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UILog\fmUILog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UILog\frmAlarmHistoryLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UILog\frmAlarmLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UILog\frmEqLog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UILog\frmTaskLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="DLL\StrongBase.lib" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DLL\SecsDriver.lib" />
+    <EmbeddedResource Include="BC\Memory\EB01.csv" />
+    <EmbeddedResource Include="BC\Memory\EW01.csv" />
+    <EmbeddedResource Include="BC\Memory\EW02.csv" />
+    <EmbeddedResource Include="BC\Memory\EW03.csv" />
+    <EmbeddedResource Include="BC\Memory\EW04.csv" />
+    <EmbeddedResource Include="BC\Memory\EW05.csv" />
+    <EmbeddedResource Include="BC\Memory\EW10.csv" />
+    <EmbeddedResource Include="BC\Memory\HB01.csv" />
+    <EmbeddedResource Include="BC\Memory\HW01.csv" />
+    <EmbeddedResource Include="BC\Memory\HW02.csv" />
+    <EmbeddedResource Include="BC\Memory\HW03.csv" />
+    <EmbeddedResource Include="BC\Memory\HW04.csv" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Strong.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

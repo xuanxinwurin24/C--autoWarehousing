@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewData["Title"] = "Download_Log";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Upload Account</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-3.6.0.js"></script>
+
+    <script>
+        function Search_Check_DIV_Open() {
+            var div1 = document.getElementById("Check_Select");
+            div1.style = "visibility:visible";
+            var myform = document.getElementById("Search_Check_DIV");
+            myform.submit();
+        }
+        function Search_Check_DIV_Close() {
+            var div1 = document.getElementById("Check_Select");
+            div1.style = "visibility:hidden";
+        }
+    </script>
+    <style>
+        #Download_Batch_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50px;
+            left: 5%;
+            position: absolute;
+        }
+        #Download_Carousel_Utility_Modify_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 150px;
+            left: 5%;
+            position: absolute;
+        }
+        #Download_Alarm_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 250px;
+            left: 5%;
+            position: absolute;
+        }
+        #Download_TaskHistory_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 350px;
+            left: 5%;
+            position: absolute;
+        }
+        #Download_STK_Carousel_Daily_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 450px;
+            left: 5%;
+            position: absolute;
+        }
+        #Download_STK_Door_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 50px;
+            left: 40%;
+            position: absolute;
+        }
+        #Search_Check_DIV {
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 150px;
+            left: 40%;
+            position: absolute;
+        }
+        #Check_Select {
+            width: 400px;
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 150px;
+            left: 40%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+    <div id="Download_Batch_DIV">
+        <form method="post" action="/Frame/Download_BatchList">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>產品編號查詢</h3></td>
+
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        輸入時間
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="Batch_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="Batch_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="Download_Carousel_Utility_Modify_DIV">
+        <form method="post" action="/Frame/Download_CarouselUtility_UserHistory">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>Carousel Utility修改記錄查詢</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="Modify_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="Modify_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="Download_Alarm_DIV">
+        <form method="post" action="/Frame/Download_Alarm_History">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>警報記錄查詢</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="Alarm_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="Alarm_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="Download_TaskHistory_DIV">
+        <form method="post" action="/Frame/Download_Task_History">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>任務記錄查詢</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="Task_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="Task_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    @*<div id="Download_STK_Carousel_Daily_DIV">
+        <form method="post" action="/Frame/Download_STK_Carousel_Daily_History">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>Carousel每日報表</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="STK_Carousel_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="STK_Carousel_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="Download_STK_Door_DIV">
+        <form method="post" action="/Frame/Download_STK_Door_History">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>Carousel開關門報表</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="STK_Door_OP_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="STK_Door_OP_Time2" /></td>
+                    <td><input type="submit" value="確認" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>*@
+    <div id="Search_Check_DIV">
+        <form id="Search_Check_Form" method="post" action="/Frame/Download_Check_History_Detail">
+            <table>
+                <tr>
+                    <td colspan="4"><h3>盤點任務報表</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="4">輸入時間</td>
+                </tr>
+                <tr>
+                    <td><input type="date" name="Check_End_Time1" /></td>
+                    <td align="center">~</td>
+                    <td><input type="date" name="Check_End_Time2" /></td>
+                    <td><input type="submit" value="確認" @*onclick="Search_Check_DIV_Open()"*@ /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="Check_Select" style="visibility:hidden">
+        <iframe scrolling="no" src="/Frame/Serach_Check_History" style="height:100%;width:100%"></iframe>
+    </div>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+
+
+    <script src="" async defer></script>
+</body>
+</html>

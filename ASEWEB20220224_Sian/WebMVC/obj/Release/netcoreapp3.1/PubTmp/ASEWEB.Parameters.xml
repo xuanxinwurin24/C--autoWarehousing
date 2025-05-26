@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="K24_WaferBank" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\STRONG\\Src\\MoveIn_20220221\\MoveIn_20220221\\STRONG\\ASEWEB20220224_Sian\\WebMVC\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

@@ -1,0 +1,12 @@
+Tag Name,AddrOffset,B/W,Length,StartBit,ValString,EventLog,OnTime,TrigerEdge,IstByPass,Hint,Description
+CPCDateTimeAck,200,B,1,0,BIN,F,0,ONOFF,F,,
+ManualStockInStartAck,201,B,1,0,BIN,F,0,ONOFF,F,,ManualStockInStartReport
+AlarmWarningRpt,202,B,1,0,BIN,F,0,ONOFF,F,,SentAlarm
+StockInRpt,204,B,1,0,BIN,F,0,ONOFF,F,,SentStockIn
+StockOutRpt,206,B,1,0,BIN,F,0,ONOFF,F,,SentStockOut
+LiftCompleteRpt,208,B,1,0,BIN,F,0,ONOFF,F,,
+CrownLifterAck,20A,B,1,0,BIN,F,0,ONOFF,F,,
+StockInReadDataNGRpt,20C,B,1,0,BIN,F,0,ONOFF,F,,
+StockInReadDataNGScreen,20E,B,1,0,BIN,F,0,ONOFF,F,,
+StockOutReadDataNGScreen,20F,B,1,0,BIN,F,0,ONOFF,F,,
+StockOutCompareDataNGScreen,210,B,1,0,BIN,F,0,ONOFF,F,,
