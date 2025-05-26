@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=mscorlib"
+					xmlns:local="clr-namespace:CIM.Language">
+	<!--User-->
+	<sys:String x:Key="lang_lb_SwitchLanguage">Language</sys:String>
+	<sys:String x:Key="lang_LoginTitle">User Login</sys:String>
+	<sys:String x:Key="lang_btn_Login">Login</sys:String>
+	<sys:String x:Key="lang_btn_Logout">Logout</sys:String>
+	<sys:String x:Key="lang_lb_UserName">User Name :</sys:String>
+	<sys:String x:Key="lang_tb_Password">Password :</sys:String>
+    <sys:String x:Key="lang_lb_UserLevel">User Level :</sys:String>
+    <sys:String x:Key="lang_lb_WebServiceMode">Web Service Mode :</sys:String>
+
+    <sys:String x:Key="lang_Warning">Warning</sys:String>
+	<sys:String x:Key="lang_Yes">Yes</sys:String>
+	<sys:String x:Key="lang_No">No</sys:String>
+	<sys:String x:Key="lang_Close">Close</sys:String>
+	<sys:String x:Key="lang_Exit">Exit</sys:String>
+	<!--User-->
+	<!--Main-->
+    <sys:String x:Key="lang_Main">Main</sys:String>
+    <sys:String x:Key="lang_Task">Task</sys:String>
+    <sys:String x:Key="lang_System">System</sys:String>
+    <sys:String x:Key="lang_Task">Task List</sys:String>
+    <sys:String x:Key="lang_UserManagemant">User Managemant</sys:String>
+    <sys:String x:Key="lang_Recover">Recover</sys:String>
+	<sys:String x:Key="lang_PLCIO">PLC I/O</sys:String>
+	<sys:String x:Key="lang_History">History</sys:String>
+	<sys:String x:Key="lang_Log">Log</sys:String>
+	<sys:String x:Key="lang_SearchCheck">Search/Check</sys:String>
+	<sys:String x:Key="lang_SpecialFunction">Special Function</sys:String>
+	<sys:String x:Key="lang_Test">Test</sys:String>
+	<!--Main-->
+	<!--ucStocker-->
+	<sys:String x:Key="lang_LoadPort">Load Port</sys:String>
+	<sys:String x:Key="lang_UpStageCV">Up Stage</sys:String>
+	<sys:String x:Key="lang_DownStageCV">Down Stage</sys:String>
+	<sys:String x:Key="lang_UnladPort1">Unlad Port 1</sys:String>
+	<sys:String x:Key="lang_UnladPort2">Unlad Port 2</sys:String>
+	<sys:String x:Key="lang_RobotMode">Mode</sys:String>
+	<sys:String x:Key="lang_RobotStatus">Status</sys:String>
+    <!--ucStocker-->
+    <!--#region TaskList-->
+    <sys:String x:Key="lang_SrcPos">Source</sys:String>
+    <sys:String x:Key="lang_SrcCell">Source Cell</sys:String>
+    <sys:String x:Key="lang_TarPos">Target</sys:String>
+    <sys:String x:Key="lang_TarCell">Target Cell</sys:String>
+    <sys:String x:Key="lang_Priority">Priority</sys:String>
+    <sys:String x:Key="lang_CommandID">Command ID</sys:String>
+    <sys:String x:Key="lang_Direction">Task Type</sys:String>
+    <sys:String x:Key="lang_EditTaskPriority">Edit Priority</sys:String>
+    <!--#Endregion TaskList-->
+    <!--fmShedInfo-->
+	<sys:String x:Key="lang_oData_oSensor">Normal Data</sys:String>
+	<sys:String x:Key="lang_xData_oSensor">Lose Data</sys:String>
+	<sys:String x:Key="lang_CellLock">Lcoked Cell</sys:String>
+	<sys:String x:Key="lang_WaitStockIn">Wait Stock-In</sys:String>
+	<sys:String x:Key="lang_CellNG">NG Cell</sys:String>
+	<sys:String x:Key="lang_CellDisable">Disabled Cell</sys:String>
+	<!--fmShedInfo-->
+
+
+	<sys:String x:Key="lang_UserCheck">User Check</sys:String>
+	<sys:String x:Key="lang_Confirm">Confirm</sys:String>
+	<sys:String x:Key="lang_Cancel">Cancel</sys:String>
+	<sys:String x:Key="lang_Operation">Operation</sys:String>
+	<sys:String x:Key="lang_Delete">Delete</sys:String>
+
+</ResourceDictionary>

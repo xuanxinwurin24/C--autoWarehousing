@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HSMSpar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HT3>60</HT3>
+  <HT5>10</HT5>
+  <HT6>10</HT6>
+  <HT7>10</HT7>
+  <HT8>10</HT8>
+  <HT9>10</HT9>
+  <LinkTime>60</LinkTime>
+  <LocalPort>6040</LocalPort>
+  <RemotePort>6040</RemotePort>
+  <LocalIP>192.168.0.20</LocalIP>
+  <RemoteIP>10.20.11.6</RemoteIP>
+  <Active>true</Active>
+  <DeviceID>0</DeviceID>
+</HSMSpar>

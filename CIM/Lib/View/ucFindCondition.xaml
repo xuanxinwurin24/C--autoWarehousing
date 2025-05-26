@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="CIM.Lib.View.ucFindCondition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CIM.Lib.View"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             mc:Ignorable="d"
+             VerticalAlignment="Top" FontSize="16"
+             d:DesignWidth="1280" d:DesignHeight="180" 
+             Background="White">
+    <Grid ShowGridLines="False">
+        <Grid.Resources>
+            <Style TargetType="ColumnDefinition">
+                <Setter Property="Width" Value="120"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="0,0,5,0"/>
+                <!--<Setter Property="Width" Value="80"/>-->
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <!--<Setter Property="Margin" Value="0,0,0,0"/>-->
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="BorderBrush" Value="SkyBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <!--<Setter Property="Margin" Value="5,10,5,0"/>-->
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="BorderBrush" Value="SkyBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="tbk1" Grid.Column="0" Grid.Row="0"/>
+        <ComboBox x:Name="cb1" Grid.Column="1" Grid.Row="0"/>
+        <TextBlock x:Name="tbk2" Grid.Column="2" Grid.Row="0"/>
+        <ComboBox x:Name="cb2" Grid.Column="3" Grid.Row="0"/>
+        <TextBlock x:Name="tbk3" Grid.Column="4" Grid.Row="0"/>
+        <ComboBox x:Name="cb3" Grid.Column="5" Grid.Row="0"/>
+        <TextBlock x:Name="tbk4" Grid.Column="0" Grid.Row="1"/>
+        <TextBox x:Name="tx4" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="tbk5" Grid.Column="2" Grid.Row="1"/>
+        <TextBox x:Name="tx5" Grid.Column="3" Grid.Row="1"/>
+        <TextBlock x:Name="tbk6" Grid.Column="4" Grid.Row="1"/>
+        <TextBox x:Name="tx6" Grid.Column="5" Grid.Row="1"/>
+        <TextBlock x:Name="tbk7" Text="From"  Grid.Column="6" Grid.Row="1"/>
+        <DatePicker x:Name="dtFrom" SelectedDateFormat="Short" Grid.Column="7" Grid.Row="1"/>
+        <!--<WindowsFormsHost Name="WH1" Width="110" Grid.Column="7" Grid.Row="1">
+            <wf:DateTimePicker Name="dtFrom" Format="Short"/>
+        </WindowsFormsHost>-->
+        <TextBlock x:Name="tbk8" Text="To"  Grid.Column="8" Grid.Row="1"/>
+        <DatePicker x:Name="dtTo" SelectedDateFormat="Short" Grid.Column="9" Grid.Row="1"/>
+        <!--<WindowsFormsHost Width="110" Grid.Column="9" Grid.Row="1">
+            <wf:DateTimePicker Name="dtTo" Format="Short"/>
+        </WindowsFormsHost>-->
+        <Button x:Name="btnQury" Content="Query" Grid.Column="10" Grid.Row="1" Margin="10,0,0,0"/>
+    </Grid>
+
+    <!--<StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5,10,5,0"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="5,10,5,0"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="BorderBrush" Value="SkyBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="5,10,5,0"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="BorderBrush" Value="SkyBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </StackPanel.Resources>
+
+        
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="EQP_ID"/>
+            <ComboBox x:Name="cbEQID" />
+            <TextBlock Text="Invoice"/>
+            <TextBox x:Name="txInvoice"/>
+            <TextBlock Text="Handle Unit"/>
+            <TextBox x:Name="txhdNo"/>
+            <TextBlock Text="Lot_ID"/>
+            <TextBox x:Name="txLotID"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="UNIT_ID"/>
+            <ComboBox x:Name="cbUNITID"/>
+            <TextBlock Text="Catg_CD"/>
+            <ComboBox x:Name="cbCatgCD"/>
+            <TextBlock Text="Period"/>
+            <WindowsFormsHost Width="100" Margin="5,10,5,0">
+                <wf:DateTimePicker Format="Short"/>
+            </WindowsFormsHost>
+            <WindowsFormsHost Width="100" Margin="5,10,5,0">
+                <wf:DateTimePicker Format="Short"/>
+            </WindowsFormsHost>
+            <Button x:Name="btnQury" Content="Query" Width="80" Margin="5,10,5,0"/>
+        </StackPanel>
+    </StackPanel>-->
+</UserControl>

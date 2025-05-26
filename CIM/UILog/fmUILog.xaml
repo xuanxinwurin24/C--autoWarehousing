@@ -1,0 +1,24 @@
+﻿<Window x:Class="CIM.UILog.fmUILog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CIM.UILog"
+        mc:Ignorable="d"
+        Title=" Log " FontSize="14" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Width="1200" Height="550" Topmost="True">
+
+    <Grid>
+        <TabControl x:Name="TabCtrl" Background="{x:Null}">
+            <!--<TabItem Header="Secs">
+                <local:frmEqLog x:Name="frmSecsLog"/>
+            </TabItem>-->
+            <TabItem x:Name="tbAlarm"  Header="Alarm">
+                <local:frmAlarmLog x:Name="frmAlarmLog"/>
+            </TabItem>
+            <TabItem Header="Alarm History">
+                <local:frmAlarmHistoryLog x:Name="frmAlarmHistoryLog"/>
+            </TabItem>
+          
+        </TabControl>
+    </Grid>
+</Window>

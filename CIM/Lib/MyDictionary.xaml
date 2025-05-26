@@ -1,0 +1,261 @@
+﻿<ResourceDictionary 
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:lib="clr-namespace:CIM.Lib"
+	xmlns:local="clr-namespace:CIM.Lib.View">
+
+	<!--#region SoildColor-->	
+	<SolidColorBrush x:Key="CheckedOrangeBorder" Color="#FF8E4A1B" />
+	<SolidColorBrush x:Key="CheckedBlueBorder" Color="#FF143874" />
+	<SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#349fda"/>
+	<SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FF333333"/>
+	<SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#0288d1"/>
+	<SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFDDDDDD"/>
+	<SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#015f92"/>
+	<SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFFFF"/>
+	<SolidColorBrush x:Key="SecondaryAccentBrush" Color="#FF50F350"/>
+	<SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>
+
+	<Color x:Key="ValidationErrorColor">
+		#f44336</Color>
+	<SolidColorBrush x:Key="ValidationErrorBrush" Color="{StaticResource ValidationErrorColor}"/>
+	<SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF"/>
+	<SolidColorBrush x:Key="MaterialDesignPaper" Color="#FFfafafa"/>
+	<SolidColorBrush x:Key="MaterialDesignCardBackground" Color="#FFFFFFFF"/>
+	<SolidColorBrush x:Key="MaterialDesignToolBarBackground" Color="#FFF5F5F5"/>
+	<SolidColorBrush x:Key="MaterialDesignBody" Color="#DD000000"/>
+	<SolidColorBrush x:Key="MaterialDesignBodyLight" Color="#89000000"/>
+	<SolidColorBrush x:Key="MaterialDesignColumnHeader" Color="#BC000000"/>
+	<SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#89000000"/>
+	<SolidColorBrush x:Key="MaterialDesignCheckBoxDisabled" Color="#FFBDBDBD"/>
+	<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="#89000000"/>
+	<SolidColorBrush x:Key="MaterialDesignDivider" Color="#1F000000"/>
+	<SolidColorBrush x:Key="MaterialDesignSelection" Color="#FFDeDeDe"/>
+	<SolidColorBrush x:Key="MaterialDesignToolForeground" Color="#616161"/>
+	<SolidColorBrush x:Key="MaterialDesignToolBackground" Color="#e0e0e0"/>
+	<SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#FFDeDeDe"/>
+	<SolidColorBrush x:Key="MaterialDesignFlatButtonRipple" Color="#FFB6B6B6"/>
+	<SolidColorBrush x:Key="MaterialDesignToolTipBackground" Color="#757575"/>
+	<SolidColorBrush x:Key="MaterialDesignChipBackground" Color="#12000000"/>
+	<SolidColorBrush x:Key="MaterialDesignSnackbarBackground" Color="#FF323232"/>
+	<SolidColorBrush x:Key="MaterialDesignSnackbarMouseOver" Color="#FF464642"/>
+	<SolidColorBrush x:Key="MaterialDesignSnackbarRipple" Color="#FFB6B6B6"/>
+	<SolidColorBrush x:Key="MaterialDesignTextFieldBoxBackground" Color="#0F000000"/>
+	<SolidColorBrush x:Key="MaterialDesignTextFieldBoxHoverBackground" Color="#14000000"/>
+	<SolidColorBrush x:Key="MaterialDesignTextFieldBoxDisabledBackground" Color="#08000000"/>
+	<SolidColorBrush x:Key="MaterialDesignTextAreaBorder" Color="#BC000000"/>
+	<SolidColorBrush x:Key="MaterialDesignTextAreaInactiveBorder" Color="#0F000000"/>
+	<!--#endregion SoildColor-->
+
+	<!--#region Brush-->
+	<LinearGradientBrush x:Key="CheckedBlue" StartPoint="0,0" EndPoint="0,1">
+		<GradientStop Color="#FF285AB3" Offset="0" />
+		<GradientStop Color="#FF4184EC" Offset="0.5" />
+		<GradientStop Color="#FF558BED" Offset="0.5" />
+		<GradientStop Color="#FF7DACF0" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="CheckedOrange" StartPoint="0,0" EndPoint="0,1">
+		<GradientStop Color="#FFCA6A13" Offset="0" />
+		<GradientStop Color="#FFF67D0C" Offset="0.2" />
+		<GradientStop Color="#FFFE7F0C" Offset="0.2" />
+		<GradientStop Color="#FFFA8E12" Offset="0.5" />
+		<GradientStop Color="#FFFF981D" Offset="0.5" />
+		<GradientStop Color="#FFFCBC5A" Offset="1" />
+	</LinearGradientBrush>
+	<!--#endregion Brush-->
+
+	<!--#region Converter-->
+	<BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+	<lib:BoolTo01Converter x:Key="BoolTo01" />
+	<!--#endregion Converter-->
+
+	<!--#region Style-->
+	<Style x:Key="GroupboxWithoutWhiteBorder" TargetType="{x:Type GroupBox}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Grid SnapsToDevicePixels="true">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="6" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="6" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="6" />
+						</Grid.RowDefinitions>
+						<Border CornerRadius="4" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="Transparent" Background="{TemplateBinding Background}" />
+						<Border Name="Header" Padding="3,1,3,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+							<ContentPresenter ContentSource="Header" RecognizesAccessKey="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						</Border>
+						<ContentPresenter Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						<Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4"  BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+							<Border.OpacityMask>
+								<MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+									<Binding ElementName="Header" Path="ActualWidth" />
+									<Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+									<Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
+								</MultiBinding>
+							</Border.OpacityMask>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="LedStyle" TargetType="lib:Led">
+		<Setter Property="Margin" Value="1,1,2,0" />
+		<Setter Property="Width" Value="auto" />
+		<Setter Property="Height" Value="25" />
+
+		<Setter Property="ColorNull" Value="Gray" />
+		<Setter Property="ColorNull" Value="#FF5D5959" />
+		<Setter Property="ColorOn" Value="#FF0BF70B" />
+		<Setter Property="ColorOff" Value="#FF5D5959" />
+
+		<Setter Property="Flashing" Value="False" />
+		<Setter Property="FlashingPeriod" Value="500" />
+		<Setter Property="ToolTip" Value="{Binding Hint, Mode=OneTime}" />
+		<Setter Property="IsActive" Value="{Binding BinValue, Mode=TwoWay, Converter={StaticResource ResourceKey=BoolTo01}}" />
+	</Style>
+	<Style x:Key="OrangeSwitchStyle" TargetType="{x:Type CheckBox}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type CheckBox}">
+					<ControlTemplate.Resources>
+						<Storyboard x:Key="OnChecking">
+							<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+								<SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="53" />
+							</DoubleAnimationUsingKeyFrames>
+						</Storyboard>
+						<Storyboard x:Key="OnUnchecking">
+							<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+								<SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+							</DoubleAnimationUsingKeyFrames>
+						</Storyboard>
+					</ControlTemplate.Resources>
+					<DockPanel x:Name="dockPanel">
+						<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center" Width="100"/>
+						<Grid>
+							<Border x:Name="BackgroundBorder" BorderBrush="#FF939393" BorderThickness="1" CornerRadius="3" Height="27" Width="94">
+								<Border.Background>
+									<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+										<GradientStop Color="#FFB5B5B5" Offset="0" />
+										<GradientStop Color="#FFDEDEDE" Offset="0.1" />
+										<GradientStop Color="#FFEEEEEE" Offset="0.5" />
+										<GradientStop Color="#FFFAFAFA" Offset="0.5" />
+										<GradientStop Color="#FFFEFEFE" Offset="1" />
+									</LinearGradientBrush>
+								</Border.Background>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
+									<Ellipse x:Name="Off" Width="14" Height="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<Line x:Name="On" X1="0" Y1="0" X2="0" Y2="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</Grid>
+							</Border>
+							<Border BorderBrush="#FF939393" HorizontalAlignment="Left" x:Name="slider" Width="41" Height="27" BorderThickness="1" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Margin="0">
+								<Border.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform ScaleX="1" ScaleY="1" />
+										<SkewTransform AngleX="0" AngleY="0" />
+										<RotateTransform Angle="0" />
+										<TranslateTransform X="0" Y="0" />
+									</TransformGroup>
+								</Border.RenderTransform>
+								<Border.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF0F0F0" Offset="0" />
+										<GradientStop Color="#FFCDCDCD" Offset="0.1" />
+										<GradientStop Color="#FFFBFBFB" Offset="1" />
+									</LinearGradientBrush>
+								</Border.Background>
+							</Border>
+						</Grid>
+					</DockPanel>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Trigger.ExitActions>
+								<BeginStoryboard Storyboard="{StaticResource OnUnchecking}" x:Name="OnUnchecking_BeginStoryboard" />
+							</Trigger.ExitActions>
+							<Trigger.EnterActions>
+								<BeginStoryboard Storyboard="{StaticResource OnChecking}" x:Name="OnChecking_BeginStoryboard" />
+							</Trigger.EnterActions>
+							<Setter TargetName="On" Property="Stroke" Value="White" />
+							<Setter TargetName="Off" Property="Stroke" Value="White" />
+							<!-- Change Orange or Blue color here -->
+							<Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource CheckedOrange}" />
+							<Setter TargetName="BackgroundBorder" Property="BorderBrush" Value="{StaticResource CheckedOrangeBorder}" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<!-- ToDo: Add Style for Isenabled == False -->
+							<Setter Property="Opacity" Value="0.4" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion Style-->
+
+	<!--#region ButtonStyle-->
+	<Style x:Key="FocusVisual">
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<SolidColorBrush x:Key="Button.MouseOver.Background" Color="#24646464"/>
+	<SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+	<SolidColorBrush x:Key="Button.Pressed.Background" Color="#33646464"/>
+	<SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+	<SolidColorBrush x:Key="Button.Disabled.Background" Color="#CCB9B9B9"/>
+	<SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+	<SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+	<Style x:Key="GrayScaleButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border Background="{TemplateBinding Background}" 
+										BorderBrush="Transparent" BorderThickness="0" SnapsToDevicePixels="true">
+						<Border x:Name="border" Background="{TemplateBinding Background}" 
+										BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+							<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+							<!--<Setter Property="BorderThickness" TargetName="border" Value="2"/>-->
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+							<!--<Setter Property="BorderThickness" TargetName="border" Value="2"/>-->
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--#endregion ButtonStyle-->
+</ResourceDictionary>

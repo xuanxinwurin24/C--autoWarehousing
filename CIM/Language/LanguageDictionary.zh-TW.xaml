@@ -1,0 +1,190 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=mscorlib"
+					xmlns:local="clr-namespace:CIM.Language">
+
+	<!--#region Normal-->
+	<sys:String x:Key="lang_UserCheck">使用者確認</sys:String>
+	<sys:String x:Key="lang_Confirm">確認</sys:String>
+	<sys:String x:Key="lang_Cancel">取消</sys:String>
+	<sys:String x:Key="lang_Operation">操作</sys:String>
+	<sys:String x:Key="lang_Delete">刪除</sys:String>
+
+	<sys:String x:Key="lang_CarouselID">Carousel ID</sys:String>
+	<sys:String x:Key="lang_BoxID">靜電箱ID</sys:String>
+	<sys:String x:Key="lang_CustomerID">客戶碼</sys:String>
+
+	<sys:String x:Key="lang_Monday">禮拜一</sys:String>
+	<sys:String x:Key="lang_Tuesday">禮拜二</sys:String>
+	<sys:String x:Key="lang_Wednesday">禮拜三</sys:String>
+	<sys:String x:Key="lang_Thursday">禮拜四</sys:String>
+	<sys:String x:Key="lang_Friday">禮拜五</sys:String>
+	<sys:String x:Key="lang_Saturday">禮拜六</sys:String>
+	<sys:String x:Key="lang_Sunday">禮拜日</sys:String>
+	<!--#endregion Normal-->
+	
+	<!--#region User-->
+	<sys:String x:Key="lang_lb_SwitchLanguage">語言</sys:String>
+	<sys:String x:Key="lang_LoginforOperation">請登入帳號操作</sys:String>
+	<sys:String x:Key="lang_LoginTitle">使用者登入</sys:String>
+	<sys:String x:Key="lang_btn_Login">登入</sys:String>
+	<sys:String x:Key="lang_btn_Logout">登出</sys:String>
+	<sys:String x:Key="lang_btn_ChangePWD">變更密碼</sys:String>
+	<sys:String x:Key="lang_lb_UserName">使用者名稱 :</sys:String>
+	<sys:String x:Key="lang_tb_Password">密碼:</sys:String>
+    <sys:String x:Key="lang_lb_UserLevel">用戶組 :</sys:String>
+    <sys:String x:Key="lang_lb_WebServiceMode">連線作業模式 :</sys:String>
+
+    <sys:String x:Key="lang_UserName">使用者名稱</sys:String>
+	<sys:String x:Key="lang_Password">密碼</sys:String>
+	<sys:String x:Key="lang_UserLevel">用戶組</sys:String>
+	<sys:String x:Key="lang_ApplySetting">套用</sys:String>
+	<sys:String x:Key="lang_NewUser">新增使用者</sys:String>
+
+	<sys:String x:Key="lang_OldPassword">舊密碼</sys:String>
+	<sys:String x:Key="lang_NewPasswod">新密碼</sys:String>
+	<sys:String x:Key="lang_DoubleCheckNewPassword">再次輸入新密碼</sys:String>
+
+	<sys:String x:Key="lang_Warning">警告</sys:String>
+	<sys:String x:Key="lang_Yes">是</sys:String>
+	<sys:String x:Key="lang_No">否</sys:String>
+	<sys:String x:Key="lang_Close">關閉</sys:String>
+	<sys:String x:Key="lang_Exit">離開</sys:String>
+	<sys:String x:Key="lang_ChangePWD">變更</sys:String>
+	<!--#endregion User-->
+	<!--#region Main-->
+    <sys:String x:Key="lang_Main">主畫面</sys:String>
+    <sys:String x:Key="lang_Task">任務列表</sys:String>
+    <sys:String x:Key="lang_System">系統設定</sys:String>
+	<sys:String x:Key="lang_UserManagemant">使用者管理</sys:String>
+    <sys:String x:Key="lang_Recover">復歸</sys:String>
+	<sys:String x:Key="lang_Alarm">警報</sys:String>
+	<sys:String x:Key="lang_Log">Log紀錄</sys:String>
+	<sys:String x:Key="lang_SearchCheck">盤點</sys:String>
+	<sys:String x:Key="lang_ManualMove">調儲</sys:String>
+	<sys:String x:Key="lang_Test">測試</sys:String>
+	
+	<sys:String x:Key="lang_LotList">批號清單</sys:String>
+	<sys:String x:Key="lang_PLCIO">PLC I/O</sys:String>
+	<sys:String x:Key="lang_History">歷史紀錄</sys:String>
+	<sys:String x:Key="lang_SpecialFunction">特殊功能</sys:String>
+	<sys:String x:Key="lang_StockInList">入料清單</sys:String>
+	<sys:String x:Key="lang_StockOOutList">出料清單</sys:String>
+	<!--#endregion Main-->
+	<!--#region ucStocker-->
+	<sys:String x:Key="lang_LoadPort">入料口</sys:String>
+	<sys:String x:Key="lang_UnladPort">出料口</sys:String>
+    <!--#endregion ucStocker-->
+    <!--#region TaskList-->
+    <sys:String x:Key="lang_SrcPos">來源</sys:String>
+    <sys:String x:Key="lang_SrcCell">來源儲格</sys:String>
+    <sys:String x:Key="lang_TarPos">目的地</sys:String>
+    <sys:String x:Key="lang_TarCell">目的地儲格</sys:String>
+    <sys:String x:Key="lang_Priority">優先權</sys:String>
+    <sys:String x:Key="lang_CommandID">任務代碼</sys:String>
+    <sys:String x:Key="lang_Direction">任務類型</sys:String>
+    <sys:String x:Key="lang_EditTaskPriority">調整優先權</sys:String>
+    <!--#Endregion TaskList-->
+    <!--#region fmCarousel-->
+	<sys:String x:Key="lang_CellStatus_Empty">空儲格</sys:String>
+	<sys:String x:Key="lang_CellStatus_Existed">有帳有料</sys:String>
+	<sys:String x:Key="lang_CellStatus_Locked">儲格Locked</sys:String>
+	<sys:String x:Key="lang_CellStatus_DataLost">無帳有料</sys:String>
+	<sys:String x:Key="lang_CellStatus_DataNG">NG帳料</sys:String>
+	<sys:String x:Key="lang_CellStatus_WaitIn">等待入料</sys:String>
+	<sys:String x:Key="lang_CellStatus_None">禁用儲格</sys:String>
+	<!--#endregion fmCarousel-->
+
+	<!--#region fmCellInfo-->
+	<sys:String x:Key="lang_CellInfo_CellID">儲格ID</sys:String>
+	<!--#endregion fmCellInfo-->
+
+	<!--#region ucSystemSetting-->
+	<sys:String x:Key="lang_Temp_UpLimit">監控溫度上限值</sys:String>
+	<sys:String x:Key="lang_Temp_LowLimit">監控溫度下限值</sys:String>
+	<sys:String x:Key="lang_Humi_UpLimit">監控濕度上限值</sys:String>
+	<sys:String x:Key="lang_Humi_LowLimit">監控濕度下限值</sys:String>
+	<sys:String x:Key="lang_TurnOnN2Humi">N2充填開始濕度值</sys:String>
+	<sys:String x:Key="lang_TurnOffN2Humi">充填開始濕度值</sys:String>
+	<!--#endregion ucSystemSetting-->
+
+
+	<!--#region ucUserGroup-->
+	<sys:String x:Key="AuthorityManagement_Main">Main 權限管理</sys:String>
+	<sys:String x:Key="AuthorityManagement_OHB">OHB 權限管理</sys:String>
+	<sys:String x:Key="AuthorityManagement_Query">查詢紀錄權限管理</sys:String>
+	<sys:String x:Key="AuthorityManagement_Setting">Setting 權限管理</sys:String>
+	<sys:String x:Key="TaskAbort">任務 Abort</sys:String>
+	<sys:String x:Key="TaskDelete">任務 Delete</sys:String>
+	<sys:String x:Key="OHB_Enable">啟用/停用</sys:String>
+	<sys:String x:Key="SECS_Query">SECS 查詢</sys:String>
+	<sys:String x:Key="SECS_Download">SECS 匯出</sys:String>
+	<sys:String x:Key="TaskHistory_Query">任務歷史查詢</sys:String>
+	<sys:String x:Key="TaskHistory_Download">任務歷史匯出</sys:String>
+	<sys:String x:Key="SystemParameter">系統參數</sys:String>
+	<sys:String x:Key="AGVS_HSMS_Parameter">AGVS HSMS 參數</sys:String>
+	<sys:String x:Key="MES_HSMS_Parameter">MES HSMS 參數</sys:String>
+	<sys:String x:Key="UserGroup">使用者群組</sys:String>
+	<sys:String x:Key="CreateUser">新增使用者</sys:String>
+	<sys:String x:Key="DeleteUser">刪除使用者</sys:String>
+	<sys:String x:Key="RFID_RetryTimes">RFID 重新讀取次數上限</sys:String>
+	<sys:String x:Key="OHB_WaterLevel">OHB 水位</sys:String>
+	<sys:String x:Key="StartDate">開始日期</sys:String>
+	<sys:String x:Key="EndDate">結束日期</sys:String>
+	<sys:String x:Key="Warning">警告</sys:String>
+
+	<sys:String x:Key="btnDispatchTask">派工</sys:String>
+	<sys:String x:Key="btnTakeOut">取貨</sys:String>
+	<sys:String x:Key="btnCreateData">建帳</sys:String>
+	<sys:String x:Key="btnDeleteData">刪帳</sys:String>
+	<!--#endregion ucUserGroup-->
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--StockInMain-->
+	<sys:String x:Key="lang_StockInLot">上架中批號</sys:String>
+	<sys:String x:Key="lang_TargetCount">預計把數</sys:String>
+	<sys:String x:Key="lang_CountOnShed">已上架把數</sys:String>
+	<sys:String x:Key="lang_WaitingTime">等待時間(分)</sys:String>
+	<sys:String x:Key="lang_Pause">暫停入料</sys:String>
+	<sys:String x:Key="lang_Resume">解除暫停</sys:String>
+	<sys:String x:Key="lang_CleanOut">清料</sys:String>
+
+	<sys:String x:Key="lang_StockInNGLot">上架NG批號</sys:String>
+	<sys:String x:Key="lang_NGReason">NG原因</sys:String>
+
+	<sys:String x:Key="lang_StockInLotList">當前上架批號清單</sys:String>
+	<sys:String x:Key="lang_StockInNGLotList">上架NG批號清單</sys:String>
+	<!--StockInMain-->
+
+	<!--StockOutMain-->
+	<sys:String x:Key="lang_InquireCondition">查詢條件</sys:String>
+	<sys:String x:Key="lang_Schedule">批號</sys:String>
+	<sys:String x:Key="lang_Inquire">查詢</sys:String>
+	<sys:String x:Key="lang_BundleCount">綁定把數</sys:String>
+	<sys:String x:Key="lang_LotStatus">批號狀態</sys:String>
+	<!--StockOutMain-->
+
+	<sys:String x:Key="lang_LogoutTime">登出時間</sys:String>
+	<sys:String x:Key="lang_Refresh">更新</sys:String>
+	<sys:String x:Key="lang_Export">匯出</sys:String>
+
+	<sys:String x:Key="lang_BINDING_LOT_NOT_FOUND">找不到對應的綁定批號</sys:String>
+	<sys:String x:Key="lang_STK_NO_ENOUGH_SPACE">STK沒有足夠位置存放該批號所有Bundle</sys:String>
+	<sys:String x:Key="lang_BUNDLE_ID_READ_FAILED">Bundle讀取失敗</sys:String>
+	<sys:String x:Key="lang_BINDING_LOT_STATUS_AT_PAUSE">對應的綁定批號處於暫停上架中</sys:String>
+	<sys:String x:Key="lang_STOCK_IN_LOT_COUNT_OVER_SETTING">同時上架的批號數量超過設定值</sys:String>
+	<sys:String x:Key="lang_STK_NO_MORE_SPACE">STK沒有足夠位置存放Bundle</sys:String>
+	<sys:String x:Key="lang_BUNDLE_ALREADY_EXIST">該Bundle已存在於Stocker中</sys:String>
+	<sys:String x:Key="lang_STOCKIN_ERRORMSG">異常錯誤</sys:String>
+
+	<sys:String x:Key="lang_lb_TotalUsage">整體使用率:</sys:String>
+
+	<sys:String x:Key="lang_Position">位置</sys:String>
+
+</ResourceDictionary>

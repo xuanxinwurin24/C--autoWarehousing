@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WmsDto.AutoStk" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WmsDto.AutoStk" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WmsUtil.Enums" />
+  <xs:complexType name="InParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchList" nillable="true" type="tns:ArrayOfBatch" />
+      <xs:element minOccurs="0" name="ConnectMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventTime" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WmsUtil.Enums" minOccurs="0" name="HandlerId" type="q1:HandlerType" />
+      <xs:element minOccurs="0" name="MissionID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderIssue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InParam" nillable="true" type="tns:InParam" />
+  <xs:complexType name="ArrayOfBatch">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Batch" nillable="true" type="tns:Batch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBatch" nillable="true" type="tns:ArrayOfBatch" />
+  <xs:complexType name="Batch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchMsg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CclnoGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Customer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnginnerFlag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromBin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LabelInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MatchResult" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Prctr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rtno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SecurityFlag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ToBin" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Batch" nillable="true" type="tns:Batch" />
+  <xs:complexType name="OutParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BatchList" nillable="true" type="tns:ArrayOfBatch" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WmsUtil.Enums" minOccurs="0" name="HandlerId" type="q2:HandlerType" />
+      <xs:element minOccurs="0" name="OrderIssue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnMsg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OutParam" nillable="true" type="tns:OutParam" />
+</xs:schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SysPara xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SoftVersion>SoftVersion</SoftVersion>
+  <ModelName>ModelName</ModelName>
+  <InLineID>InLineID</InLineID>
+  <EqID>24-K24_1F-STK</EqID>
+  <Client>true</Client>
+  <SqlDB_data_source>localhost</SqlDB_data_source>
+  <SqlDB_catalog>ASE</SqlDB_catalog>
+  <SqlDB_uid>strong</SqlDB_uid>
+  <SqlDB_password>5999011</SqlDB_password>
+  <SoftType>CPC</SoftType>
+  <StockInWaitTime>900000</StockInWaitTime>
+  <LogOutTime>600000</LogOutTime>
+  <UsageReportTime>1800000</UsageReportTime>
+  <bSimuPLC>true</bSimuPLC>
+  <ShuttleCar1_Port>8000</ShuttleCar1_Port>
+  <ShuttleCar1_IP>172.22.244.45</ShuttleCar1_IP>
+  <ShuttleCar2_Port>8000</ShuttleCar2_Port>
+  <ShuttleCar2_IP>172.22.244.44</ShuttleCar2_IP>
+  <iWebService_MaxRetryCount>3</iWebService_MaxRetryCount>
+</SysPara>

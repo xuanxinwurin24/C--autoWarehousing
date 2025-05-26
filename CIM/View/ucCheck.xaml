@@ -1,0 +1,264 @@
+﻿<UserControl x:Class="CIM.View.ucCheck"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:CIM.View"
+			 mc:Ignorable="d" Background="AliceBlue"
+			 d:DesignHeight="1200" d:DesignWidth="1200">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+			<GroupBox Header="Check Cycle Setting" Margin="10"
+				  HorizontalAlignment="Left" VerticalAlignment="Top">
+				<GroupBox.Resources>
+					<Style TargetType="RadioButton">
+						<!--<Setter Property="LayoutTransform">
+						<Setter.Value>
+							<ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+						</Setter.Value>
+					</Setter>-->
+						<Setter Property="Focusable" Value="False" />
+						<Setter Property="HorizontalAlignment" Value="Left" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+						<Setter Property="Margin" Value="10 6 5 3" />
+					</Style>
+					<Style TargetType="Label">
+						<Setter Property="Width" Value="150" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+					</Style>
+					<Style TargetType="TextBox">
+						<Setter Property="Width" Value="120" />
+						<Setter Property="Padding" Value="3" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+					</Style>
+				</GroupBox.Resources>
+				<StackPanel>
+					<RadioButton>
+						<StackPanel Orientation="Horizontal">
+							<Label Content="None" />
+						</StackPanel>
+					</RadioButton>
+					<RadioButton>
+						<StackPanel Orientation="Horizontal">
+							<Label Content="By Time" />
+							<ComboBox x:Name="cbox_Hour" Width="70" Focusable="False"
+								  IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}">
+							</ComboBox>
+							<TextBlock Text=":" Padding="5 0" VerticalAlignment="Center" />
+							<ComboBox x:Name="cbox_Minute" Width="70" Focusable="False"
+								  IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}"/>
+							<!--<TextBox x:Name="txb_Day" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}" />-->
+						</StackPanel>
+					</RadioButton>
+					<RadioButton>
+						<StackPanel Orientation="Horizontal">
+							<Label Content="By Week" />
+							<ComboBox x:Name="cbox_Week" Width="180" Focusable="False"
+								  IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}">
+
+							</ComboBox>
+						</StackPanel>
+					</RadioButton>
+					<RadioButton>
+						<StackPanel Orientation="Horizontal">
+							<Label Content="By Day" />
+							<ComboBox x:Name="cbox_Day" Width="150" Focusable="False"
+								  IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}"/>
+						</StackPanel>
+					</RadioButton>
+				</StackPanel>
+			</GroupBox>
+			<GroupBox Header="Manual Check" Margin="10"
+				  HorizontalAlignment="Left" VerticalAlignment="Top">
+				<GroupBox.Resources>
+					<Style TargetType="CheckBox">
+						<Setter Property="Focusable" Value="False" />
+						<Setter Property="HorizontalAlignment" Value="Left" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+						<Setter Property="Margin" Value="10 6 5 3" />
+					</Style>
+					<Style TargetType="Label">
+						<Setter Property="Width" Value="150" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+					</Style>
+					<Style TargetType="TextBox">
+						<Setter Property="Width" Value="120" />
+						<Setter Property="Padding" Value="3" />
+						<Setter Property="VerticalContentAlignment" Value="Center" />
+					</Style>
+				</GroupBox.Resources>
+				<StackPanel Orientation="Horizontal">
+					<StackPanel>
+						<CheckBox>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Batch No." />
+								<TextBox x:Name="txb_BatchNo" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}" />
+							</StackPanel>
+						</CheckBox>
+						<CheckBox>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Carousel ID" />
+								<TextBox x:Name="txb_CarouselID" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}" />
+							</StackPanel>
+						</CheckBox>
+						<CheckBox>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Soteria" />
+								<TextBox x:Name="txb_Soteria" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}" />
+							</StackPanel>
+						</CheckBox>
+						<CheckBox>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Customer ID" />
+								<TextBox x:Name="txb_CustomerID" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Control}, Path=IsChecked}" />
+							</StackPanel>
+						</CheckBox>
+					</StackPanel>
+					<StackPanel VerticalAlignment="Bottom">
+						<Button x:Name="btn_ManualCheck" Content="{DynamicResource lang_SearchCheck}" FontSize="18" 
+							Margin="10 5" Padding="20 8" Click="btn_ManualCheck_Click"/>
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Grid.Row="1">
+			<Grid Margin="10">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+					<Label Content="Check History List" VerticalContentAlignment="Center"/>
+					<Button x:Name="btn_CheckHistoryListRefresh" Content="{DynamicResource lang_Refresh}" Margin="10 0" Padding="10 5" Click="btn_CheckHistoryListRefresh_Click" Height="27" VerticalAlignment="Top"/>
+				</StackPanel>
+				<DataGrid x:Name="HistoryCheckDataGrid" Grid.Row="1"
+					  AutoGenerateColumns="False" HeadersVisibility="Column" RowDetailsVisibilityMode="Visible" SelectionMode="Single" 
+					  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+					  VirtualizingPanel.ScrollUnit="Pixel">
+					<DataGrid.Resources>
+						<Style TargetType="{x:Type TextBlock}" x:Key="RightCell">
+							<Setter Property="HorizontalAlignment" Value="Right"/>
+						</Style>
+					</DataGrid.Resources>
+					<DataGrid.ColumnHeaderStyle>
+						<Style TargetType="DataGridColumnHeader">
+							<!--<Setter Property="FontSize" Value="18" />-->
+							<Setter Property="HorizontalContentAlignment" Value="Center" />
+							<Setter Property="Padding" Value="10 2" />
+						</Style>
+					</DataGrid.ColumnHeaderStyle>
+					<DataGrid.RowStyle>
+						<Style TargetType="DataGridRow">
+							<EventSetter Event="MouseDoubleClick" Handler="HistoryCheckDataGridRow_MouseDoubleClick" />
+						</Style>
+					</DataGrid.RowStyle>
+					<DataGrid.CellStyle>
+						<Style TargetType="ContentControl">
+							<Style.Triggers>
+								<Trigger Property="DataGridCell.IsSelected" Value="True">
+									<Setter Property="Background" Value="Yellow" />
+									<Setter Property="Foreground" Value="Black" />
+									<Setter Property="BorderBrush" Value="Transparent" />
+									<!--<Setter Property="BorderThickness" Value="0" />-->
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</DataGrid.CellStyle>
+					<DataGrid.Columns>
+						<DataGridTextColumn Width="200" Binding="{Binding Command_ID}" CanUserSort="False" IsReadOnly="True">
+							<DataGridTextColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="Check Command ID" />
+								</DataTemplate>
+							</DataGridTextColumn.HeaderTemplate>
+						</DataGridTextColumn>
+						<DataGridTextColumn Width="150" Binding="{Binding Result}" CanUserSort="False" IsReadOnly="True">
+							<DataGridTextColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="Check Result" />
+								</DataTemplate>
+							</DataGridTextColumn.HeaderTemplate>
+						</DataGridTextColumn>
+						<DataGridTextColumn Width="200" Binding="{Binding End_Time, StringFormat={}{0:yyyy/MM/dd-HH:mm:ss}}" CanUserSort="False" IsReadOnly="True">
+							<DataGridTextColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="Check Time" />
+								</DataTemplate>
+							</DataGridTextColumn.HeaderTemplate>
+						</DataGridTextColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+			<DataGrid x:Name="CheckResultDataGrid" Margin="10"
+					  AutoGenerateColumns="False" HeadersVisibility="Column" RowDetailsVisibilityMode="Visible" SelectionMode="Extended" 
+					  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+					  VirtualizingPanel.ScrollUnit="Pixel">
+				<DataGrid.Resources>
+					<Style TargetType="{x:Type TextBlock}" x:Key="RightCell">
+						<Setter Property="HorizontalAlignment" Value="Right"/>
+					</Style>
+				</DataGrid.Resources>
+				<DataGrid.ColumnHeaderStyle>
+					<Style TargetType="DataGridColumnHeader">
+						<!--<Setter Property="FontSize" Value="18" />-->
+						<Setter Property="HorizontalContentAlignment" Value="Center" />
+						<Setter Property="Padding" Value="10 2" />
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
+				<DataGrid.CellStyle>
+					<Style TargetType="ContentControl" >
+						<Style.Triggers>
+							<Trigger Property="DataGridCell.IsSelected" Value="True">
+								<Setter Property="Background" Value="Yellow" />
+								<Setter Property="Foreground" Value="Black" />
+								<Setter Property="BorderBrush" Value="Transparent" />
+								<!--<Setter Property="BorderThickness" Value="0" />-->
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</DataGrid.CellStyle>
+				<DataGrid.Columns>
+					<DataGridTextColumn Width="150" Binding="{Binding CAROUSEL_ID}" ElementStyle="{StaticResource RightCell}" CanUserSort="False" IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<TextBlock Text="{DynamicResource lang_CarouselID}" />
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn Width="120" Binding="{Binding CELL_ID}" ElementStyle="{StaticResource RightCell}" CanUserSort="False" IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<TextBlock Text="{DynamicResource lang_CellInfo_CellID}" />
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn Width="180" Binding="{Binding BOX_ID}" ElementStyle="{StaticResource RightCell}" CanUserSort="False" IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<TextBlock Text="{DynamicResource lang_BoxID}" />
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn Width="180" Binding="{Binding BATCH_NO}" ElementStyle="{StaticResource RightCell}" CanUserSort="False" IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<TextBlock Text="Batch No." />
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+					<DataGridTextColumn Width="150" Binding="{Binding CHECK_RESULT}" ElementStyle="{StaticResource RightCell}" CanUserSort="False" IsReadOnly="True">
+						<DataGridTextColumn.HeaderTemplate>
+							<DataTemplate>
+								<TextBlock Text="Check Result" />
+							</DataTemplate>
+						</DataGridTextColumn.HeaderTemplate>
+					</DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</StackPanel>
+	</Grid>
+</UserControl>

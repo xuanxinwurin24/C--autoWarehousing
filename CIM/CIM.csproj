@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E410591-9658-4AC9-95C8-264E0E77243A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CIM</RootNamespace>
+    <AssemblyName>CIM</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ACTMULTILib, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.ACTMULTILib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.4.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.4.2\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="StrongBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\StrongBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="StrongDriver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\StrongDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SQLite, Version=1.0.107.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BC\TaskCtrl.cs" />
+    <Compile Include="BC\ShuttleCar.cs" />
+    <Compile Include="Connected Services\ASE_CardID_WebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ASE_WebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\JSON.cs" />
+    <Compile Include="BC\Stocker.cs" />
+    <Compile Include="Lib\View\fmChangePassword.xaml.cs">
+      <DependentUpon>fmChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmCreateUser.xaml.cs">
+      <DependentUpon>fmCreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmDeleteUser.xaml.cs">
+      <DependentUpon>fmDeleteUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\fmLogin.xaml.cs">
+      <DependentUpon>fmLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CheckViewModel.cs" />
+    <Compile Include="ViewModel\ManualMoveView.cs" />
+    <Compile Include="ViewModel\TaskViewItem.cs" />
+    <Compile Include="View\Stocker\fmCellInformation.xaml.cs">
+      <DependentUpon>fmCellInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Language\LanguageHelper.cs" />
+    <Compile Include="Lib\CIMStatusBar.xaml.cs">
+      <DependentUpon>CIMStatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucSystemSetting.xaml.cs">
+      <DependentUpon>ucSystemSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Stocker\ucStocker.xaml.cs">
+      <DependentUpon>ucStocker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\ucIFSig.xaml.cs">
+      <DependentUpon>ucIFSig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\ucStackedColumn.xaml.cs">
+      <DependentUpon>ucStackedColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonMethods.cs" />
+    <Compile Include="Lib\View\ucFindCondition.xaml.cs">
+      <DependentUpon>ucFindCondition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\Model\LogExcept.cs" />
+    <Compile Include="MyTcpClient.cs" />
+    <Compile Include="SQL_DB.cs" />
+    <Compile Include="Themes\CustomWindow.cs" />
+    <Compile Include="Themes\TransitioningContentControl.cs" />
+    <Compile Include="Themes\VisualStates.cs" />
+    <Compile Include="UILog\fmUILog.xaml.cs">
+      <DependentUpon>fmUILog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UILog\frmAlarmHistoryLog.xaml.cs">
+      <DependentUpon>frmAlarmHistoryLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UILog\frmAlarmLog.xaml.cs">
+      <DependentUpon>frmAlarmLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UILog\frmEqLog.xaml.cs">
+      <DependentUpon>frmEqLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CarouselViewModel.cs" />
+    <Compile Include="ViewModel\CustomMenuItem.cs" />
+    <Compile Include="View\Stocker\fmCarousel.xaml.cs">
+      <DependentUpon>fmCarousel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucAlarm.xaml.cs">
+      <DependentUpon>ucAlarm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucCheck.xaml.cs">
+      <DependentUpon>ucCheck.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucManualMove.xaml.cs">
+      <DependentUpon>ucManualMove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucTask.xaml.cs">
+      <DependentUpon>ucTask.xaml</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ucRecover.xaml.cs">
+      <DependentUpon>ucRecover.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucTest.xaml.cs">
+      <DependentUpon>ucTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucUILog.xaml.cs">
+      <DependentUpon>ucUILog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ucUserGroup.xaml.cs">
+      <DependentUpon>ucUserGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebService.cs" />
+    <EmbeddedResource Include="BC\Memory\wAux.csv" />
+    <None Include="Connected Services\ASE_CardID_WebService\CardReviewService.wsdl" />
+    <None Include="Connected Services\ASE_CardID_WebService\CardReviewService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ASE_CardID_WebService\CardReviewService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ASE_WebService\CIM.ASE_WebService.AuthenticateUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ASE_WebService\CIM.ASE_WebService.OutParam.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ASE_WebService\configuration91.svcinfo" />
+    <None Include="Connected Services\ASE_WebService\configuration.svcinfo" />
+    <None Include="Connected Services\ASE_WebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService1.disco" />
+    <None Include="Connected Services\ASE_CardID_WebService\configuration91.svcinfo" />
+    <None Include="Connected Services\ASE_CardID_WebService\configuration.svcinfo" />
+    <None Include="Connected Services\ASE_CardID_WebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ASE_CardID_WebService\CardReviewService.disco" />
+    <Content Include="DLL\StrongDriver.dll" />
+    <Content Include="Lib\JSON\Newtonsoft.Json.dll" />
+    <Page Include="Lib\View\fmChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Lib\View\fmCreateUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Lib\View\fmDeleteUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Lib\View\fmLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\Stocker\fmCarousel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucAlarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucCheck.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucManualMove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucRecover.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ucTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucUILog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ucUserGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Lib\JSON\Newtonsoft.Json.xml" />
+    <Page Include="View\Stocker\fmCellInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Language\LanguageDictionary.en-US.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Language\LanguageDictionary.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Content Include="Language\LanguageDictionary.zh-TW.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Lib\CIMStatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ucSystemSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Stocker\ucStocker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lib\MyDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lib\View\ucFindCondition.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\ucIFSig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\ucStackedColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Lib\Led.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\DeviceMemoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lib\View\MemGroupUserCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BC\BC.cs" />
+    <Compile Include="Lib\Led.xaml.cs">
+      <DependentUpon>Led.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\Model\Alarm.cs" />
+    <Compile Include="Lib\Model\HSMSpar.cs" />
+    <Compile Include="Lib\Model\MemGroupModel.cs" />
+    <Compile Include="Lib\Model\Password.cs" />
+    <Compile Include="Lib\Model\SysPara.cs" />
+    <Compile Include="Lib\View\DeviceMemoryView.xaml.cs">
+      <DependentUpon>DeviceMemoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lib\View\MemGroupUserCtrl.xaml.cs">
+      <DependentUpon>MemGroupUserCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UILog\fmUILog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UILog\frmAlarmHistoryLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UILog\frmAlarmLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UILog\frmEqLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService1.wsdl" />
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ASE_WebService\WmsAutoStkService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="DLL\StrongBase.lib" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\WmsService.Services.CardID_OutParam.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ASE_CardID_WebService\" />
+    <WCFMetadataStorage Include="Connected Services\ASE_WebService\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,6 @@
+Tag Name            ,AddrOffset ,BitUse ,Length ,StartBit ,ValString ,EventLog  ,OnTime  ,TrigerEdge ,IstByPass ,Hint                          ,Description                   
+STK_Connect,0,F,1,0,DEC,F         ,0,ON         ,F,                              ,
+ShuttleCar_Connect,1,F,1,0,DEC,F         ,0,ON         ,F,                              ,
+STK_ONLINE,2,F,1,0,DEC,F         ,0,ON         ,F,                              ,
+ShuttleCar_ONLINE,3,F,1,0,DEC,F         ,0,ON         ,F,                              ,
+isOnlyDemo,4,F,1,0,DEC,F         ,0,ON         ,F,                              ,

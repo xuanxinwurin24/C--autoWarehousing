@@ -1,0 +1,139 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:lib="clr-namespace:CIM.Lib"
+	xmlns:local="clr-namespace:CIM"
+	xmlns:Langs="clr-namespace:CIM.Language"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns:viewmodel="clr-namespace:CIM.ViewModel"
+	x:Class="CIM.MainWindow"
+	Title="CIM"
+	Width="1366"
+	Height="768"
+	Background="#FF292929"
+	FontSize="12"
+	WindowStyle="None"
+	WindowStartupLocation="Manual"
+	mc:Ignorable="d" WindowState="Normal" ResizeMode="NoResize"
+	Closing="Window_Closing">
+
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/CIM;component/Lib/MyDictionary.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource GroupboxWithoutWhiteBorder}">
+				<Setter Property="FontSize" Value="20"/>
+				<Setter Property="FontWeight" Value="DemiBold"/>
+				<Setter Property="BorderThickness" Value="2" />
+			</Style>
+			<Style TargetType="{x:Type TextBlock}">
+				<Setter Property="FontSize" Value="20"/>
+			</Style>
+			<Style TargetType="{x:Type Label}">
+				<Setter Property="FontSize" Value="20"/>
+			</Style>
+			<Style TargetType="{x:Type Button}" x:Key="MainBtn">
+				<Setter Property="Width" Value="350"/>
+				<Setter Property="Height" Value="80"/>
+			</Style>
+			<Langs:LanguageHelper x:Key="LanguageHelperDataSource" d:IsDataSource="True" />
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<ListView x:Name="ListViewMenu" Width="200" Foreground="White" Background="{x:Null}" Focusable="False" BorderThickness="0"
+						  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+				<ListView.Resources>
+					<Style x:Key="FocusVisual">
+						<Setter Property="Control.Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<Rectangle Margin="0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+					<SolidColorBrush x:Key="Item.MouseOver.Background" Color="#19FFFFFF"/>
+					<SolidColorBrush x:Key="Item.MouseOver.Border" Color="#a826A0Da"/>
+					<SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#4CFFFFFF"/>
+					<SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#FFDADADA"/>
+					<SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#4CFFFFFF"/>
+					<SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#FFDADADA"/>
+					<SolidColorBrush x:Key="Item.MouseOver.SelectedActive.Background" Color="#7FFFFFFF"/>
+					<SolidColorBrush x:Key="Item.MouseOver.SelectedActive.Border" Color="#FF26A0DA"/>
+					<Style TargetType="{x:Type viewmodel:CustomMenuItem}">
+						<Setter Property="FontSize" Value="30" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="Padding" Value="20 10" />
+						<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+						<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+						<Setter Property="Background" Value="Transparent"/>
+						<Setter Property="BorderBrush" Value="Transparent"/>
+						<Setter Property="BorderThickness" Value="0"/>
+						<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ListViewItem}">
+									<Border Background="{TemplateBinding Background}" 
+										BorderBrush="Transparent" BorderThickness="0" SnapsToDevicePixels="true">
+										<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+											<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Border>
+									<ControlTemplate.Triggers>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsMouseOver" Value="True"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsSelected" Value="True"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+										</MultiTrigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsMouseOver" Value="True"/>
+												<Condition Property="IsSelected" Value="True"/>
+											</MultiTrigger.Conditions>
+											<Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.SelectedActive.Background}"/>
+											<Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.SelectedActive.Border}"/>
+										</MultiTrigger>
+										<Trigger Property="IsEnabled" Value="False">
+											<Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</ListView.Resources>
+			</ListView>
+			<Grid Grid.Column="1" HorizontalAlignment="Left">
+				<Rectangle Fill="{StaticResource PrimaryHueLightBrush}" Width="7" HorizontalAlignment="Right"/>
+			</Grid>
+			<Grid Grid.Column="2" x:Name="GridMain" Background="AliceBlue">
+
+			</Grid>
+		</Grid>
+		<lib:CIMStatusBar x:Name="CIMStatusBar" VerticalAlignment="Bottom" Grid.Row="1" Background="{StaticResource PrimaryHueLightBrush}"/>
+	</Grid>
+</Window>

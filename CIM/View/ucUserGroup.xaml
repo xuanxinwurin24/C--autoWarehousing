@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="CIM.View.ucUserGroup"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:CIM.View"
+			 mc:Ignorable="d" 
+			 FontSize="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=25}">
+
+	<UserControl.Resources>
+		<local:CheckBoxEnableConverter x:Key="checkBoxEnableConverter"/>
+
+		<Style TargetType="{x:Type CheckBox}">
+			<Setter Property="IsEnabled" Value="{Binding ElementName=cbUserGroup, Path=Text, Converter={StaticResource checkBoxEnableConverter}}"/>
+		</Style>
+	</UserControl.Resources>
+
+	<Grid Margin="5">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+
+		<DockPanel DockPanel.Dock="Left" Width="Auto" Grid.Column="0"
+				   Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"
+				   >
+
+			<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+				<TextBlock Text="User Group" Margin="0,0,10,0" Background="LightBlue" TextAlignment="Center" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"/>
+				<Border Background="GhostWhite" BorderBrush="Black" BorderThickness="1">
+					<ComboBox x:Name="cbUserGroup" HorizontalAlignment="Left" SelectedIndex="-1" SelectionChanged="CbUserGroup_SelectionChanged"
+							  Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=200}"
+							  />
+				</Border>
+			</StackPanel>
+
+			<StackPanel x:Name="stackPanelAuthorities" Orientation="Vertical" DockPanel.Dock="Top"
+						Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=10}"
+						>
+
+				<GroupBox Header="{DynamicResource AuthorityManagement_Main}" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=30}">
+					<StackPanel Orientation="Horizontal">
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Name="chkAGVRemote" Content="主畫面權限" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Name="chkSECS_Query_Query" Content="Alarm" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Name="chkSetting_System" Content="Log" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Content="盤點" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Content="調儲" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Content="測試" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+					</StackPanel>
+
+				</GroupBox>
+
+				<GroupBox Header="系統設定" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=30}">
+					<StackPanel Orientation="Horizontal">
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Name="chkOHB_Available" Content="Web Service" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+						<Viewbox Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=35}">
+							<Border Background="LightGray" Margin="0,0,15,0">
+								<CheckBox Name="chkOHB_Dispatch" Content="Carousel Utility" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</Viewbox>
+					</StackPanel>
+				</GroupBox>
+
+			</StackPanel>
+
+			<Button x:Name="btnSave" Content="Save" Click="btnSave_Click"
+					Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=3}"
+					Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=150}"
+					Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=40}"
+					Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"
+					/>
+
+		</DockPanel>
+
+		<StackPanel x:Name="stackPanelButtons" Grid.Column="1" VerticalAlignment="Center"
+					Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=200}"
+					>
+
+			<Button x:Name="btnCreateUser" Content="{DynamicResource CreateUser}" Click="btnCreateUser_Click"
+					Width="Auto"
+					Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=40}"
+					Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=20}"
+					Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"
+					/>
+			<Button x:Name="btnDeleteUser" Content="{DynamicResource DeleteUser}" Click="btnDeleteUser_Click"
+					Width="Auto"
+					Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=40}"
+					Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=20}"
+					Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"
+					/>
+
+		</StackPanel>
+
+	</Grid>
+
+</UserControl>

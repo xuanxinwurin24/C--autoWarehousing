@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="CIM.View.ucTask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CIM.View" xmlns:Lib="clr-namespace:CIM.Lib"
+             mc:Ignorable="d" Background="AliceBlue"
+             d:DesignHeight="450" d:DesignWidth="1166">
+    <Canvas>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="STK連線狀態" Grid.Row="0" Grid.Column="0" FontSize="20" />
+            <Lib:Led x:Name="led_STKConnect" Canvas.Left="94" Canvas.Top="792" Height="35" Width="35" RenderTransformOrigin="0.625,1.631" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+            <Label Content="穿梭車連線狀態" Grid.Row="1" Grid.Column="0" FontSize="20"/>
+            <Lib:Led x:Name="led_ShuttleCarConnect" Canvas.Top="792" Height="35" Width="35" RenderTransformOrigin="0.625,1.631" Grid.Row="1" Grid.Column="1" IsEnabled="False"/>
+
+            <Label Content="STK控制狀態" Grid.Row="0" Grid.Column="2" FontSize="20"  />
+            <Lib:Led x:Name="led_STKControl" Canvas.Top="792" Height="35" Width="35" RenderTransformOrigin="0.625,1.631" Grid.Row="0" Grid.Column="3" IsEnabled="False"/>
+
+            <Label Content="穿梭車控制狀態" Grid.Row="1" Grid.Column="2" FontSize="20" />
+            <Lib:Led x:Name="led_ShuttleCarControl" Canvas.Top="792" Height="35" Width="35" RenderTransformOrigin="0.625,1.631" Grid.Row="1" Grid.Column="3" IsEnabled="False"/>
+
+            <Label Content="測試模式(無STK)" Grid.Row="0" Grid.Column="6"  FontSize="20" />
+            <Lib:Led x:Name="led_OnlyDemo" Canvas.Top="792" Height="35" Width="35" RenderTransformOrigin="0.625,1.631" Grid.Row="0" Grid.Column="7" IsEnabled="False"/>
+            <Button Grid.Row="0" Grid.Column="8" Background="Azure" Content="Demo Switch" Click="Button_Click"/>
+
+
+            <Label Content="                    " Grid.Row="1" Grid.Column="5" FontSize="20" />
+            <Label Content="顏色說明" Grid.Row="1" Grid.Column="7" FontSize="20" HorizontalContentAlignment="Center"/>
+            <Label Content="命令送出等待中" Grid.Row="2" Grid.Column="6" FontSize="20" Background="Aqua" />
+            <Label Content="任務執行中" Grid.Row="2" Grid.Column="7" FontSize="20" Background="Lime" />
+            <Label Content="BOX抵達Lifter" Grid.Row="2" Grid.Column="8" FontSize="20" Background="Gold" />
+            <!--<Label Content="Stocker執行中" Grid.Row="2" Grid.Column="9" FontSize="20" Background="Lime"></Label>-->
+        </Grid>
+
+        <DataGrid x:Name="DataGrid_TaskList" Grid.Row="1" FontSize="19" Canvas.Top="100"
+				  AutoGenerateColumns="False" HeadersVisibility="Column" RowDetailsVisibilityMode="Visible" SelectionMode="Single" 
+				  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+				  VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+           
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <!--<Setter Property="FontSize" Value="16" />-->
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="5 2" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="ContentControl">
+                    <EventSetter Event="MouseRightButtonUp" Handler="grid_TaskList_MouseRightButtonUp"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected" Value="True">
+                            <Setter Property="Background" Value="Yellow" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <!--<Setter Property="BorderThickness" Value="0" />-->
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightBlue" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <!--<Setter Property="BorderThickness" Value="0" />-->
+                        </Trigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="1">
+                            <Setter Property="Background" Value="White" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="2">
+                            <Setter Property="Background" Value="Lime" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="3">
+                            <Setter Property="Background" Value="Aqua" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="4">
+                            <Setter Property="Background" Value="Lime" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="88">
+                            <Setter Property="Background" Value="Gold" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding STATUS}" Value="99">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{DynamicResource isSelected}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.4" ScaleY="1.4" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+                <DataGridTextColumn Width="150" Binding="{Binding BOXID}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_BoxID}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Binding="{Binding BATCH_NO}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Batch No." />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="80" Binding="{Binding SOTERIA}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Soteria" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="70" Binding="{Binding CUSTOMER_ID}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_CustomerID}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="120" Binding="{Binding SRCPOS}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_SrcPos}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="120" Binding="{Binding SRCCELL}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_SrcCell}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="120" Binding="{Binding TARPOS}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_TarPos}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="120" Binding="{Binding TARCELL}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_TarCell}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="70" Binding="{Binding PRIORITY}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_Priority}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="90" Binding="{Binding DIRECTION}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{DynamicResource lang_Direction}" />
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Canvas>
+</UserControl>

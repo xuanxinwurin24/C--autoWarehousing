@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUserGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserGroup>
+    <GroupName>GUEST</GroupName>
+    <GroupLevel>0</GroupLevel>
+    <GrantList>
+      <Grant>MainControl</Grant>
+      <Grant>System</Grant>
+    </GrantList>
+  </UserGroup>
+  <UserGroup>
+    <GroupName>OP</GroupName>
+    <GroupLevel>3</GroupLevel>
+    <GrantList>
+      <Grant>MainControl</Grant>
+      <Grant>PLC</Grant>
+      <Grant>Log</Grant>
+    </GrantList>
+  </UserGroup>
+  <UserGroup>
+    <GroupName>Engineer</GroupName>
+    <GroupLevel>6</GroupLevel>
+    <GrantList>
+      <Grant>MainControl</Grant>
+      <Grant>System</Grant>
+      <Grant>User</Grant>
+      <Grant>PLC</Grant>
+      <Grant>History</Grant>
+      <Grant>Log</Grant>
+      <Grant>SerachCheck</Grant>
+    </GrantList>
+  </UserGroup>
+  <UserGroup>
+    <GroupName>Administrator</GroupName>
+    <GroupLevel>9</GroupLevel>
+    <GrantList>
+      <Grant>MainControl</Grant>
+      <Grant>System</Grant>
+      <Grant>User</Grant>
+      <Grant>PLC</Grant>
+      <Grant>History</Grant>
+      <Grant>Log</Grant>
+      <Grant>SerachCheck</Grant>
+      <Grant>TEST</Grant>
+    </GrantList>
+  </UserGroup>
+</ArrayOfUserGroup>

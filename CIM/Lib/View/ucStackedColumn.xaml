@@ -1,0 +1,18 @@
+﻿<UserControl
+    x:Class="CIM.Lib.View.ucStackedColumn"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:CHR="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CIM.Lib.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid x:Name="gd1">
+        <TextBox Name="lbText" FontSize="8" Visibility="Collapsed"/>
+        <WindowsFormsHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <CHR:Chart x:Name="chart1" Height="600"/>
+        </WindowsFormsHost>
+    </Grid>
+</UserControl>

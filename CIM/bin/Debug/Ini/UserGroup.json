@@ -1,0 +1,39 @@
+[
+  {
+    "AccessibleElement": "FFFFFFFF",
+    "GroupName": "Administrator",
+    "Level": 9,
+    "UserList": {
+      "GPM": {
+        "UserName": "GPM",
+        "PasswordHash": "E96E9AE011F66360F6B334DE29435A35"
+      },
+      "STRONG": {
+        "UserName": "Strong",
+        "PasswordHash": "B933116D27FD4D2A3C7D4ACA0ECE5F43"
+      }
+    }
+  },
+  {
+    "AccessibleElement": "FFFFF000",
+    "GroupName": "Engineer",
+    "Level": 6,
+    "UserList": {
+      "ASE": {
+        "UserName": "ASE",
+        "PasswordHash": "227468A5BAD2EAD3A4489CA2EFC8B96B"
+      }
+    }
+  },
+  {
+    "AccessibleElement": "4432A000",
+    "GroupName": "Operator",
+    "Level": 3,
+    "UserList": {
+      "GUEST": {
+        "UserName": "Guest",
+        "PasswordHash": "D41D8CD98F00B204E9800998ECF8427E"
+      }
+    }
+  }
+]

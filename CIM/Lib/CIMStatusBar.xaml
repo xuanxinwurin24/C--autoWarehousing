@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="CIM.Lib.CIMStatusBar"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:cim="clr-namespace:CIM"
+			 xmlns:local="clr-namespace:CIM.Lib"
+			 xmlns:model="clr-namespace:CIM.Lib.Model"
+			 xmlns:Lang="clr-namespace:CIM.Language"
+			 xmlns:properties="clr-namespace:CIM.Properties"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 xmlns:bc="clr-namespace:CIM.BC"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=50}"
+			 d:DesignWidth="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource screenWidthToFormWidthConverter}, ConverterParameter=Form}">
+
+	<Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+		<Grid.Resources>
+			<Lang:LanguageHelper x:Key="languageHelperDataSource" d:IsDataSource="True"/>
+			<local:UserLoginConverter x:Key="userLoginConverter"/>
+			<local:UserLevelConverter x:Key="userLevelConverter"/>
+		</Grid.Resources>
+
+		<StatusBar DataContext="{Binding Path=(model:Password.CurnUser)}" BorderThickness="0,0,0,0" BorderBrush="#FF3C3C3C" Background="#FF3C3C3C"
+				   Height="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=50}"
+				   FontSize="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=18}"
+				   >
+
+			<Label x:Name="lbUserName" Content="User" FontWeight="Bold" Foreground="White"/>
+			<TextBlock x:Name="txbUserName" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}" Background="White" Text="{Binding UserName}"/>
+			<Separator Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"/>
+			<Label x:Name="lbUserGroup" Content="User Group" FontWeight="Bold" Foreground="White"/>
+			<TextBlock x:Name="txbUserGroup" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}" Background="White" Text="{Binding Group.GroupName}"/>
+			
+			<Separator Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"/>
+
+            <Button x:Name="btnLogin" Content="{DynamicResource lang_btn_Login}" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}" Click="BtnLogin_Click" Visibility="{Binding UserName, Converter={StaticResource userLoginConverter}, ConverterParameter=Login}"/>
+            <Button x:Name="btnLogout" Content="{DynamicResource lang_btn_Logout}" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}" Click="BtnLogout_Click"
+					Visibility="{Binding UserName, Converter={StaticResource userLoginConverter}, ConverterParameter=Logout}"/>
+            <Button x:Name="btnChangePassword" Content="{DynamicResource lang_btn_ChangePWD}" Padding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}" Click="BtnChangePassword_Click"
+					Visibility="{Binding UserName, Converter={StaticResource userLoginConverter}, ConverterParameter=Logout}"/>
+
+			<Separator Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=5}"/>
+
+            <Label x:Name="lbLanguage" Content="{DynamicResource lang_lb_SwitchLanguage}" FontWeight="Bold" Foreground="White"
+				   FontSize="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=22}"
+				   />
+			<ComboBox x:Name="cbChangeLanguage" VerticalAlignment="Center" DisplayMemberPath="NativeName"
+					  SelectionChanged="cbChangeLanguage_SelectionChanged"
+					  Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=220}"
+					  Margin="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=1}"
+					  
+					  SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=DefaultCulture}"
+					  ItemsSource="{Binding SupportedCultures, Source={StaticResource languageHelperDataSource}}"
+					  />
+
+            <Label x:Name="lbWebModeHead" Content="{DynamicResource lang_lb_WebServiceMode}" FontWeight="Bold" Foreground="White"
+				   FontSize="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=22}"
+				   />
+            <Label x:Name="lbWebServiceConnectMode"  FontWeight="Bold" Foreground="White"
+				   FontSize="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=22}"
+                   Content="{ Binding WEBSERVICE_MODE}"  />
+
+
+            <StatusBarItem HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" >
+				
+			</StatusBarItem>
+
+			<StatusBarItem HorizontalAlignment="Right" VerticalContentAlignment="Stretch" Padding="0">
+				<DockPanel>
+					<Label x:Name="lbVer" Foreground="White" VerticalContentAlignment="Center" Content="{x:Static cim:App.sVer}" Width="Auto"/>
+					<Label x:Name="lbDateTime" Foreground="White" VerticalContentAlignment="Center" Content="{Binding Path=(sys:DateTime.Now)}" ContentStringFormat="yyyy/MM/dd  HH:mm:ss" Width="Auto" Margin="30 0 0 0"/>
+					<Button x:Name="BtnGoToDesktop" Click="BtnGoToDesktop_Click" BorderThickness="1" Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={StaticResource scalingRatioConverter}, ConverterParameter=20}" Background="#FF3C3C3C" Margin="10 0 0 0"/>
+				</DockPanel>
+
+			</StatusBarItem>
+
+		</StatusBar>
+	</Grid>
+</UserControl>

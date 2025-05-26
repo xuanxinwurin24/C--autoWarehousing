@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="CIM.UILog.frmAlarmLog"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:CIM.UILog"
+		mc:Ignorable="d"
+			 VerticalAlignment="Top" Margin="10,10,10,0" FontSize="16">
+	<!--Height="300" Width="300">-->
+
+	<UserControl.Resources>
+		<Style TargetType="ListViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property = "Foreground" Value="Black"/>
+			<Setter Property = "Background" Value="Red"/>
+			<Style.Triggers>
+				<DataTrigger Binding = "{Binding Level}" Value = "0">
+					<Setter Property = "Foreground" Value="White"/>
+					<Setter Property = "Background" Value="Red"/>
+				</DataTrigger>
+				<DataTrigger Binding = "{Binding Level}" Value = "2">
+					<Setter Property = "Foreground" Value="White"/>
+					<Setter Property = "Background" Value="DeepPink"/>
+				</DataTrigger>
+				<Trigger Property="IsSelected" Value="True">
+					<Setter Property = "BorderBrush" Value="BlueViolet"/>
+					<Setter Property = "BorderThickness" Value="2"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+	</UserControl.Resources>
+
+	<StackPanel>
+		<Button Height="33" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,0,5" Click="Button_Click" Width="102">Reset</Button>
+		<ListView x:Name="lv" Margin="0,0,0,0">
+			<ListView.View>
+				<GridView >
+					<GridViewColumn Header="ID" Width="80" >
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock HorizontalAlignment="Center" Text="{Binding ID,StringFormat={}{0:D}}"/>
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Header="HEX ID" Width="80" >
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock HorizontalAlignment="Center" Text="{Binding ID,StringFormat={}{0:X4}}"/>
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Header="Unit No" Width="70" >
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock HorizontalAlignment="Center" Text="{Binding Unit}"/>
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Header="Unit Name"  Width="0" DisplayMemberBinding="{Binding UnitName, Mode=OneWay}"  />
+					<GridViewColumn Header="Time" Width="280" DisplayMemberBinding="{Binding OccurTimeStr, Mode=OneWay}"  />
+					<GridViewColumn Header="Level" Width="150" DisplayMemberBinding="{Binding Level, Mode=OneWay}"  />
+					<GridViewColumn Header="Message" Width="570" DisplayMemberBinding="{Binding Message, Mode=OneWay}"  />
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</StackPanel>
+</UserControl>    

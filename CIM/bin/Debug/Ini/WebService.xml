@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebServiceSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WebServiceUsed>false</WebServiceUsed>
+  <Uri>http://127.0.0.1:12345/</Uri>
+  <AuthHeaderInfo>
+    <HeaderEnabled>true</HeaderEnabled>
+    <UserID>Strong</UserID>
+    <Passport>Strong</Passport>
+  </AuthHeaderInfo>
+</WebServiceSetting>

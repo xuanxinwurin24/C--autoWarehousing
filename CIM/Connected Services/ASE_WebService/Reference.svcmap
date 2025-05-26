@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b8dc524f-f10b-4ff2-ad55-0cf3e934577e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WmsAutoStkService32.xsd" MetadataType="Schema" ID="eea1e7cc-3537-4474-9feb-4b3d3e16d06c" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WmsAutoStkService31.xsd" MetadataType="Schema" ID="f894a6bb-d116-4703-82e4-304727272457" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WmsAutoStkService3.xsd" MetadataType="Schema" ID="6ca341d1-c585-492e-a738-9594153dd8bc" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WmsAutoStkService1.disco" MetadataType="Disco" ID="c75fd609-1b90-4f3d-8fa0-0fb9c7a8d574" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?disco" />
+    <MetadataFile FileName="WmsAutoStkService.xsd" MetadataType="Schema" ID="e447e42f-b251-479f-934b-a0f1766a0112" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WmsAutoStkService1.wsdl" MetadataType="Wsdl" ID="2e3245d6-b4fe-42de-be85-1fd3e7c429c6" SourceId="1" SourceUrl="https://mybiztest/WaferCenterWeb/Services/WmsAutoStkService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
